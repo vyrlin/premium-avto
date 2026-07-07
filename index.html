@@ -1,0 +1,37 @@
+<?
+$seo = DB::selectOne("SELECT * FROM seo WHERE id='1' LIMIT 1");
+PAGE::$title = $seo['title'];
+PAGE::$seo['description'] = $seo['description'];
+PAGE::$seo['keywords'] = $seo['keywords'];
+
+$mail_name = new InputText('mail_name', 'tr', true);
+$mail_contact = new InputText('mail_contact', 'tr', true);
+$mail_text = new InputTextarea('mail_text', 'tr', true);
+$mail_send = new InputButton('mail_send', 'Отправить'); 
+$mail_send->ext = 'onClick="mailSend(); return false;"';
+$mail_form = new Form('mail', 'post');
+
+$values = $mail_form->catchValues();
+if(isset($_POST['mail_send'])) {
+	if(!$pay_form->required_flag) {
+		if(!DB::query("INSERT INTO accounts SET company_id='".$_PATH['num']."', manager_id='".$company['manager_id']."', buh_id='".USER::$id."', type='pay', date='".$values['pay_date'].' '.date("H:i:s")."', amount='".$values['pay_amount']."'")) echo_err('db_save'); 
+	} else { echo_err('form_require'); }
+}
+		
+$modal_c = $mail_form->html('open').'<table border=0 cellpadding=5>'; 
+$modal_c .= '<tr><td align=left>Ваше имя или название организации</td></tr><tr><td align=left>'.$mail_name->html(300).'</td></tr>';
+$modal_c .= '<tr><td align=left>Ваш емайл или телефон</td></tr><tr><td align=left>'.$mail_contact->html(300).'</td></tr>';
+$modal_c .= '<tr><td align=left>Текст сообщения</td></tr><tr><td align=left>'.$mail_text->html(300, 100).'</td></tr>';
+$modal_c .= '</table>';
+$modal_b = $mail_send->html().$mail_form->html('close');
+PAGE::setModal('Напишите нам', $modal_c, $modal_b); 
+
+$photos = DB::select("SELECT * FROM gallery WHERE active='1' ORDER BY id");
+foreach($photos as $ph) {
+	$modal_c = '<img src="/pics/'.$ph['photo'].'.'.$ph['ext'].'" class="photogallery-big">';
+	$modal_c .= '<div>'.$ph['text'].'</div>';
+	PAGE::addModal($ph['id'], 'Фотогалерея', $modal_c, ''); 
+}
+
+
+?>
