@@ -1,0 +1,62 @@
+<?
+PAGE::setTitle('Блок "Услуги"');
+$block = 2;
+
+if(isset($_PATH['num'])) {	
+	$name = new InputText('title', 'tr'); 
+	$active = new InputCheckbox('active'); 
+	$text = new InputTextarea('text', 'none', true); 
+	$submit = new InputButton('save', 'Сохранить'); 
+	$form = new Form('cabinet', 'post');
+
+	$values = $form->catchValues();
+	if(isset($_POST['save'])) {
+		if(!$form->required_flag) {
+			if($_PATH['num']) {
+				$values['text'] = secur($values['text'], 't');
+				$sql = "UPDATE texts SET active='".$values['active']."', title='".$values['title']."', text='".$values['text']."' WHERE id='".$_PATH['num']."' AND block='$block' LIMIT 1";
+			} else {
+				$sql = "INSERT INTO texts SET block='$block', active='".$values['active']."', title='".$values['title']."', text='".$values['text']."'";
+			} 
+			if(DB::query($sql)) { 
+				echo_yes('db_save'); 
+				if(!$_PATH['num']) PAGE::redirect('/admin/block2/');
+			} else { echo_err('db_save'); } 
+		} else { echo_err('form_require'); }
+	}
+			
+	if($_PATH['num']) {
+		$values = DB::selectOne("SELECT * FROM texts WHERE id='".$_PATH['num']."' AND block='$block' LIMIT 1");
+		$form->catchValues($values); 
+	} 
+	echo '<div class="form">';
+	echo $form->html('open');
+	echo '<div class="form-row"><span class="col-100">'.$name->html(500).'</span></div>';
+	echo '<div class="form-row"><span class="col-100">'.$active->html().' активно</span></div>';
+	echo '<div class="form-hr"></div>';
+	echo '<div class="form-row"><span class="col-100">'.$text->html(0, 300).'</span></div>';
+	echo '<div class="form-hr"></div>';
+	echo '<span class="col-75">'.$submit->html().'</span></div>';
+	echo $form->html('close');
+	echo '</div>';
+} else { 
+	echo '<div style="vertical-align:middle;"><span style="float:left;">';
+	echo '<a class="button bggreen" href="0.html">Добавить</a> ';
+	echo '</span></div><br><br>';
+	$items = DB::select("SELECT * FROM texts WHERE block='$block' ORDER BY id DESC");
+	if(count($items)) {
+		$titles = array('ID', 'Название', 'Активно'); $data = array(); 
+		$aligns = array('left', 'left'); $valigns = array('top', 'top', 'top');
+		foreach($items as $item) {
+			$name = '<a href="'.$item['id'].'.html">'.$item['title'].'</a>';
+			if($item['active']) { $act = 'да'; } else { $act = 'нет'; }
+			$data[] = array($item['id'], $name, $act);
+		}
+		echo_table($titles, $data, $aligns, $valigns);
+	} else { echo_att('db_null'); }
+}	
+?>
+
+
+
+		

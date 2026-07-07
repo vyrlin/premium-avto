@@ -1,0 +1,91 @@
+<?
+PAGE::setTitle('Блок "Почему мы?');
+$block = 1;
+
+if(isset($_PATH['num'])) {	
+	$name = new InputText('title', 'tr'); 
+	$active = new InputCheckbox('active'); 
+	$image = new InputFile('image'); $image->ext .= ' onChange="loadPic('."'cabinet'".')";';
+	$image_hidd = new InputHidden('image_hidd');
+	$text = new InputCKFull('text', 't', true); 
+	$submit = new InputButton('save', 'Сохранить'); 
+	$form = new Form('cabinet', 'post');
+
+	$values = $form->catchValues();
+	if(isset($_POST['save'])) {
+		if(!$form->required_flag) {
+			if($_PATH['num']) {
+				$sql = "UPDATE texts SET active='".$values['active']."', title='".$values['title']."', text='".$values['text']."' WHERE id='".$_PATH['num']."' AND block='$block' LIMIT 1";
+			} else {
+				$sql = "INSERT INTO texts SET block='$block', active='".$values['active']."', title='".$values['title']."', text='".$values['text']."', image=".maybe_null($values['image_hidd']);
+			} echo $sql;
+			if(DB::query($sql)) { 
+				echo_yes('db_save'); 
+				PAGE::redirect('/admin/block1/');
+			} else { echo_err('db_save'); } 
+		} else { echo_err('form_require'); }
+	}
+	if(isset($_FILES['image']['tmp_name']) && $_FILES['image']['tmp_name']) {
+		$filename - null;
+		$type = exif_imagetype($_FILES['image']['tmp_name']); 
+		if($type == (IMAGETYPE_PNG || IMAGETYPE_JPEG || IMAGETYPE_GIF)) {
+			switch($type) { 
+				case(1): $ext = 'gif'; break; 
+				case(2): $ext = 'jpg'; break; 
+				case(3): $ext = 'png'; break; 
+			}
+			$hash = get_timehash();
+			$filename = '/pics/'.$hash.'.'.$ext;
+			if(move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].$filename)) {
+				if($_PATH['num']) {
+					DB::query("UPDATE texts SET image=".maybe_null($filename)." WHERE id='".$_PATH['num']."' AND block='$block' LIMIT 1");
+				} else { $image_hidd->value = $filename; }
+			} else { echo_err('file_save'); }
+		}
+	}
+			
+	if($_PATH['num']) {
+		$values = DB::selectOne("SELECT * FROM texts WHERE id='".$_PATH['num']."' AND block='$block' LIMIT 1");
+		$form->catchValues($values); 
+	}
+	echo '<div class="form">';
+	echo $form->html('open').$image_hidd->html();
+	echo '<div class="form-row"><span class="col-100">'.$name->html(500).'</span></div>';
+	echo '<div class="form-row"><span class="col-100">'.$active->html().' активно</span></div>';
+	echo '<div class="form-hr"></div>';
+	if($image_hidd->value) { 
+		$img = '<img src="'.$image_hidd->value.'" class="splash" style="width:100%; margin-bottom:1em;">'; 
+	} else { $img = ''; }
+	if($values['image']) { 
+		$img = '<img src="'.$values['image'].'" class="splash" style="width:100%; margin-bottom:1em;">'; 
+	} 
+	echo '<div class="form-row"><span class="col-100">'.$img.'</span></div>';
+	echo '<div class="form-row"><span class="col-100">'.$image->html().'</span></div>';
+	echo '<div class="form-hr"></div>';
+	echo '<div class="form-row"><span class="col-100">'.$text->html().'</span></div>';
+	echo '<div class="form-hr"></div>';
+	echo '<span class="col-75">'.$submit->html().'</span></div>';
+	echo $form->html('close');
+	echo '</div>';
+} else { 
+	echo '<div style="vertical-align:middle;"><span style="float:left;">';
+	echo '<a class="button bggreen" href="0.html">Добавить</a> ';
+	echo '</span></div><br><br>';
+	$items = DB::select("SELECT * FROM texts WHERE block='$block' ORDER BY id DESC");
+	if(count($items)) {
+		$titles = array('Название', 'Текст', 'Активно'); $data = array(); 
+		$aligns = array('left', 'left'); $valigns = array('top', 'top', 'top');
+		foreach($items as $item) {
+			$name = '<a href="'.$item['id'].'.html">'.$item['title'].'</a>';
+			$text = '<a href="'.$item['id'].'.html">'.slice_text($item['text'], 100).'</a>';
+			if($item['active']) { $act = 'да'; } else { $act = 'нет'; }
+			$data[] = array($name, $text, $act);
+		}
+		echo_table($titles, $data, $aligns, $valigns);
+	} else { echo_att('db_null'); }
+}	
+?>
+
+
+
+		

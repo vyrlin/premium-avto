@@ -1,0 +1,37 @@
+<?
+PAGE::setTitle('SEO тэги');
+
+$title = new InputText('title', 'tr', true); 
+$desc = new InputText('description', 'tr'); 
+$keys = new InputText('keywords', 'tr'); 
+$submit = new InputButton('save', 'Сохранить'); 
+$form = new Form('cabinet', 'post');
+
+$values = $form->catchValues();
+if(isset($_POST['save'])) {
+	if(!$form->required_flag) {
+		$sql = "UPDATE seo SET title='".$values['title']."', description='".$values['description']."', keywords='".$values['keywords']."' WHERE id='1' LIMIT 1";
+		if(DB::query($sql)) { 
+			echo_yes('db_save'); 
+		} else { echo_err('db_save'); } 
+	} else { echo_err('form_require'); }
+}
+			
+$values = DB::selectOne("SELECT * FROM seo WHERE id='1' LIMIT 1");
+$form->catchValues($values); 
+
+echo '<div class="form">';
+echo $form->html('open');
+echo '<div class="form-row"><span class="col-50">title</span><span class="col-50">'.$title->html().'</span></div>';
+echo '<div class="form-row"><span class="col-50">description</span><span class="col-50">'.$desc->html().'</span></div>';
+echo '<div class="form-row"><span class="col-50">keywords</span><span class="col-50">'.$keys->html().'</span></div>';
+echo '<div class="form-hr"></div>';
+echo '<span class="col-75">'.$submit->html().'</span></div>';
+echo $form->html('close');
+echo '</div>';
+
+?>
+
+
+
+		

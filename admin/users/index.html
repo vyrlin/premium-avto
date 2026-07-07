@@ -1,0 +1,125 @@
+<?
+if(isset($_PATH['num'])) {
+	$photo = new InputFile('photo', 't'); 
+	$f = new InputText('f', 'tr', true); $f->ext .= ' placeholder="Фамилия"';
+	$i = new InputText('i', 'tr', true); $i->ext .= ' placeholder="Имя"';
+	$birthday = new InputDate('birthday'); 
+	$position = new InputText('position', 'tr', true); 
+	$email = new InputText('email', 'email', true); $email->ext .= ' placeholder="Email"';
+	$phone = new InputText('phone', 'te', true); 
+	$pass = new InputPassword('newpwd', 'te'); 
+	$roles = new InputRadio('roles', 'te', true); 
+	$buh = new InputCheckbox('buh'); 
+	$pr = new InputCheckbox('pr'); 
+	$active = new InputCheckbox('active'); 
+	$submit = new InputButton('save', 'Сохранить'); 
+	$form = new Form('cabinet', 'post');
+
+	$values = $form->catchValues();
+	if(isset($_POST['save'])) {
+		if(!$form->required_flag) {
+			switch($values['roles']) {
+				case('admin'): $roles_query = "role='admin'"; break;
+				case('hr&phone-officer'): $roles_query = "role='manager', subrole='hr&phone', rank='officer'"; break;
+				case('hr-officer'): $roles_query = "role='manager', subrole='hr', rank='officer'"; break;
+				case('phone-officer'): $roles_query = "role='manager', subrole='phone', rank='officer'"; break;
+				case('sale-officer'): $roles_query = "role='manager', subrole='sale', rank='officer'"; break;
+				case('hr&phone-regular'): $roles_query = "role='manager', subrole='hr&phone', rank='regular'"; break;
+				case('hr-regular'): $roles_query = "role='manager', subrole='hr', rank='regular'"; break;
+				case('phone-regular'): $roles_query = "role='manager', subrole='phone', rank='regular'"; break;
+				case('sale-regular'): $roles_query = "role='manager', subrole='sale', rank='regular'"; break;
+				default: $roles_query = "xxx='yyy'"; break;
+			}
+			if($values['buh'] && $values['pr']) {
+				$roles_query .= ", proprole='buh,pr'";
+			} elseif($values['buh']) {
+				$roles_query .= ", proprole='buh'";
+			} elseif($values['pr']) {
+				$roles_query .= ", proprole='pr'";
+			} else { $roles_query .= ", proprole=''"; }
+			if($values['newpwd'] != '') { $pwd_query = ", pwdhash='".get_pwdhash($values['newpwd'])."'"; } else { $pwd_query = ''; }
+			if($_PATH['num']) {
+				$sql = "UPDATE users SET email='".$values['email']."', phone='".$values['phone']."', i='".$values['i']."', f='".$values['f']."', position='".$values['position']."', birthday=".maybe_null($values['birthday']).", active='".$values['active']."'$pwd_query , $roles_query WHERE id='".$_PATH['num']."' LIMIT 1"; 
+			} else {
+				$sql = "INSERT INTO users SET email='".$values['email']."', phone='".$values['phone']."', i='".$values['i']."', f='".$values['f']."', position='".$values['position']."', birthday=".maybe_null($values['birthday']).", active='".$values['active']."'$pwd_query , $roles_query";
+			} 
+			if(DB::query($sql)) { 
+				if($_PATH['num']) { $id = $_PATH['num']; } else { $id = DB::func('insert_id'); }
+				if(isset($_FILES['photo']['tmp_name']) && $_FILES['photo']['tmp_name']) {
+					$hash = get_timehash();
+					if(load_userpic($_FILES['photo']['tmp_name'], $hash)) {
+						$sql = "UPDATE users SET photo='".$hash.'.png'."' WHERE id='$id' LIMIT 1";
+						if(DB::query($sql)) { echo_yes('db_save'); PAGE::redirect('/admin/users/'.$id.'.html'); } else { echo_err('db_save'); }
+					} else { echo_err('file_upload'); }
+				} else { echo_yes('db_save'); }
+			} else { echo_err('db_save'); }
+		} else { echo_err('form_require'); }
+	}
+	
+	if($_PATH['num']) {
+		$user = DB::selectOne("SELECT * FROM users WHERE id='".$_PATH['num']."' AND (role='manager' OR role='admin') LIMIT 1");
+		if($user) {
+			$form->catchValues($user); 
+			if($user['role'] == 'manager') {
+				switch($user['subrole']) {
+					case('sale') : $role = 'продажи'; $hr = ''; $roles->value = 'sale'; break;
+					case('hr&phone') : $role = 'подбор и обзвон'; $hr = 'HR '; $roles->value = 'hr&phone'; break;
+					case('hr') : $role = 'подбор'; $hr = 'HR '; $roles->value = 'hr'; break;
+					case('phone') : $role = 'обзвон'; $hr = 'HR '; $roles->value = 'phone'; break;
+				}
+				if($user['rank'] == 'regular') { 
+					$role = 'Менеджер '.$hr.'('.$role.')'; $roles->value .= '-regular'; 
+				} else { $role = 'Руководитель '.$hr.'('.$role.')'; $roles->value .= '-officer'; }
+			} else { $role = 'Администратор'; $roles->value = 'admin'; }
+			if(substr_count($user['proprole'], 'buh')) $role .= ', экономист';
+			if(substr_count($user['proprole'], 'pr')) $role .= ', PR';
+			PAGE::setTitle($role);
+		} else { echo_err('db_null'); }
+	} else { PAGE::setTitle('Добавление сотрудника'); }
+
+	echo '<div class="form">';
+	echo $form->html('open');
+	echo '<div class="paragraph-gray"><div class="paragraph-title">Фото</div>';
+	echo '<div class="form-row"><span class="col-25">'.get_userpic($user['photo'], 'style="max-height:70px;"');
+	echo '</span><span class="col-75">'.$photo->html(200).'</span></div>';
+	echo '</div>';
+	echo '<div class="paragraph-gray"><div class="paragraph-title">ФИО</div>';
+	echo '<div class="form-row"><span class="col-100">'.$i->html(300).'</span></div>';
+	echo '<div class="form-row"><span class="col-100">'.$f->html(300).'</span></div>';
+	echo '</div>';
+	echo '<div class="paragraph-gray"><div class="paragraph-title">Дата рождения</div>';
+	echo '<div class="form-row"><span class="col-100">'.$birthday->html().'</span></div>';
+	echo '</div>';
+	echo '<div class="paragraph-gray"><div class="paragraph-title">Телефон</div>';
+	echo '<div class="form-row"><span class="col-100">'.$phone->html(150).'</span></div>';
+	echo '</div>';
+	echo '<div class="paragraph-gray"><div class="paragraph-title">Логин и пароль</div>';
+	echo '<div class="form-row"><span class="col-100">'.$email->html(150).'</span></div>';
+	echo '<div class="form-row"><span class="col-100">'.$pass->html(150).'</span></div>';
+	echo '</div>';
+	echo '<div class="paragraph-gray"><div class="paragraph-title">Права</div>';
+	echo '<div class="form-row"><span class="col-50"><label>'.$roles->html('r1', 'admin').' Администратор</label></span></div>';
+	echo '<div class="form-row"><span class="col-50"><label>'.$roles->html('r3', 'sale-officer').' Руководитель (продажи)</label></span>';
+	echo '<span class="col-50"><label>'.$roles->html('r4', 'sale-regular').' Менеджер (продажи)</label></span></div>';
+	echo '<div class="form-row"><span class="col-50"><label>'.$roles->html('r5', 'hr&phone-officer').' Руководитель HR (подбор и обзвон)</label></span>';
+	echo '<span class="col-50"><label>'.$roles->html('r6', 'hr&phone-regular').' HR (подбор и обзвон)</label></span></div>';
+	echo '<div class="form-row"><span class="col-50"><label>'.$roles->html('r7', 'hr-officer').' Руководитель HR (подбор)</label></span>';
+	echo '<span class="col-50"><label>'.$roles->html('r8', 'hr-regular').' HR (подбор)</label></span></div>';
+	echo '<div class="form-row"><span class="col-50"><label>'.$roles->html('r9', 'phone-officer').' Руководитель HR (обзвон)</label></span>';
+	echo '<span class="col-50"><label>'.$roles->html('r10', 'phone-regular').' HR (обзвон)</label></span></div>';
+	echo '<div class="form-hr"></div>';
+	echo '<div class="form-row"><span class="col-50"><label>'.$buh->html().' экономист</label></span>';
+	echo '<span class="col-50"><label>'.$pr->html().' PR</label></span></div>';
+	echo '<div class="form-hr"></div>';
+	echo '<div class="form-row"><span class="col-50"><label>'.$active->html().' доступ на сайт</label></span></div>';
+	echo '</div>';
+	echo '<div class="paragraph-gray"><div class="paragraph-title">Подпись</div>';
+	echo '<div class="form-row"><span class="col-100">'.$position->html(300).'</span></div>';
+	echo '</div>';
+	echo '<div class="form-hr"></div>';
+	echo '<div class="form-row"><div class="col-100">';
+	echo $submit->html().'</div>';
+	echo $form->html('close');
+	echo '</div>';
+} else { PAGE::redirect('/manager/users/'); }
+?>

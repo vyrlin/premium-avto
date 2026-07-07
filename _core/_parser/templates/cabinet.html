@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru" id="html"><head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>{#_TITLE_#}</title>
+	{#_SEO_#}
+	<link rel="stylesheet" href="/_style/cabinet.css">	
+	<script type="text/javascript" src="/_inc/js-funcs.js" charset="utf-8"></script>
+</head>
+<body id="body-main">
+
+<header>
+	<span class="header-left-panel"><a href="#" onClick="mobilMenu(); return false;" id="mobil_menu">☰</a></span>
+	<span class="header-logo"></span>
+	<span class="header-login">{#_SIGNIN_#}</span>
+	<span class="header-right-panel"></span>
+</header>
+
+<div id="page">
+	<aside id="menu">
+		<!-- menu -->
+		{#_LEFT_MENU_#} 
+		<!-- /menu -->
+	</aside>
+	<div id="content-box">
+		<div id="content-header">
+			<!-- con-header -->
+			<h1>{#_TITLE_#}</h1>
+			<!-- /con-header -->
+		</div>
+		<div id="content">
+			<!-- page title -->
+			<!-- /page title -->
+			<!-- content -->
+			{#_CONTENT_#}
+			<!-- /content -->
+		</div>
+	</div>
+	<aside id="widgets">
+		<!-- widgets -->
+		<!-- widgets -->
+	</aside>
+</div>
+<footer>
+<!--<table class="footer"><tr class="footer">
+<td class="login"> </td></tr></table>-->
+</footer>
+
+<div id="modal-wrap">
+<div id="modal"{#_MODAL_WIDTH_#}>{#_MODAL_#}</div>
+</div>
+</body></html>

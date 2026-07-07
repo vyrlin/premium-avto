@@ -1,0 +1,113 @@
+<?
+PAGE::setTitle('Блок "Фотогалерея');
+
+
+if(isset($_PATH['num'])) {	
+	$active = new InputCheckbox('active'); 
+	$image = new InputFile('image'); $image->ext .= ' onChange="loadPic('."'cabinet'".')";';
+	$image_hidd = new InputHidden('image_hidd');
+	$text = new InputText('text', 'tr'); 
+	$submit = new InputButton('save', 'Сохранить'); 
+	$delete = new InputButton('delete', 'Удалить'); 
+	$form = new Form('cabinet', 'post');
+
+	$new = false;
+	$values = $form->catchValues();
+	if(isset($_POST['save'])) {
+		if(!$form->required_flag) {
+			if($_PATH['num']) {
+				$sql = "UPDATE gallery SET active='".$values['active']."', text='".$values['text']."' WHERE id='".$_PATH['num']."' LIMIT 1";
+			} else {
+				if(isset($_POST['image_hidd']) && $_POST['image_hidd']) { 
+					$tmp = explode('.', $_POST['image_hidd']);
+					$pic = ", photo='".$tmp[0]."', ext='".$tmp[1]."'"; 
+				} else { $pic = ''; }
+				$sql = "INSERT INTO gallery SET active='".$values['active']."', text='".$values['text']."'".$pic;
+			} 
+			if(DB::query($sql)) { 
+				echo_yes('db_save'); 
+				if(!$_PATH['num']) PAGE::redirect('/admin/block3/');
+			} else { echo_err('db_save'); } 
+		} else { echo_err('form_require'); }
+	}
+	if((isset($_FILES['image']['tmp_name']) && $_FILES['image']['tmp_name'])) {
+		$filename = null; $ext = '';
+		$tmp_name = $_FILES['image']['tmp_name']; 
+
+		$type = exif_imagetype($tmp_name); 
+		if($type == (IMAGETYPE_PNG || IMAGETYPE_JPEG || IMAGETYPE_GIF)) {
+			switch($type) { 
+				case(1): $origin = imagecreatefromgif($tmp_name); $ext = 'gif'; break; 
+				case(2): $origin = imagecreatefromjpeg($tmp_name); $ext = 'jpg'; break; 
+				case(3): $origin = imagecreatefrompng($tmp_name); $ext = 'png'; break; 
+			}
+			if($ext) {
+				$hash = get_timehash();
+				$filename = '/pics/'.$hash.'.'.$ext;
+				if(move_uploaded_file($tmp_name, $_SERVER['DOCUMENT_ROOT'].$filename)) {
+					// resize
+					$xs = imagesx($origin); $ys = imagesy($origin); $x = imagesx($origin); $y = imagesy($origin); 
+					if($xs > 150) { $xs = 150; $ys = floor(imagesy($origin)/imagesx($origin)*150); }
+					if($ys > 150) { $ys = 150; $xs = floor(imagesx($origin)/imagesy($origin)*150); }
+					$thumb = imagecreatetruecolor($xs, $ys);
+					if($type == 3) { imagealphablending($thumb, false); imagesavealpha($thumb, true); }
+					imagecopyresized($thumb, $origin, 0, 0, 0, 0, $xs, $ys, imagesx($origin), imagesy($origin));
+					$flag = imagepng($thumb, $_SERVER['DOCUMENT_ROOT'].'/pics/'.$hash.'_small.png');
+					// /resize
+					if($_PATH['num']) {
+						DB::query("UPDATE gallery SET photo='$hash', ext='$ext' WHERE id='".$_PATH['num']."' LIMIT 1");
+					} else { $image_hidd->value = $hash.'.'.$ext; }
+				} else { echo_err('file_save'); }
+			} else { echo_err('file_save'); }
+		}
+	}
+	if(isset($_POST['delete'])) {
+		$pic = DB::selectOne("SELECT * FROM gallery WHERE id='".$_PATH['num']."' LIMIT 1");
+		DB::query("DELETE FROM gallery WHERE id='".$_PATH['num']."' LIMIT 1");
+		@unlink($_SERVER['DOCUMENT_ROOT'].'/pics/'.$pic['photo'].'.'.$pic['ext']);
+		@unlink($_SERVER['DOCUMENT_ROOT'].'/pics/'.$pic['photo'].'_small.png');
+	}
+	
+	if($_PATH['num']) {
+		$values = DB::selectOne("SELECT * FROM gallery WHERE id='".$_PATH['num']."' LIMIT 1");
+		$form->catchValues($values); 
+	}
+	echo '<div class="form">'; 
+	echo $form->html('open').$image_hidd->html();
+	echo '<div class="form-row"><span class="col-100">'.$text->html().'</span></div>';
+	echo '<div class="form-row"><span class="col-100">'.$active->html().' активно</span></div>';
+	echo '<div class="form-hr"></div>';
+	if($image_hidd->value) { 
+		$tmp = str_replace(['.gif', '.jpg', '.png'], '', $image_hidd->value);
+		$img = '<img src="/pics/'.$tmp.'_small.png" class="photogallery-small">'; 
+	} else { $img = ''; }
+	if($values['photo']) { 
+		$img = '<img src="/pics/'.$values['photo'].'_small.png" class="photogallery-small">'; 
+	} 
+	echo '<div class="form-row"><span class="col-100">'.$img.'</span></div>';
+	echo '<div class="form-row"><span class="col-100">'.$image->html().'</span></div>';
+	echo '<div class="form-hr"></div>';
+	echo '<span class="col-75">'.$submit->html().'</span></div>';
+	echo $form->html('close');
+	echo '</div>';
+} else { 
+	echo '<div style="vertical-align:middle;"><span style="float:left;">';
+	echo '<a class="button bggreen" href="0.html">Добавить</a> ';
+	echo '</span></div><br><br>';
+	$items = DB::select("SELECT * FROM gallery ORDER BY id DESC"); 
+	if(count($items)) {
+		$titles = array('Название', 'Активно'); $data = array(); 
+		$aligns = array('left'); $valigns = array('top', 'top');
+		foreach($items as $item) {
+			$name = '<a href="'.$item['id'].'.html">'.$item['text'].'</a>';
+			if($item['active']) { $act = 'да'; } else { $act = 'нет'; }
+			$data[] = array($name, $act); 
+		} 
+		echo_table($titles, $data, $aligns, $valigns);
+	} else { echo_att('db_null'); }
+}	
+?>
+
+
+
+		

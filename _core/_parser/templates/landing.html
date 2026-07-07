@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>{#_TITLE_#}</title>
+	{#_SEO_#}
+	<link rel="stylesheet" href="/_style/landing.css">
+    <script src="/_inc/DataTables/jQuery-3.2.1/jquery-3.2.1.min.js"></script>
+    <script src="/_inc/js-funcs.js"></script>
+</HEAD>
+<body id="body-main">
+
+{#_CONTENT_#}
+<div id="bg">
+
+<div class="block-top">
+	<div class="buttons-block">
+		<a href="tel:+73432000900" class="menu-a"><div class="button_red">
+			<img src="/_style/phone.png" style="height:22px; vertical-align:middle; margin-right:15px;">
+			<span>8 (343) 2000-900</span>
+		</div></a>
+		
+		<a href="#block4" class="menu-a"><div class="button_blue">
+			<img src="/_style/map.png" style="height:22px; margin-right:15px;">
+			<div style="display:inline-block; text-align:left;">г.Екатеринбург<br>ул.Кислородная, 8</div>
+		</div></a>
+		
+		<a href="#block4" class="menu-a"><div class="button_blue">
+			<img src="/_style/clock.png" style="height:22px; margin-right:15px;">
+			<div style="display:inline-block; text-align:right;">Пн-Пт  с 10:00 до 19:00<br>Сб с 11:00 до 16:00</div>
+		</div></a>
+	</div>
+	<div class="logos-block">
+		<img src="/_style/logo.png" class="logo">
+		<div id="advert"><img src="/_style/advert_img.png" id="adv" style="display:inline; vertical-align:middle;"></div>
+		<div id="logos">
+			<img src="/_style/logo_vw.png" class="logos">
+			<img src="/_style/logo_audi.png" class="logos">
+			<!--<img src="/_style/logo_porsche.png" class="logos"> -->
+			<img src="/_style/logo_skoda.png" class="logos">
+			<img src="/_style/logo_seat.png" class="logos">
+		</div>
+	</div>
+	<div class="menus-block">
+		<a href="#block1" class="menu-a"><div class="menu-item">Почему мы?</div></a>
+		<a href="#block2" class="menu-a"><div class="menu-item">Услуги</div></a>
+		<a href="#block3" class="menu-a"><div class="menu-item">Фотогалерея</div></a>
+		<a href="#block4" class="menu-a"><div class="menu-item">Контакты</div></a>
+		<a href="#block5" class="menu-a"><div class="menu-item">О компании</div></a>
+		<a href="#block6" class="menu-a"><div class="menu-item">Наши партнеры</div></a>
+	</div>
+</div>
+
+<div class="block" style="background-color:#FFF;">
+<a name="block1"><h2>Почему мы?</h2>
+<!--  для выровнивания по центру важно в ширине меньше 600 floate:none !!! -->
+<div class="div2to1cols">
+{#_BLOCK_1_#}
+</div>
+</div>
+
+<div class="block" style="background-color:#ed1c24; color:#FFF;">
+<a name="block2"><h2 style="color:#FFF;">Услуги</h2>
+<div class="div3to2cols">
+{#_BLOCK_2_#}
+</div>
+</div>
+
+<div class="block" style="background-color:#fff;">
+<a name="block3"><h2>Фотогалерея</h2>
+<div id="photogallery">
+  <button id="photogallery_left" onClick="pgScroll(-200);"></button>
+  <!--<a href="#" onClick="pgScroll(-200);"><img src="/_style/icons/prev.png"></a>-->
+  <ul id="phg">
+    {#_BLOCK_3_#}
+  </ul>
+  <button id="photogallery_right" onClick="pgScroll(200);"></button>
+  <!--<a href="#" onClick="pgScroll(200);"><img src="/_style/icons/next.png"></a>-->
+</div>
+</div>
+<script> pgScroll(200); </script>
+
+<div class="block" style="background-color:#ed1c24; color:#FFF;">
+<a name="block4"><h2 style="color:#FFF;">Контакты</h2>
+<div class="div2to1cols">
+	<div class="text2cols" style="text-align:center;">
+		<script type="text/javascript" src="http://api-maps.yandex.ru/1.1/index.xml?key=ALT_0U8BAAAApN56FQIAWtecwDITg662K4MlKHL8G_dBx0YAAAAAAAAAAABLrHBMRErmtQjXRjwJjtZFXVxk8Q=="></script>
+		<!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту (начало) -->
+		<div id="ymaps-map-id_133916280421320163106" style="width: 450px; height: 350px;"></div>
+		<div style="text-align: right; width: 450px;"><a target="_blank" href="http://api.yandex.ru/maps/tools/constructor/?lang=ru-RU" style="color: #1A3DC1; font: 13px Arial,Helvetica,sans-serif;">Создано с помощью инструментов Яндекс.Карт</a></div>
+		<script type="text/javascript"><!--
+		function fid_133916280421320163106(ymaps) {var map = new ymaps.Map("ymaps-map-id_133916280421320163106", {center: [60.61677093930049, 56.86589086911472], zoom: 16, type: "yandex#map"});map.controls.add("zoomControl").add("mapTools").add(new ymaps.control.TypeSelector(["yandex#map", "yandex#satellite", "yandex#hybrid", "yandex#publicMap"]));map.geoObjects.add(new ymaps.Placemark([60.61668510861202, 56.86478612782703], {balloonContent: ""}, {preset: "twirl#lightblueDotIcon"}));};
+		// --></script>
+		<script type="text/javascript" src="http://api-maps.yandex.ru/2.0/?coordorder=longlat&amp;load=package.full&amp;wizard=constructor&amp;lang=ru-RU&amp;onload=fid_133916280421320163106"></script>
+		<!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту (конец) -->
+	</div>
+	<div class="text2cols">
+	{#_BLOCK_4_#}
+	<p><a href="#" class="button bgblue" onClick="showModal(); return false;">Напишите нам</a></p>
+	</div>
+</div>
+</div>
+
+<div class="block" style="background-color:#FFF;">
+<a name="block5"><h2>О компании</h2>
+<div class="text1col">
+    {#_BLOCK_5_#} 
+</div>
+</div>
+
+<div class="block" style="background-color:#5b6d82; text-align:center; color:#FFF;">
+<a name="block6"><h2 style="color:#FFF;">Наши партнеры</h2>
+<!-- этот див центрует содержимое во горизонтали и вертикали! -->
+<!--<div style="background-color:#ffffff; border: 1px solid black; overflow:auto; ">-->
+<div class="div4to2cols">
+	{#_BLOCK_6_#} 
+</div>
+<!--<div style="border-top:1px dotted white; margin:0 auto; width:50%;"></div>-->
+<div class="text1col">
+	&copy; VYRLIN DMITRII
+</div>
+</div>
+
+<div id="modal-wrap">
+<div id="modal"{#_MODAL_WIDTH_#}>{#_MODAL_#}</div>
+</div>
+{#_MODAL_S_#}
+
+</div>
+
+</body>
+</HTML>
