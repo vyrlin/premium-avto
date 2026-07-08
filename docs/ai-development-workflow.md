@@ -82,6 +82,7 @@ The developer should never have to ask how to create the file.
 
 Whenever AI proposes changing an existing file, it must explicitly specify one of two options.
 
+
 ## Option A — Replace the entire file
 
 AI provides the complete new version of the file.
@@ -103,5 +104,7 @@ Example:
 
 ````markdown
 ## PAGE
+
+When providing the full contents of a Markdown document, the AI must wrap the entire document in a single outer code block using four backticks (````), so that any inner Markdown code fences (```) remain copyable without breaking the response.
 
 ...

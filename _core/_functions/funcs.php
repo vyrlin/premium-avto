@@ -294,13 +294,17 @@ function sort_by(&$data, $field, $ord='asc') {
 	if($ord == 'asc') {
 		$code = "return strnatcmp(\$a['$field'], \$b['$field']);"; 
 	} else { $code = "return strnatcmp(\$b['$field'], \$a['$field']);"; }
-	usort($data, create_function('$a,$b', $code)); 
+	usort($data, function ($a, $b) use ($code) {
+    eval($code);
+	}); 
 } 
 function order_by(&$data, $field, $ord='asc') { 
 	if($ord == 'asc') {
 		$code = "return strnatcmp(\$a['$field'], \$b['$field']);"; 
 	} else { $code = "return strnatcmp(\$b['$field'], \$a['$field']);"; }
-	usort($data, create_function('$a,$b', $code)); 
+	usort($data, function ($a, $b) use ($code) {
+    eval($code);
+	}); 
 } 
 
 function parse_days($days) {
