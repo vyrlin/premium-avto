@@ -1,14 +1,16 @@
-DirectoryIndex index.html index.htm
+DirectoryIndex index.php index.html index.htm
 ErrorDocument 404 /404.html
-Options +Indexes
-RewriteEngine on
-Options +FollowSymlinks
+Options +Indexes +FollowSymlinks
+RewriteEngine On
 
 AddDefaultCharset UTF-8
+AddHandler application/x-httpd-php .html .htm
+AddType application/x-httpd-php .html .htm
+
 <IfModule mod_charset.c>
 CharsetDIsable on
 CharsetRecodeMultipartForms Off
-</IfModule> 
+</IfModule>
 
 <IfModule mod_headers.c>
 Header always edit Set-Cookie (.*) "$1; HTTPOnly"
@@ -21,15 +23,11 @@ php_value mbstring.internal_encoding UTF-8
 php_flag mbstring.encoding_translation on
 php_value mbstring.http_input "UTF-8,KOI8-R,CP1251"
 php_value mbstring.http_output UTF-8
-php_value mbstring.detect_order "UTF-8,KOI8-R,CP1251" 
-
-#php_value session.save_path F:\_internet\OSPanel\domains\my.sdo.ru\_sessions
-#php_value session.save_path /home/m/mysignru/jobhelp_mysign_ru/_sessions
+php_value mbstring.detect_order "UTF-8,KOI8-R,CP1251"
 
 RewriteCond %{REQUEST_FILENAME} data\/.*\.(php|php4|php5|pl|pm|cgi|js|html|htm|exe) [NC]
 RewriteRule "(^|/)." - [F]
 
-#RewriteCond %{REQUEST_FILENAME} _vendor\/.*\.(php|php4|php5|pl|pm|cgi|js|html|htm|exe) [NC]
 RewriteRule _vendor "-" [F]
 
 RewriteCond %{REQUEST_FILENAME} _ajax\/.*\.php
@@ -44,8 +42,8 @@ RewriteCond %{REQUEST_FILENAME} !fancybox.*
 RewriteCond %{REQUEST_FILENAME} !_ckeditor.*
 RewriteCond %{REQUEST_FILENAME} !.*_ckeditor.*
 RewriteRule ^([0-9A-Za-z_/\-]+\.html)(.*) index.php?link=/$1&%{QUERY_STRING}
-RewriteRule ^([0-9A-Za-z_/\-]+/)$ index.php?link=/$1&%{QUERY_STRING}
-RewriteRule ^()$ index.php?link=/index.html&%{QUERY_STRING} 
 
+RewriteRule ^([0-9A-Za-z_/\-]+/)$ index.php?link=/$1&%{QUERY_STRING}
+RewriteRule ^()$ index.php?link=/index.html&%{QUERY_STRING}
 
 php_value error_reporting 7

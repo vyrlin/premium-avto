@@ -1,4 +1,4 @@
-<?
+<?php
 $seo = DB::selectOne("SELECT * FROM seo WHERE id='1' LIMIT 1");
 PAGE::$title = $seo['title'];
 PAGE::$seo['description'] = $seo['description'];

@@ -123,7 +123,7 @@ function xorhash($text) {
 	if(strlen($text) < 16) $text .= str_repeat('-', (16-strlen($text)));
 	for($i=0; $i<strlen($text);) {
 		for($j=0; $j<strlen($salt); $j++, $i++) {
-			$hash .= $text{$i} ^ $salt{$j};
+			$hash .= $text[$i] ^ $salt[$j];
 		}
 	}
 	return bin2hex($hash);
@@ -134,7 +134,7 @@ function dexorhash($hash) {
 	$hash = hex2bin($hash);
 	for($i=0; $i<strlen($hash);) {
 		for($j=0; $j<strlen($salt); $j++, $i++) {
-			$text .= $hash{$i} ^ $salt{$j};
+			$text .= $hash[$i] ^ $salt[$j];
 		}
 	}
 	return secur($text, 'pwd');

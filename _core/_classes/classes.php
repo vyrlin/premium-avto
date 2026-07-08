@@ -13,7 +13,7 @@ class PAGE {
 	protected static $_instance; 
 	private function __construct() { }
 	private function __clone() { }
-	private function __wakeup() { }
+	public function __wakeup() { }
 	public static function init() { 
 		if (self::$_instance === null) self::$_instance = new self; 
 		return self::$_instance; 
@@ -172,7 +172,7 @@ class DB {
 		if(!self::$connect) { PAGE::$errors[] = 'db_connect'; } else { mysqli_query(self::$connect, "SET NAMES ".DB_CHARSET); }
 	}
 	private function __clone() { }
-	private function __wakeup() { }
+	public function __wakeup() { }
 	public static function init() { 
 		if (self::$_instance === null) self::$_instance = new self; 
 		return self::$_instance; 
@@ -253,7 +253,7 @@ class USER {
 		}
 	}
 	private function __clone() { }
-	private function __wakeup() { }
+	public function __wakeup() { }
 	public static function init() { 
 		if (self::$_instance === null) self::$_instance = new self; 
 		return self::$_instance; 

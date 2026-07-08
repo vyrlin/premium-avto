@@ -1,4 +1,4 @@
-<?
+<?php
 header("Content-Type: text/html; charset=utf-8");
 setlocale( LC_ALL, 'ru_RU.utf8' );
 include_once($_CORE_ROOT.'/_core/_config/config.php'); 
