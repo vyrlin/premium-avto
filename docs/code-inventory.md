@@ -635,10 +635,10 @@ Service
 
 **Compatibility observations**
 
-- `create_function()` is used in:
-  - `sort_by()`
-  - `order_by()`
-- `create_function()` is removed in modern PHP versions.
+- create_function() has been removed.
+- sort_by() uses Closure.
+- order_by() uses Closure.
+- PHP 8 compatibility improved.
 - Previous search found no usages of `sort_by()` or `order_by()`.
 - No `mysql_*` usage found.
 - No `split()` usage found.

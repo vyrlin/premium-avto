@@ -143,9 +143,15 @@ This document is the official technical debt register for Phase 1 — Safe Moder
 
 ## TD-001 — Replace create_function()
 
-**Status**
+Status
 
-- Planned
+✅ Completed
+
+Verification
+
+- create_function() no longer exists in the project.
+- sort_by() and order_by() now use anonymous functions (Closure).
+- Behaviour preserved.
 
 **Priority**
 
