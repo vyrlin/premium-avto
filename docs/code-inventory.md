@@ -801,27 +801,217 @@ During Phase 1 it should be documented carefully. Security improvements must be 
 
 ## path.php
 
+**File**
+
+```text
+_core/_parser/path.php
+```
+
 **Status**
 
 - ✅ Verified
 
+**Risk level**
+
+- 🔴 Very High
+
 **Purpose**
 
-- URL parsing.
-- Building global `$_PATH`.
+Custom route parser that builds the global `$_PATH` array from the incoming URL.
+
+**Responsibilities**
+
+- Reads `$_GET['link']`.
+- Removes query string part from the route.
+- Splits URL path into segments.
+- Detects current page.
+- Detects numeric route parameters.
+- Detects hash-like route parameters.
+- Builds `path_string`.
+- Builds `folder_string`.
+- Stores parsed route information in global `$_PATH`.
+
+**Main output**
+
+```php
+$_PATH
+```
+
+**Generated fields**
+
+```php
+$_PATH['page']
+$_PATH['count']
+$_PATH['path_array']
+$_PATH['path_string']
+$_PATH['folder_string']
+$_PATH['num']
+$_PATH['hash']
+$_PATH['subnum']
+$_PATH['subhash']
+$_PATH['subsubnum']
+$_PATH['subsubhash']
+```
+
+**Dependencies**
+
+- `$_GET['link']`
+- `secur()`
+- `is_hash()`
+- PHP string functions:
+  - `strrpos()`
+  - `strlen()`
+  - `substr()`
+  - `explode()`
+  - `array_shift()`
+  - `array_reverse()`
+  - `str_replace()`
+  - `preg_replace()`
+
+**Confirmed behaviour**
+
+- Parses the route from `$_GET['link']`.
+- If the route contains `?`, only the part before `?` is used.
+- Path segments are reversed before being stored.
+- The last URL segment becomes `$_PATH['page']`.
+- Empty page becomes `false`.
+- Numeric page segment becomes `$_PATH['num']`.
+- Hash-like page segment becomes `$_PATH['hash']`.
+- Second-level numeric segment becomes `$_PATH['subnum']`.
+- Second-level hash segment becomes `$_PATH['subhash']`.
+- Third-level numeric segment becomes `$_PATH['subsubnum']`.
+- Third-level hash segment becomes `$_PATH['subsubhash']`.
+- `folder_string` is adjusted when numeric or hash route parameters are detected.
+
+**Architecture observations**
+
+- This file is procedural and writes directly to global `$_PATH`.
+- It is a central part of custom routing.
+- Routing depends on a rewritten `link` GET parameter.
+- The route array is reversed, which affects how other code reads path segments.
+- The file uses a short PHP opening tag.
+- No class or function wrapper is used.
+- `PAGE::getContent()` depends on the structure generated here.
+
+**Modernization notes**
+
+- Do not refactor during Phase 1.
+- Any change can break routing and admin pages.
+- Before changing this file, route behaviour must be tested thoroughly.
+- Good candidate for future documentation-driven tests.
+- Short opening tag can be replaced later as part of a dedicated compatibility task.
+
+**Decision**
+
+`path.php` is a stable but high-risk routing component.
+
+During Phase 1 it should be documented and preserved. Any modernization must be isolated and tested against public and admin routes.
 
 ---
 
 ## page.php
 
+**File**
+
+```text
+_core/_parser/page.php
+```
+
 **Status**
 
 - ✅ Verified
 
+**Risk level**
+
+- 🔴 Critical
+
 **Purpose**
 
-- Page loading.
-- Runtime initialization.
+Application bootstrap file.
+
+**Responsibilities**
+
+- Sets HTTP response encoding.
+- Configures locale.
+- Loads project configuration.
+- Loads helper functions.
+- Loads authentication functions.
+- Loads core classes.
+- Loads the routing parser.
+- Initializes the database.
+- Initializes the user session.
+- Initializes the page engine.
+- Renders the final HTML.
+- Closes the database connection.
+
+**Execution flow**
+
+```text
+Set headers
+        ↓
+Load config.php
+        ↓
+Load funcs.php
+        ↓
+Load auth.php
+        ↓
+Load classes.php
+        ↓
+Load path.php
+        ↓
+DB::init()
+        ↓
+USER::init()
+        ↓
+PAGE::init()
+        ↓
+PAGE::html()
+        ↓
+DB::func('close')
+```
+
+**Dependencies**
+
+- `config.php`
+- `funcs.php`
+- `auth.php`
+- `classes.php`
+- `path.php`
+- `DB`
+- `USER`
+- `PAGE`
+
+**Confirmed behaviour**
+
+- UTF-8 output is configured.
+- Russian locale is selected.
+- All core components are loaded using `include_once`.
+- Routing is initialized before page rendering.
+- Database is initialized before user authentication.
+- User initialization occurs before page rendering.
+- The page lifecycle ends with `PAGE::html()`.
+- The database connection is explicitly closed.
+
+**Architecture observations**
+
+- Acts as the central application bootstrap.
+- Defines the initialization order of all core components.
+- Uses direct `include_once` loading instead of autoloading.
+- Relies on global configuration.
+- No dependency injection is used.
+- Startup sequence is deterministic and easy to trace.
+
+**Modernization notes**
+
+- Do not change initialization order during Phase 1.
+- Future Composer autoloading must preserve this execution sequence.
+- Any bootstrap refactoring requires full application testing.
+
+**Decision**
+
+`page.php` is the application entry point for the legacy core.
+
+Its execution order defines the entire request lifecycle and should remain unchanged during Phase 1.
 
 ---
 
