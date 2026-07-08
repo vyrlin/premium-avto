@@ -1,210 +1,141 @@
-# Premium Avto — Technical Debt Register
+# Premium Avto — Technical Debt
 
-> **Document:** Technical Debt Register
+> **Document:** Technical Debt
 >
 > **Version:** 1.0
 >
 > **Status:** Active
 >
-> **Purpose:** Реестр известных технических проблем legacy-системы и план их устранения.
+> **Purpose:** Track known legacy issues and define safe modernization priorities.
 
 ---
 
-# 1. Назначение
+# 1. Goal
 
-Данный документ содержит перечень известных технических проблем проекта Premium Avto.
+This document lists known technical debt in the Premium Avto legacy system.
 
-Под техническим долгом понимаются:
-
-- устаревшие технологии;
-- небезопасные решения;
-- архитектурные ограничения;
-- несовместимость с современными версиями PHP;
-- временные решения, требующие последующей переработки.
-
-Документ является рабочим журналом проекта и обновляется после каждого значимого этапа модернизации.
+The purpose is not to rewrite the project, but to improve it gradually and safely.
 
 ---
 
-# 2. Правила ведения
+# 2. Priority Order
 
-Для каждой проблемы фиксируются:
+Technical debt must be handled in this order:
 
-- уникальный идентификатор;
-- приоритет;
-- компонент;
-- описание;
-- влияние на проект;
-- план устранения;
-- текущий статус.
-
-Статусы:
-
-| Статус | Значение |
-|---------|----------|
-| Open | проблема обнаружена |
-| Planned | запланирована к исправлению |
-| In Progress | исправляется |
-| Done | устранена |
-| Rejected | исправление признано нецелесообразным |
+1. Security
+2. PHP compatibility
+3. Stability
+4. Code readability
+5. Frontend improvements
+6. Architecture improvements
 
 ---
 
-# 3. Реестр технического долга
+# 3. Known Technical Debt
 
-| ID | Приоритет | Компонент | Проблема | Статус | План |
-|----|-----------|-----------|----------|--------|------|
-| TD-001 | 🔴 Высокий | Authentication | Используется MD5 для хранения паролей | Open | Phase 1 |
-| TD-002 | 🔴 Высокий | Authentication | Технический пароль `5_5` | Open | Phase 1 |
-| TD-003 | 🔴 Высокий | Security | Cookie-механизм требует дополнительного анализа | Open | Phase 1 |
-| TD-004 | 🟡 Средний | Functions | Используется `create_function()` | Open | Phase 2 |
-| TD-005 | 🟡 Средний | Parser | Короткие PHP-теги `<?` | Open | Phase 2 |
-| TD-006 | 🟡 Средний | Config | Конфигурация и системные сообщения находятся в одном файле | Open | Phase 2 |
-| TD-007 | 🟡 Средний | Templates | Жёстко заданные строки (`jobhelp.center`) | Open | Phase 2 |
-| TD-008 | 🟢 Низкий | Architecture | Отсутствуют пространства имён (Namespaces) | Open | Later |
-| TD-009 | 🟢 Низкий | Architecture | Нет Composer Autoload | Open | Later |
-| TD-010 | 🟢 Низкий | Database | Таблицы `texts`, `gallery`, `seo` используют MyISAM | Open | Later |
+## Security
+
+- Legacy password hashing uses MD5.
+- SQL queries are manually assembled.
+- No prepared statements.
+- Input filtering depends heavily on `secur()`.
+- Admin protection should be reviewed carefully.
+
+Risk: High  
+Action: Improve gradually, without breaking login or admin behaviour.
 
 ---
 
-# 4. Технический долг по компонентам
+## PHP Compatibility
 
-## Конфигурация
+- Legacy PHP syntax may cause warnings on modern PHP.
+- `create_function()` may exist in helper code.
+- Short PHP tags may exist.
+- Deprecated behaviour may appear on PHP 8+.
 
-Проблемы:
-
-- конфигурация и сообщения объединены в `config.php`;
-- отсутствует разделение по окружениям (development / production).
-
-Рекомендация:
-
-Разделить конфигурацию после завершения первой фазы модернизации.
+Risk: Medium  
+Action: Fix one compatibility issue per commit.
 
 ---
 
-## Авторизация
+## Database Layer
 
-Проблемы:
+- Custom DB wrapper is used.
+- SQL logic is mixed with application logic.
+- No migration system.
 
-- MD5 вместо `password_hash()`;
-- наличие технического пароля;
-- требуется дополнительная проверка механизма cookie и `idhash`.
-
-Приоритет:
-
-**Высокий.**
+Risk: Medium  
+Action: Document before changing.
 
 ---
 
-## Маршрутизация
+## Architecture
 
-Проблемы:
+- No namespaces.
+- No Composer autoloading.
+- Global state is used.
+- Routing depends on `$_GET['link']` and global `$_PATH`.
 
-- использование глобального массива `$_PATH`;
-- зависимость от `$_GET['link']`.
-
-На текущем этапе изменение маршрутизации **не рекомендуется**.
-
----
-
-## База данных
-
-Проблемы:
-
-- часть таблиц использует MyISAM;
-- отсутствуют внешние ключи.
-
-Приоритет:
-
-Низкий.
-
-Текущая схема полностью удовлетворяет потребностям проекта.
+Risk: High  
+Action: Do not change routing without separate analysis.
 
 ---
 
-## Шаблоны
+## Frontend
 
-Используется собственная система плейсхолдеров.
+- Legacy layout.
+- Fixed-width design.
+- Mobile adaptation may be limited.
+- Old HTML/CSS structure.
 
-Проблем не обнаружено.
-
-Замена шаблонизатора не входит в текущий план проекта.
-
----
-
-# 5. Что НЕ считается техническим долгом
-
-Не являются проблемами:
-
-- собственный PHP mini-framework;
-- собственный шаблонизатор;
-- единый класс `DB`;
-- единый класс `PAGE`;
-- библиотека `Form`;
-- централизованная фильтрация через `secur()`.
-
-Эти решения признаны удачными и сохраняются.
+Risk: Low to Medium  
+Action: Improve after PHP and security issues are stable.
 
 ---
 
-# 6. Приоритеты модернизации
+# 4. Safe First Candidates
 
-## Phase 1 — Безопасность
+The safest first modernization tasks are:
 
-- переход на `password_hash()`;
-- удаление технического пароля;
-- проверка cookie;
-- исправление критических уязвимостей.
-
----
-
-## Phase 2 — Совместимость
-
-- замена `create_function()`;
-- переход на полные PHP-теги;
-- устранение предупреждений PHP 8.
+1. Replace `create_function()` if found.
+2. Fix PHP warnings that do not affect behaviour.
+3. Improve comments around legacy functions.
+4. Remove unused obvious dead code only after confirmation.
+5. Improve frontend styles without changing content logic.
 
 ---
 
-## Phase 3 — Архитектура
+# 5. Do Not Touch Without Separate Plan
 
-- разделение конфигурации;
-- постепенное улучшение внутренней структуры;
-- рефакторинг без изменения поведения системы.
+These components are stable and risky:
 
----
+- `PAGE`
+- `DB`
+- `USER`
+- `Form`
+- `secur()`
+- `get_block()`
+- `path.php`
 
-## Phase 4 — Интерфейс
+Any change here requires:
 
-- обновление административной панели;
-- улучшение публичной части;
-- адаптивность и современный UI.
-
----
-
-# 7. Правила устранения технического долга
-
-Каждая задача должна соответствовать следующим требованиям:
-
-- один commit — одна проблема;
-- изменение не должно ломать существующий функционал;
-- после исправления обязательно пройти `testing-checklist.md`;
-- после успешной проверки обновить статус задачи в этом документе.
+- separate discussion;
+- documentation update;
+- full testing checklist.
 
 ---
 
-# 8. История изменений
+# 6. Rule
 
-| Дата | Версия | Изменение |
-|------|---------|-----------|
-| 2026-07 | 1.0 | Создан первоначальный реестр технического долга |
+Each technical debt item must be fixed with:
+
+- one clear task;
+- one commit;
+- testing after change;
+- documentation update if behaviour or architecture changes.
 
 ---
 
-# Заключение
+# Status
 
-Технический долг проекта относительно невелик.
-
-Главные проблемы сосредоточены в области безопасности и совместимости с современными версиями PHP.
-
-Благодаря компактной архитектуре проекта технический долг может устраняться постепенно, без полного переписывания системы и без длительных остановок разработки.
+This document is the official technical debt register for Phase 1 — Safe Modernization.
