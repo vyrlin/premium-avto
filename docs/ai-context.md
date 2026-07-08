@@ -7,7 +7,33 @@
 > **Purpose:** This document is the primary entry point for any AI assistant, developer, or contributor joining the Premium Avto project.
 >
 > **Read this document before performing any task.**
+## Response Quality Rules
 
+AI should prefer replacing an entire document over providing multiple partial edits.
+
+When a partial edit is required:
+
+- specify the exact section to replace;
+- provide the complete replacement as a single copyable Markdown block;
+- never split replacement text across multiple messages.
+
+If the proposed format causes confusion, the workflow should be updated before continuing development.
+---
+
+## Mandatory Project Documents
+
+Before starting any task, the AI assistant must read the following documents in this order:
+
+1. README.md
+2. ai-context.md
+3. ai-development-workflow.md
+4. project-principles.md
+5. roadmap.md
+
+These documents define the project architecture, development methodology, and collaboration rules.
+
+No implementation work should begin before they have been reviewed.
+These documents are considered the authoritative source for project architecture, development workflow, and modernization strategy. If any later instruction conflicts with them, the project documentation should be updated first before changing the development process.
 ---
 
 # 1. Project Overview
