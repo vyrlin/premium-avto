@@ -6,161 +6,203 @@
 >
 > **Status:** Active
 >
-> **Purpose:** Обязательный чек-лист проверки проекта после каждого изменения.
+> **Purpose:** Define the mandatory verification steps after every code modification.
 
 ---
 
-# 1. Назначение
+# 1. Goal
 
-Перед каждым commit разработчик обязан убедиться, что внесённые изменения не нарушили работу существующей системы.
+Every commit must leave the project in a fully working state.
 
-Данный документ является официальным списком проверок проекта.
-
-Если хотя бы один обязательный пункт не выполнен — commit считается незавершённым.
+Testing is mandatory after any modification, regardless of how small the change is.
 
 ---
 
-# 2. Общие правила
+# 2. Smoke Test (after every commit)
 
-После каждого изменения необходимо:
+Perform these quick checks after each commit.
 
-- проверить изменённый функционал;
-- проверить связанный функционал;
-- убедиться в отсутствии ошибок PHP;
-- только после этого выполнять commit.
+## Public Website
 
----
-
-# 3. Public Site
-
-## Главная страница
-
-- [ ] Главная страница открывается.
-- [ ] Нет ошибок PHP.
-- [ ] Загружается CSS.
-- [ ] Загружается JavaScript.
-- [ ] Загружаются изображения.
+- [ ] Homepage opens successfully.
+- [ ] No PHP errors are displayed.
+- [ ] No JavaScript errors appear in the browser console.
+- [ ] CSS is loaded correctly.
+- [ ] Images are displayed.
+- [ ] Navigation menu works.
 
 ---
 
-## Контент
+## Content
 
-- [ ] Отображается блок «Почему мы?».
-- [ ] Отображается блок «Услуги».
-- [ ] Работает фотогалерея.
-- [ ] Отображаются контакты.
-- [ ] Отображается блок «О компании».
-- [ ] Отображаются партнёры.
+Verify that all landing page blocks are displayed.
+
+- [ ] Block 1 — Почему мы?
+- [ ] Block 2 — Услуги
+- [ ] Block 3 — Фотогалерея
+- [ ] Block 4 — Контакты
+- [ ] Block 5 — О компании
+- [ ] Block 6 — Партнёры
+
+---
+
+## Gallery
+
+- [ ] Gallery images are displayed.
+- [ ] Gallery layout is correct.
 
 ---
 
 ## SEO
 
-- [ ] Title корректный.
-- [ ] Description выводится.
-- [ ] Keywords выводятся.
+- [ ] Page title is correct.
+- [ ] Meta description is present.
+- [ ] No broken HTML markup.
 
 ---
 
-# 4. Administrative Panel
+## Database
 
-## Авторизация
-
-- [ ] Вход администратора работает.
-- [ ] Logout работает.
-- [ ] Ошибки входа отображаются корректно.
+- [ ] Database connection succeeds.
+- [ ] Content is loaded from the database.
 
 ---
 
-## Меню
+## Administration
 
-- [ ] Открывается Block 1.
-- [ ] Открывается Block 2.
-- [ ] Открывается Gallery.
-- [ ] Открывается Contacts.
-- [ ] Открывается About.
-- [ ] Открывается Partners.
-- [ ] Открывается SEO.
-
----
-
-## Редактирование
-
-- [ ] Сохранение текста работает.
-- [ ] Сохранение SEO работает.
-- [ ] Загрузка изображения работает.
+- [ ] Admin login page opens.
+- [ ] Login works.
+- [ ] Admin menu is displayed.
+- [ ] Text blocks open correctly.
+- [ ] Gallery management opens.
+- [ ] SEO editor opens.
 
 ---
 
-# 5. Database
+## PHP
 
-- [ ] Подключение к БД успешно.
-- [ ] Таблица texts читается.
-- [ ] Таблица gallery читается.
-- [ ] Таблица users читается.
-- [ ] Таблица seo читается.
-
----
-
-# 6. PHP Compatibility
-
-После каждого commit проверить отсутствие:
-
-- [ ] Fatal Error
-- [ ] Warning
-- [ ] Deprecated
-- [ ] Notice
+- [ ] No Fatal Errors.
+- [ ] No Warnings.
+- [ ] No Notices (unless already documented).
+- [ ] No Deprecated messages introduced.
 
 ---
 
-# 7. Browser Check
+# 3. Regression Test (before release)
 
-Минимальный набор браузеров:
+Run the full checklist before merging significant changes.
 
-- [ ] Chrome
-- [ ] Edge
+## Routing
 
-(Firefox и Safari — при необходимости.)
-
----
-
-# 8. Security
-
-После изменений безопасности проверить:
-
-- [ ] Авторизация работает.
-- [ ] Cookie создаётся корректно.
-- [ ] Выход из системы удаляет cookie.
-- [ ] Пользователь без прав не попадает в `/admin`.
+- [ ] Homepage.
+- [ ] Admin pages.
+- [ ] Authentication.
+- [ ] Invalid URL handling.
 
 ---
 
-# 9. Git
+## Templates
 
-Перед commit:
+- [ ] landing.html
+- [ ] cabinet.html
+- [ ] print.html
 
-- [ ] `git status`
-- [ ] Проверены изменённые файлы.
-- [ ] Нет временных файлов.
-- [ ] Нет лишних логов.
-- [ ] Нет файлов IDE.
+render correctly.
 
 ---
 
-# 10. Definition of Done
+## Forms
 
-Изменение считается завершённым только если:
-
-- все необходимые проверки выполнены;
-- проект запускается локально;
-- тесты из данного документа пройдены;
-- документация обновлена (если требуется);
-- выполнен commit.
+- [ ] Login form.
+- [ ] Content editing.
+- [ ] Gallery editing.
+- [ ] SEO editing.
 
 ---
 
-# История изменений
+## Database
 
-| Версия | Дата | Изменение |
-|--------|------|-----------|
-| 1.0 | 2026-07 | Первоначальная версия |
+Verify:
+
+- [ ] texts
+- [ ] gallery
+- [ ] seo
+- [ ] users
+
+---
+
+## Browser Console
+
+- [ ] No JavaScript errors.
+- [ ] No missing resources (404).
+
+---
+
+## Performance
+
+- [ ] Homepage loads successfully.
+- [ ] Images load correctly.
+- [ ] CSS and JS files load successfully.
+
+---
+
+# 4. After Documentation Changes
+
+If only documentation changes:
+
+- Functional testing is not required.
+- Verify Markdown formatting.
+
+---
+
+# 5. After UI Changes
+
+Verify additionally:
+
+- Desktop layout.
+- Mobile layout.
+- Navigation.
+- Images.
+- Typography.
+
+---
+
+# 6. After PHP Changes
+
+Mandatory checks:
+
+- Homepage
+- Admin login
+- Database
+- Content blocks
+- Gallery
+- SEO
+
+---
+
+# 7. Commit Rule
+
+A commit is considered complete only if:
+
+- Documentation is updated (when required).
+- Tests have been performed.
+- Git working tree is clean.
+- Project remains fully operational.
+
+---
+
+# 8. Testing Log
+
+For significant changes, record:
+
+- Date
+- Commit hash
+- Tested by
+- Result
+- Notes
+
+---
+
+# Status
+
+This checklist is mandatory for all future development of the Premium Avto project.
