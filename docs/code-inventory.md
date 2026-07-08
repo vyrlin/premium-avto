@@ -516,24 +516,164 @@ _core/_functions/funcs.php
 
 **Status**
 
-- 🔍 Inventory in progress
+- ✅ Verified
 
-**Known functions**
+**Risk level**
 
-- secur()
+- 🟠 High
+
+**Purpose**
+
+General helper functions for security filtering, content loading, interface rendering, form helpers, formatting and utility logic.
+
+**Responsibilities**
+
+- Filter and sanitize input values.
+- Load landing page content blocks.
+- Render interface messages.
+- Render HTML tables.
+- Prepare form-related data.
+- Generate select options.
+- Process uploaded images.
+- Send emails.
+- Extract XML content.
+- Format dates, datetimes and phone numbers.
+- Provide legacy sorting helpers.
+- Provide debugging helpers.
+
+**Function groups**
+
+```text
+Security
 - my_strip_tags()
+- secur()
+
+Content
 - get_block()
+
+Interface
+- echo_table()
+- in_div()
+- echo_yes()
+- echo_att()
+- echo_err()
+- echo_site_err()
+- echo_msg()
+- echo_ajax()
+- get_img()
+
+Forms
+- prepare_data()
+- maybe_null()
+- get_options()
+- get_js_options()
+- load_userpic()
+
+Mail
+- my_mail()
+
+Service
+- get_xml_content()
+- slice_text()
 - format_date()
 - format_datetime()
 - format_phone()
+- get_rand()
 - sort_by()
 - order_by()
+- parse_days()
+- get_years()
+- my_dump()
+```
 
-**Findings**
+**Important dependencies**
 
-- `create_function()` found.
-- `sort_by()` — currently no usages found.
-- `order_by()` — currently no usages found.
+- `DB::$connect`
+- `DB::select()`
+- `DB::selectOne()`
+- `USER::isAdmin()`
+- `PAGE::$errors`
+- `$_SERVER['DOCUMENT_ROOT']`
+- `$_YES`
+- `$_ATT`
+- `$_ERR`
+- `$_EMAIL_HEADERS`
+- `DOMAIN_NAME`
+- `USERPIC_PX`
+- PHP GD extension
+- PHP mbstring extension
+- PHP mail function
+
+**Confirmed behaviour**
+
+- `secur()` is the central input filtering function.
+- `my_strip_tags()` removes script tags, HTML tags and dangerous fragments.
+- `get_block()` loads landing page blocks from `texts` and `gallery`.
+- `get_block(1)` loads block “Почему мы?”.
+- `get_block(2)` loads block “Услуги”.
+- `get_block(3)` loads gallery images.
+- `get_block(4)` loads contacts.
+- `get_block(5)` loads about company.
+- `get_block(6)` loads partners.
+- Interface helpers render success, warning, error and AJAX messages.
+- `echo_table()` renders HTML tables and can include DataTables resources.
+- Form helpers prepare select options and uploaded images.
+- `load_userpic()` creates a square PNG thumbnail.
+- Formatting helpers format dates, datetimes and phone numbers.
+- `sort_by()` and `order_by()` use legacy `create_function()`.
+
+**Architecture observations**
+
+- This file mixes several unrelated responsibilities.
+- Security filtering, content loading, UI rendering, mail and utility logic live together.
+- Many functions generate HTML directly.
+- Several functions depend on global arrays from configuration.
+- `secur()` depends on active database connection for escaping.
+- `get_block()` contains public landing page content logic.
+- Some functions appear generic but are tightly coupled to the project.
+- The file uses a short PHP opening tag.
+
+**Compatibility observations**
+
+- `create_function()` is used in:
+  - `sort_by()`
+  - `order_by()`
+- `create_function()` is removed in modern PHP versions.
+- Previous search found no usages of `sort_by()` or `order_by()`.
+- No `mysql_*` usage found.
+- No `split()` usage found.
+- No legacy `each()` usage found.
+
+**Security observations**
+
+- `secur()` is critical and must not be changed without a separate plan.
+- Filtering is custom and type-based.
+- SQL escaping is partly handled through `mysqli_real_escape_string()`.
+- HTML output is produced manually.
+- `maybe_null()` returns SQL fragments and should be treated carefully.
+- `load_userpic()` uses image processing and filesystem writes.
+
+**Modernization candidates**
+
+Low-risk candidates:
+
+- Replace `create_function()` in `sort_by()` and `order_by()`.
+- Convert short PHP opening tag to `<?php`.
+- Document unused helper candidates.
+
+High-risk candidates:
+
+- Refactor `secur()`.
+- Refactor `get_block()`.
+- Refactor `echo_table()`.
+- Change upload processing.
+- Change mail logic.
+
+**Decision**
+
+`funcs.php` is a central legacy helper file.
+
+During Phase 1 it should be documented first. Modernization must start with isolated compatibility changes and must not touch `secur()` or `get_block()` until their behaviour is fully protected by tests.
 
 ---
 
@@ -547,14 +687,111 @@ _core/_functions/auth.php
 
 **Status**
 
-- 🔍 Inventory pending
+- ✅ Verified
+
+**Risk level**
+
+- 🔴 Very High
+
+**Purpose**
+
+Authentication, admin navigation, password hashing and cookie helper functions.
 
 **Responsibilities**
 
-- Authentication helpers.
-- Admin menu.
-- Login form.
-- User interface helpers.
+- Render login form.
+- Render logout form for authenticated admin.
+- Render top admin navigation.
+- Render left admin menu.
+- Validate legacy passwords.
+- Generate legacy password hashes.
+- Generate authentication cookies.
+- Provide future password-hashing helpers.
+- Generate random hashes.
+- Provide simple reversible XOR-based hash helpers.
+
+**Main functions**
+
+```php
+get_login_form()
+get_top_menu()
+get_left_menu()
+get_pwdhash()
+check_pwd()
+old_get_cookie()
+check_newpasw()
+is_hash()
+get_cookie()
+new_get_pwdhash()
+new_check_pwd()
+get_timehash()
+get_dighash()
+xorhash()
+dexorhash()
+```
+
+**Dependencies**
+
+- `USER::isAdmin()`
+- `USER::isUser()`
+- `DB::selectOne()`
+- `secur()`
+- `$_PATH`
+- `$_SESSION`
+- `$_SERVER['REMOTE_ADDR']`
+- `$_SERVER['HTTP_USER_AGENT']`
+- `$_SITE['salt']`
+- `MyCryptograph::Code()`
+
+**Confirmed behaviour**
+
+- `get_login_form()` renders either login form or admin logout form.
+- Admin logout form submits `exit`.
+- Login form submits to `/admin/`.
+- `get_top_menu()` renders admin breadcrumb only for admin users.
+- `get_left_menu()` renders admin menu only for authenticated users.
+- Admin menu contains sections for blocks 1–6 and SEO.
+- `get_pwdhash()` uses legacy MD5-based password hashing.
+- `check_pwd()` validates password using `get_pwdhash()`.
+- `check_pwd()` contains a hardcoded bypass value: `5_5`.
+- `get_cookie()` builds cookie value using user hash, time hash, user agent and IP address.
+- `new_get_pwdhash()` and `new_check_pwd()` exist for future `password_hash()` / `password_verify()` migration.
+- `get_timehash()` uses database `SELECT RAND()` as part of hash generation.
+- `xorhash()` and `dexorhash()` depend on `$_SITE['salt']`.
+
+**Architecture observations**
+
+- Authentication UI and security helper functions are mixed in one file.
+- Admin menu is hardcoded.
+- Password hashing and cookie logic are not encapsulated in a class.
+- Functions are globally available.
+- Some functions appear to be historical or future-use helpers.
+- The file uses a short PHP opening tag.
+
+**Security observations**
+
+- Legacy password hashing uses MD5.
+- `check_pwd()` contains a hardcoded password bypass.
+- Cookie structure is custom.
+- Cookie generation depends on IP address and user agent.
+- `old_get_cookie()` depends on `MyCryptograph`, which should be investigated before removal.
+- `new_get_pwdhash()` and `new_check_pwd()` are not yet used by current login flow.
+- Any password or cookie changes can break admin login.
+
+**Modernization notes**
+
+- Do not modify password logic until login flow is fully tested.
+- Investigate whether `old_get_cookie()` is still used.
+- Investigate whether `xorhash()` and `dexorhash()` are still used.
+- The hardcoded password bypass should be treated as security debt.
+- Migration from MD5 to `password_hash()` must be planned separately.
+- Admin menu can be documented before any UI change.
+
+**Decision**
+
+`auth.php` is a critical security-related helper file.
+
+During Phase 1 it should be documented carefully. Security improvements must be handled as isolated tasks with full authentication testing..
 
 ---
 

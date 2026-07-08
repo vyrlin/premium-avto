@@ -139,3 +139,53 @@ Each technical debt item must be fixed with:
 # Status
 
 This document is the official technical debt register for Phase 1 — Safe Modernization.
+# Compatibility
+
+## TD-001 — Replace create_function()
+
+**Status**
+
+- Planned
+
+**Priority**
+
+- Low
+
+**Risk**
+
+- Low
+
+**Location**
+
+```text
+_core/_functions/funcs.php
+```
+
+**Functions**
+
+- `sort_by()`
+- `order_by()`
+
+**Problem**
+
+Both functions use PHP's deprecated `create_function()`, which was removed in PHP 8.
+
+**Current status**
+
+- Only two occurrences exist in the project.
+- No usages of `sort_by()` or `order_by()` have been found during the current inventory.
+- The project currently works because these functions are not executed.
+
+**Planned solution**
+
+Replace `create_function()` with anonymous functions (`Closure`).
+
+**Verification**
+
+- Search confirms zero remaining `create_function()` calls.
+- Application behaviour remains unchanged.
+- PHP 8 compatibility is improved.
+
+**Notes**
+
+This should become the first source code modernization task after the core inventory is completed.
