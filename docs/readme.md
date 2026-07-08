@@ -1,131 +1,201 @@
-# Premium Avto Legacy Technical Reference Manual
+# Premium Avto
 
-> **Version:** 1.0\
-> **Status:** Active\
-> **Purpose:** Technical documentation of the legacy system before
-> modernization.
+# Legacy Technical Documentation
 
-------------------------------------------------------------------------
+> Version: 1.0
+>
+> Status: Active
+>
+> Last updated: July 2026
 
-# About this documentation
+---
 
-This documentation was created during a reverse engineering process
-after successfully launching the legacy site locally.
+# О проекте
 
-Its goal is **not to describe every file**, but to help a new developer
-understand the architecture, locate the required functionality, and
-safely modify the project.
+Premium Avto — проект по безопасной модернизации legacy-сайта без полного переписывания.
 
-Every statement in these documents is based on the source code that has
-already been analyzed.
+Главная цель проекта:
 
-------------------------------------------------------------------------
+> **Сохранить работоспособность существующей системы и постепенно улучшать её архитектуру.**
 
-# Documentation map
+В процессе модернизации каждый этап должен оставаться рабочим и допускающим откат.
 
-``` text
-docs/
+---
 
-README.md                        ← Start here
+# Статус проекта
 
-architecture.md                  Overall architecture
-core.md                          Core (_core)
-routes.md                        Request lifecycle and routing
-database.md                      Database usage
-technical-debt.md                Legacy issues and modernization plan
+| Этап | Статус |
+|-------|--------|
+| Исследование legacy-системы | ✅ Завершено |
+| Запуск локальной версии | ✅ Завершено |
+| Reverse Engineering | ✅ Завершено |
+| Техническая документация | ✅ Завершено |
+| Безопасная модернизация | ⏳ Следующий этап |
 
-oldversion.md                    Historical notes
-changes-for-start-in-laragon.md  Local environment
-roadmap.md                       Modernization roadmap
+---
+
+# Архитектура проекта
+
+Во время исследования подтверждено:
+
+- собственный PHP mini-framework;
+- собственная маршрутизация;
+- собственный шаблонизатор;
+- собственная библиотека построения форм;
+- единый класс работы с БД;
+- централизованная авторизация;
+- централизованная фильтрация пользовательского ввода.
+
+База данных состоит всего из четырех таблиц:
+
+```text
+texts
+gallery
+seo
+users
 ```
 
-------------------------------------------------------------------------
+---
 
-# Recommended reading order
+# Документация
 
-1.  README.md
-2.  architecture.md
-3.  core.md
-4.  routes.md
-5.  database.md
-6.  technical-debt.md
+## Основные документы
 
-------------------------------------------------------------------------
+| Документ | Назначение |
+|-----------|------------|
+| architecture.md | Общая архитектура системы |
+| core.md | Подробное описание ядра `_core` |
+| routes.md | Маршрутизация и жизненный цикл HTTP-запроса |
+| database.md | Структура и использование базы данных |
 
-# System overview
+---
 
-``` text
-Browser
-   │
-   ▼
-HTTP Request
-   │
-   ▼
-public_html/index.php
-   │
-   ▼
-_core/_parser/path.php
-   │
-   ▼
-$_PATH
-   │
-   ▼
-PAGE::getContent()
-   │
-   ▼
-include(page)
-   │
-   ▼
-PAGE::html()
-   │
-   ▼
-landing.html / cabinet.html
-   │
-   ▼
-DB::select(...)
-   │
-   ▼
-MySQL
+## Документы разработки
+
+| Документ | Назначение |
+|-----------|------------|
+| roadmap.md | План модернизации |
+| technical-debt.md | Список технических проблем |
+| testing-checklist.md | Проверки после каждого изменения |
+| project-principles.md | Основные правила разработки |
+
+---
+
+## Историческая документация
+
+| Документ | Назначение |
+|-----------|------------|
+| legacy-system.md | Описание исходной системы |
+| oldversion.md | Историческая информация |
+| changes-for-start-in-laragon.md | Особенности локального запуска |
+| php8-compatibility.md | Совместимость с PHP 8 |
+
+---
+
+# Порядок изучения проекта
+
+Новому разработчику рекомендуется следующий порядок чтения.
+
+1. README.md
+2. architecture.md
+3. core.md
+4. routes.md
+5. database.md
+6. roadmap.md
+7. technical-debt.md
+8. testing-checklist.md
+
+После этого разработчик должен понимать устройство системы без изучения всего исходного кода.
+
+---
+
+# Основные принципы проекта
+
+При разработке необходимо соблюдать следующие правила.
+
+- Не переписывать работающий код без необходимости.
+- Любое изменение должно быть минимальным.
+- Один commit — одна логическая задача.
+- После каждого commit выполняется полный testing-checklist.
+- Документация обновляется одновременно с кодом.
+- Всегда должна существовать возможность отката.
+
+---
+
+# Рабочий процесс
+
+Каждая новая задача проходит следующие этапы.
+
+```text
+Изучение
+
+↓
+
+Документирование
+
+↓
+
+Изменение кода
+
+↓
+
+Тестирование
+
+↓
+
+Commit
+
+↓
+
+Push
 ```
 
-------------------------------------------------------------------------
+---
 
-# Main project components
+# Git
 
-  Component     Purpose
-  ------------- --------------------------
-  public_html   Public entry point
-  \_core        Core framework
-  admin         Administrative interface
-  \_ajax        AJAX endpoints
-  signin        Authentication
+Рекомендуемый стиль commit.
 
-------------------------------------------------------------------------
+```text
+Add ...
 
-# Documentation principles
+Fix ...
 
--   Only verified facts.
--   No assumptions.
--   Documentation describes the system, not only files.
--   Documentation is updated together with the code.
+Refactor ...
 
-------------------------------------------------------------------------
+Document ...
 
-# Development principles
+Remove ...
 
--   Keep the legacy site working after every change.
--   Small commits.
--   One logical change per commit.
--   Ability to rollback every stage.
+Update ...
+```
 
-------------------------------------------------------------------------
+Каждый commit должен оставлять проект в рабочем состоянии.
 
-# Milestone
+---
 
-Current state:
+# Цель модернизации
 
--   Legacy site runs locally.
--   Core architecture investigated.
--   Routing understood.
--   Main classes documented.
--   Safe modernization can begin after documentation is completed.
+Проект не предусматривает полного переписывания legacy-системы.
+
+Вместо этого используется стратегия постепенного улучшения.
+
+Основные направления:
+
+- повышение безопасности;
+- совместимость с современными версиями PHP;
+- улучшение структуры кода;
+- постепенное обновление пользовательского интерфейса;
+- сохранение совместимости существующего функционала.
+
+---
+
+# Заключение
+
+Данная документация является официальным техническим руководством проекта Premium Avto.
+
+Все архитектурные решения и изменения должны отражаться в документации одновременно с внесением изменений в исходный код.
+
+---
+
+**Статус документа:** Основной навигационный документ проекта.
