@@ -60,8 +60,60 @@ signin/
 ```
 
 ---
+# 4. Core Dependency Map
 
-# 4. Core Classes
+This diagram shows the confirmed high-level dependencies of the legacy core.
+
+```text
+HTTP Request
+    |
+    v
+public_html/index.php
+    |
+    v
+_core/_parser/path.php
+    |
+    v
+global $_PATH
+    |
+    v
+PAGE
+    |
+    +-- USER
+    |
+    +-- DB
+    |
+    +-- auth.php
+    |     |
+    |     +-- get_top_menu()
+    |     +-- get_left_menu()
+    |     +-- get_login_form()
+    |
+    +-- funcs.php
+    |     |
+    |     +-- get_block()
+    |     +-- secur()
+    |
+    +-- templates
+          |
+          +-- landing.html
+          +-- cabinet.html
+          +-- print.html
+```
+
+Notes:
+
+- `PAGE` is the central lifecycle component.
+- `DB` is the central database access component.
+- `USER` controls authentication and authorization.
+- `auth.php` provides admin and login UI helpers.
+- `funcs.php` provides general helper functions and content block loading.
+- Templates are filled by `PAGE::html()` using placeholder replacement.
+
+---
+
+
+# 5. Core Classes
 
 ---
 
@@ -249,19 +301,104 @@ _core/_classes/classes.php
 
 **Status**
 
-- 🔍 Under investigation
+- ✅ Verified
+
+**Risk level**
+
+- 🔴 Very High
 
 **Purpose**
 
-Authentication and authorization.
+Central authentication and authorization class.
 
 **Responsibilities**
 
-- Login.
-- Logout.
-- Session management.
-- Admin access verification.
+- Handles admin login.
+- Handles logout.
+- Restores user session.
+- Restores user state from cookie.
+- Stores current user ID.
+- Stores current user hash.
+- Stores current user role.
+- Checks whether the current user is an administrator.
 
+**Main methods**
+
+```php
+USER::init()
+USER::isUser()
+USER::isAdmin()
+```
+
+**Internal methods**
+
+```php
+USER::getUser()
+```
+
+**Dependencies**
+
+- `$_POST`
+- `$_GET`
+- `$_SESSION`
+- `$_COOKIE`
+- `$_SERVER['REMOTE_ADDR']`
+- `DB::selectOne()`
+- `DB::query()`
+- `PAGE::redirect()`
+- `secur()`
+- `check_pwd()`
+- `get_cookie()`
+- `COOKIE_NAME`
+- `COOKIE_DAYS`
+- `SESSION_TIMEOUT`
+
+**Confirmed behaviour**
+
+- Login is triggered by `$_POST['enter']`.
+- Login requires `email` and `pwd`.
+- User lookup is performed in the `users` table by email.
+- Password verification is delegated to `check_pwd()`.
+- Only active users can log in.
+- Successful admin login redirects to `/admin/`.
+- Failed login redirects to `/`.
+- Logout clears the project cookie and PHP session cookie.
+- Logout clears all session values.
+- Auto-login attempts to restore user state from session or cookie.
+- Admin access is confirmed by `USER::isAdmin()`.
+- `USER::isAdmin()` requires a valid user and role equal to `admin`.
+
+**Architecture observations**
+
+- Uses a Singleton pattern.
+- Authentication logic is executed inside the constructor.
+- Uses global PHP superglobals directly.
+- Session and cookie management are mixed in the same class.
+- SQL queries are built as raw strings.
+- Login, logout, auto-login, and role checking are tightly coupled.
+- Depends on helper functions from `auth.php` and `funcs.php`.
+
+**Security observations**
+
+- Password validation depends on legacy `check_pwd()`.
+- Cookie authentication depends on legacy `get_cookie()`.
+- SQL escaping depends on `secur()` and current query construction.
+- IP address is stored and checked using `INET_ATON()`.
+- Cookie parsing currently does not visibly validate all hash parts before restoring the user.
+
+**Modernization notes**
+
+- Do not refactor during early Phase 1.
+- Any change can break admin access.
+- Before modifying this class, document `check_pwd()` and `get_cookie()`.
+- Authentication modernization must be done in very small commits.
+- Password hashing should not be changed until login behaviour is fully covered by testing.
+
+**Decision**
+
+`USER` is a critical legacy core component.
+
+During Phase 1 it should be documented carefully and changed only after the authentication flow is fully understood and tested.
 ---
 
 ## FORM
@@ -274,11 +411,94 @@ _core/_classes/classes.php
 
 **Status**
 
-- 🔍 Under investigation
+- ✅ Verified
+
+**Risk level**
+
+- 🟠 High
 
 **Purpose**
 
-Dynamic form generation.
+Dynamic form container class.
+
+**Responsibilities**
+
+- Stores form identity.
+- Stores form method.
+- Stores form action.
+- Collects temporary input objects from `$_TMP_FORM_INPUTS`.
+- Applies style and extra attributes to all form inputs.
+- Captures submitted values.
+- Detects required field errors.
+- Detects file inputs and enables multipart form encoding.
+- Renders opening and closing `<form>` tags.
+- Switches form inputs into read-only mode.
+
+**Main methods**
+
+```php
+Form::__construct()
+Form::setAttr()
+Form::setInputsStyle()
+Form::setInputsExt()
+Form::catchValues()
+Form::resetValues()
+Form::html()
+Form::readOnly()
+```
+
+**Dependencies**
+
+- global `$_TMP_FORM_INPUTS`
+- `secur()`
+- `$_POST`
+- `$_GET`
+- input classes:
+  - `InputDateOld`
+  - `InputPlace`
+  - `InputMetro`
+  - `InputSelectMulti`
+  - `InputFile`
+  - `InputButton`
+  - `InputHidden`
+
+**Confirmed behaviour**
+
+- Constructor collects inputs from global `$_TMP_FORM_INPUTS`.
+- After form creation, `$_TMP_FORM_INPUTS` is reset.
+- Supported methods are `post`, `get`, `both`, and `session`.
+- Unknown method defaults to `post`.
+- `catchValues()` captures submitted input values.
+- `catchValues()` returns an associative array of input values.
+- Required fields set `required_flag` when missing.
+- File inputs add `enctype="multipart/form-data"` to the form.
+- `html('open')` renders opening form markup.
+- `html('close')` renders closing form markup.
+- `readOnly()` hides the form wrapper and disables inputs.
+
+**Architecture observations**
+
+- Class name is `Form`, not `FORM`.
+- Uses global temporary input storage.
+- Form rendering and value processing are mixed in one class.
+- Depends on many input subclasses.
+- Uses `get_class()` branching for special input types.
+- HTML is generated directly inside the class.
+- The class is part of a larger custom form framework.
+
+**Modernization notes**
+
+- Do not refactor during early Phase 1.
+- Before changing this class, all input classes must be inventoried.
+- Any form changes may affect admin editing screens.
+- Required field behaviour should be tested before modification.
+- File upload behaviour should be tested before modification.
+
+**Decision**
+
+`Form` is an important legacy UI infrastructure component.
+
+During Phase 1 it should be documented and preserved until the full form/input framework is understood.
 
 ---
 
