@@ -1,330 +1,165 @@
-# Premium Avto — Product Roadmap
+# Premium Avto Roadmap
 
-> **Version:** 3.0
->
-> **Status:** Active
->
-> **Current Phase:** Modern Product Development
+**Project:** Premium Avto
+
+**Current Phase:** Phase 2 — Product Modernization
+
+**Status:** Active
 
 ---
 
 # Vision
 
-Premium Avto is evolving from a legacy PHP website into a modern, reliable and maintainable web product.
+Premium Avto is a long-term modernization project.
 
-The reverse engineering stage has been completed.
+The objective is not to rewrite the existing system.
 
-The architectural foundation has been documented.
+The objective is to transform a stable legacy platform into a modern, maintainable and user-friendly web product while preserving all accumulated business logic.
 
-Future development focuses on continuously improving the product while preserving the proven business logic.
+The legacy platform is considered complete, stable and fully understood.
 
-This roadmap defines the long-term direction of that evolution.
+Future development focuses on the product rather than on reverse engineering.
 
 ---
 
 # Development Strategy
 
-The project follows an evolutionary development model.
+Development follows several fundamental principles.
 
-Large rewrites are intentionally avoided.
-
-Development proceeds through:
-
-- small improvements;
-- continuous testing;
-- frequent commits;
-- gradual modernization.
-
-Every completed task should leave the product better than before.
+- Product first.
+- Small and safe iterations.
+- Every commit should produce a visible improvement.
+- Preserve existing business logic.
+- Modernize the frontend before refactoring backend code.
+- Prefer CSS improvements before changing HTML.
+- Modify PHP only when there is a clear architectural reason.
+- Documentation is considered mature and updated only after significant architectural changes.
 
 ---
 
-# Development Phases
-
-## Phase 1 — Foundation
+# Phase 1 — Legacy Modernization
 
 **Status:** ✅ Completed
 
-Objectives:
+Completed work:
 
-- Reverse Engineering
-- Legacy analysis
-- Architecture documentation
-- Code inventory
-- Local development environment
-- PHP 8 compatibility
-- Initial project cleanup
+- Reverse Engineering completed.
+- Architecture documented.
+- Code inventory completed.
+- Local development environment prepared.
+- PHP 8 compatibility implemented.
+- create_function() removed.
+- Short PHP tags removed.
+- Initial project cleanup completed.
+- Documentation Version 3.0 completed.
 
 Result:
 
-The existing platform is fully understood and stable.
+The legacy platform is now considered stable and serves as the foundation for future product development.
 
 ---
 
-## Phase 2 — Product Modernization
+# Phase 2 — Product Modernization
 
 **Status:** 🚧 Active
 
-Primary objective:
+## Primary Objective
 
-Transform the existing platform into a modern web product.
+Transform the existing platform into a modern web product while preserving all existing functionality.
 
-Main directions:
+## Development Principles
 
-- frontend modernization;
-- user interface improvements;
+- product-first development;
+- component-based UI development;
+- CSS-first frontend modernization;
+- incremental improvements;
+- no unnecessary PHP modifications;
+- visual consistency;
 - responsive design;
-- mobile-first adaptation;
-- administrator interface improvements;
-- usability improvements;
-- visual consistency.
+- mobile-first adaptation.
 
-This phase has the highest current priority.
+## Current Priorities
+
+1. Modern public frontend.
+2. User experience improvements.
+3. Design System implementation.
+4. Administrator interface modernization.
+5. Performance improvements.
+6. Accessibility improvements.
 
 ---
 
-## Phase 3 — Security & Reliability
+## Completed
 
-**Status:** Planned
+### Design System
 
-Objectives:
+- ✅ Design System foundation established.
+- ✅ Design documentation structure created.
+- ✅ DS-001 Hero Specification approved.
+- ✅ Hero reference assets approved.
+- ✅ Hero design concept approved.
 
-- authentication improvements;
-- password modernization;
-- SQL security improvements;
-- validation improvements;
+### Hero
+
+- ✅ First modern Hero component implemented.
+- ✅ Approved Hero background integrated.
+- ✅ Modern header implemented.
+- ✅ New visual identity established.
+
+---
+
+## Current Task
+
+### H-004 — Brand Strip
+
+Create a modern presentation of supported VAG brands as an integral part of the Hero section.
+
+---
+
+## Next Planned Components
+
+H-005 — Trust Block
+
+H-006 — Services Section
+
+H-007 — Advantages Section
+
+H-008 — Gallery Modernization
+
+H-009 — Contacts Modernization
+
+H-010 — Responsive Layout
+
+---
+
+# Phase 3 — Security & Reliability
+
+Planned work:
+
+- dependency updates;
+- security improvements;
 - error handling;
-- logging improvements.
-
-Security improvements should never compromise compatibility.
-
----
-
-## Phase 4 — Internal Architecture
-
-**Status:** Planned
-
-Objectives:
-
-- simplify internal structure;
-- reduce coupling;
-- remove obsolete code;
-- improve code organization;
-- improve maintainability.
-
-Architecture should evolve only after product stability is preserved.
+- logging improvements;
+- backup strategy;
+- deployment improvements.
 
 ---
 
-## Phase 5 — Long-Term Evolution
+# Phase 4 — Platform Evolution
 
-**Status:** Future
+Future improvements may include:
 
-Possible directions:
-
-- API integration;
-- improved CMS capabilities;
-- automation;
+- API layer;
+- frontend component library;
+- modern administration interface;
+- automation tools;
 - performance optimization;
-- analytics;
-- additional customer services.
-
-Future priorities will be determined by business needs.
+- SEO improvements.
 
 ---
 
-# Continuous Priorities
+# Long-Term Goal
 
-Regardless of the current phase, these activities continue throughout the project.
+Premium Avto should become a modern, fast and maintainable web application while preserving all valuable business functionality accumulated over years of operation.
 
-## User Experience
-
-Improve:
-
-- navigation;
-- readability;
-- accessibility;
-- interaction speed;
-- visual clarity.
-
----
-
-## Administrator Experience
-
-Improve:
-
-- editing workflow;
-- usability;
-- consistency;
-- efficiency.
-
----
-
-## Code Quality
-
-Continuously improve:
-
-- readability;
-- maintainability;
-- consistency;
-- documentation.
-
----
-
-## Technical Debt
-
-Reduce technical debt gradually.
-
-Preferred order:
-
-1. Security
-2. Compatibility
-3. Stability
-4. Maintainability
-5. Code quality
-
----
-
-# Working Method
-
-Every development task should follow this sequence.
-
-```text
-Identify opportunity
-
-↓
-
-Discuss solution
-
-↓
-
-Review architecture
-
-↓
-
-Update documentation (if required)
-
-↓
-
-Implement
-
-↓
-
-Test
-
-↓
-
-Commit
-
-↓
-
-Continue
-```
-
-Continuous progress is preferred over large isolated changes.
-
----
-
-# Release Philosophy
-
-The project does not depend on large milestone releases.
-
-Instead, development follows continuous improvement.
-
-Each completed task should produce:
-
-- cleaner code;
-- better usability;
-- improved reliability;
-- easier maintenance.
-
-Every commit is a small product improvement.
-
----
-
-# Success Metrics
-
-The roadmap is considered successful when:
-
-- business logic remains intact;
-- the interface becomes modern;
-- administration becomes easier;
-- the project remains stable;
-- technical debt is significantly reduced;
-- future development accelerates.
-
----
-
-# Long-Term Vision
-
-The completed Premium Avto project should provide:
-
-For customers:
-
-- modern interface;
-- fast performance;
-- intuitive navigation;
-- reliable functionality.
-
-For administrators:
-
-- convenient content management;
-- predictable behaviour;
-- simplified maintenance.
-
-For developers:
-
-- understandable architecture;
-- complete documentation;
-- low technical debt;
-- safe future development.
-
----
-
-# Roadmap Principles
-
-This roadmap is intentionally strategic.
-
-It defines direction rather than individual tasks.
-
-Specific implementation work is tracked through Git commits and individual development discussions.
-
-The roadmap should change only when the project's strategic direction changes.
-
----
-
-# Final Statement
-
-The research stage is complete.
-
-The platform is understood.
-
-The documentation is mature.
-
-From this point forward, Premium Avto is primarily a product development project.
-
-Every iteration should make the product:
-
-- more useful;
-- more attractive;
-- more secure;
-- more maintainable;
-- more valuable.
-
----
-
-# Project Motto
-
-> **Continuous improvement.
->
-> Stable evolution.
->
-> Better product with every commit.**
-
----
-
-**Document Status**
-
-This roadmap defines the long-term development strategy of the Premium Avto project.
-
-It should remain stable and evolve only when the project's strategic objectives change.
+Modernization should always prioritize product quality over technological novelty.
