@@ -604,8 +604,142 @@ Recommended order:
 Do not rewrite the project from scratch unless the current architecture becomes a real blocker.
 
 ---
+# 17. CMS Admin Modules
 
-# 17. Related documents
+The administrative part of the system is organized as a set of small modules under the `admin/` directory.
+
+Confirmed structure:
+
+```text
+admin/
+├── block/
+├── block1/
+├── block2/
+├── block3/
+├── block4/
+├── block5/
+├── block6/
+├── seo/
+└── users/
+```
+
+Important implementation detail:
+
+Although admin module files use the `.html` extension, they contain executable PHP code and are included by the legacy page loader.
+
+Examples:
+
+```text
+admin/block1/index.html
+admin/block2/index.html
+admin/seo/index.html
+```
+
+## Content modules
+
+The content modules are:
+
+```text
+block1
+block2
+block4
+block5
+block6
+```
+
+They use the `texts` table.
+
+Confirmed mapping:
+
+| Module | Admin title | Database table | Block value |
+|--------|-------------|----------------|-------------|
+| block1 | Блок "Почему мы?" | texts | 1 |
+| block2 | Блок "Услуги" | texts | 2 |
+| block4 | Блок "Контакты" | texts | 4 |
+| block5 | Блок "О компании" | texts | 5 |
+| block6 | Блок "Партнеры" | texts | 6 |
+
+Confirmed behaviour:
+
+- each module sets its page title with `PAGE::setTitle()`;
+- each module defines a numeric `$block` value;
+- records are selected from `texts` by `block`;
+- records are inserted into `texts`;
+- records are updated in `texts`;
+- active/inactive state is stored in the `active` field;
+- admin URLs follow the pattern `/admin/blockX/`.
+
+The modules have similar structure but are not completely identical. Some use different input controls and text handling.
+
+## Gallery module
+
+The gallery module is:
+
+```text
+block3
+```
+
+It corresponds to the public gallery section and is expected to use the `gallery` table.
+
+This module should be documented separately after direct inspection.
+
+## SEO module
+
+The SEO module is located at:
+
+```text
+admin/seo/index.html
+```
+
+It uses the `seo` table.
+
+Confirmed behaviour:
+
+- edits one SEO record with `id = 1`;
+- updates `title`;
+- updates `description`;
+- updates `keywords`;
+- uses the form framework;
+- saves data through `DB::query()`.
+
+## Users module
+
+The users module is located at:
+
+```text
+admin/users/index.html
+```
+
+It corresponds to administrator/user management and is expected to use the `users` table.
+
+This module should be documented separately after direct inspection.
+
+## Architectural conclusion
+
+The admin area is not a single monolithic file.
+
+It is a lightweight module-based CMS built on top of the legacy core:
+
+```text
+URL
+  ↓
+path.php
+  ↓
+PAGE::getContent()
+  ↓
+admin module index.html
+  ↓
+DB
+  ↓
+database table
+```
+
+This structure is suitable for gradual modernization.
+
+Future improvements should preserve the existing module boundaries unless a separate refactoring plan is created.
+ 
+ ---
+# 18. Related documents
 
 Read together with:
 
@@ -617,8 +751,9 @@ Read together with:
 
 ---
 
-# 18. Status
+# 19. Status
 
 This document reflects the confirmed architecture of the Premium Avto legacy system at the end of the reverse engineering stage.
 
 It should be updated only when new verified information is discovered in the source code.
+

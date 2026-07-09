@@ -1072,6 +1072,243 @@ Every analyzed component should contain:
 
 ---
 
+# 11. Admin CMS Modules
+
+## Overview
+
+**Status**
+
+- ✅ Partially verified
+
+**Risk level**
+
+- 🟠 Medium
+
+**Purpose**
+
+The `admin/` directory contains the administrative CMS modules used to manage the site's content, SEO data and users.
+
+Confirmed structure:
+
+```text
+admin/
+├── block/
+├── block1/
+├── block2/
+├── block3/
+├── block4/
+├── block5/
+├── block6/
+├── seo/
+└── users/
+```
+
+Important note:
+
+Admin module entry files use the `.html` extension, but they contain executable PHP code.
+
+The legacy loader includes these files and executes their PHP sections.
+
+---
+
+## Content block modules
+
+**Files**
+
+```text
+admin/block1/index.html
+admin/block2/index.html
+admin/block4/index.html
+admin/block5/index.html
+admin/block6/index.html
+```
+
+**Status**
+
+- ✅ Verified for `block1`
+- ✅ Verified for `block2`
+- 🔍 Expected similar behaviour for `block4`, `block5`, `block6`
+
+**Database**
+
+```text
+texts
+```
+
+**Confirmed mapping**
+
+| Module | Page title | `$block` value |
+|--------|------------|----------------|
+| block1 | Блок "Почему мы?" | 1 |
+| block2 | Блок "Услуги" | 2 |
+
+**Expected mapping**
+
+| Module | Expected purpose | Expected `$block` value |
+|--------|------------------|--------------------------|
+| block4 | Контакты | 4 |
+| block5 | О компании | 5 |
+| block6 | Партнеры | 6 |
+
+**Responsibilities**
+
+- Render list of records for a content block.
+- Add new records to `texts`.
+- Edit existing records in `texts`.
+- Store title, text and active state.
+- Redirect back to the corresponding admin section after successful save.
+
+**Dependencies**
+
+- `PAGE::setTitle()`
+- `PAGE::redirect()`
+- `DB::select()`
+- `DB::selectOne()`
+- `DB::query()`
+- `Form`
+- `InputText`
+- `InputCheckbox`
+- `InputTextarea`
+- `InputCKFull`
+- `InputButton`
+- `secur()`
+- `echo_yes()`
+- `echo_err()`
+- `echo_table()`
+
+**Modernization notes**
+
+- These modules share a similar CRUD structure.
+- They are not fully identical.
+- `block1` uses `InputCKFull`.
+- `block2` uses `InputTextarea` and additional text sanitization.
+- Do not merge these modules until all block modules are inspected.
+- A future low-risk refactor may extract common CRUD behaviour into a shared include.
+
+---
+
+## Gallery module
+
+**File**
+
+```text
+admin/block3/index.html
+```
+
+**Status**
+
+- 🔍 Not yet inspected
+
+**Expected database**
+
+```text
+gallery
+```
+
+**Notes**
+
+This module likely manages the public photo gallery.
+
+It should be documented separately because gallery logic may include image upload and file processing.
+
+---
+
+## SEO module
+
+**File**
+
+```text
+admin/seo/index.html
+```
+
+**Status**
+
+- ✅ Verified
+
+**Database**
+
+```text
+seo
+```
+
+**Responsibilities**
+
+- Edit SEO title.
+- Edit SEO description.
+- Edit SEO keywords.
+- Save one record with `id = 1`.
+
+**Dependencies**
+
+- `PAGE::setTitle()`
+- `DB::selectOne()`
+- `DB::query()`
+- `Form`
+- `InputText`
+- `InputButton`
+- `echo_yes()`
+- `echo_err()`
+
+**Confirmed behaviour**
+
+- Loads SEO data with `SELECT * FROM seo WHERE id='1' LIMIT 1`.
+- Saves SEO data with `UPDATE seo SET ... WHERE id='1' LIMIT 1`.
+- Uses the custom form framework.
+
+**Modernization notes**
+
+- Low complexity.
+- Good candidate for future validation improvements.
+- Should remain separate from content block modules.
+
+---
+
+## Users module
+
+**File**
+
+```text
+admin/users/index.html
+```
+
+**Status**
+
+- 🔍 Not yet inspected
+
+**Expected database**
+
+```text
+users
+```
+
+**Notes**
+
+This module is expected to manage administrator/user records.
+
+It should be inspected carefully because it may affect authentication and security.
+
+---
+
+# 12. CMS Architecture Notes
+
+The admin CMS is module-based rather than monolithic.
+
+Each module lives in its own directory and is loaded through the legacy page system.
+
+```text
+/admin/block1/
+  ↓
+admin/block1/index.html
+  ↓
+texts table
+```
+
+The `.html` extension does not mean the file is static HTML. These files contain executable PHP and are part of the application logic.
+
+This is an important legacy convention and must be preserved unless a separate migration plan is created.
+
+---
+
 # Status
 
 This document is the working inventory of the Premium Avto codebase.
