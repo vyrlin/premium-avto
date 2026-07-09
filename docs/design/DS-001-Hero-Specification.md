@@ -10,117 +10,137 @@
 
 ---
 
-# Purpose
+# 1. Назначение
 
-This document defines the official specification of the Premium Avto Hero section.
+Hero является самым важным элементом публичной части сайта Premium Avto.
 
-It is the primary visual reference for the first screen of the website.
+Именно первый экран формирует первое впечатление о компании.
 
-All future Hero implementations must conform to this specification.
+Основная задача Hero — за несколько секунд объяснить посетителю:
 
----
+- куда он попал;
+- какие автомобили здесь обслуживают;
+- почему этому сервису можно доверять;
+- какое действие следует выполнить дальше.
 
-# Design References
-
-Official design references:
-
-- assets/FonView.png
-- assets/ConceptView.png
-
-These images are considered the approved visual baseline.
+Hero является основой всего визуального стиля проекта.
 
 ---
 
-# Product Goal
+# 2. Эталонные изображения
 
-Within the first 3–5 seconds the visitor must understand:
+Официальными визуальными эталонами проекта являются:
 
-- this is Premium Avto;
-- this is an independent VAG specialist;
-- the company services Audi, Volkswagen, Škoda, SEAT and Porsche;
-- the company is professional and trustworthy.
+- assets/hero-background-v1.png
+- assets/hero-concept-v1.png
 
----
+Данные изображения утверждены и используются как основа дальнейшей разработки.
 
-# Brand Positioning
+Допускается только техническая адаптация изображений (оптимизация, изменение размера, цветокоррекция).
 
-Premium Avto is not an official dealer.
-
-Premium Avto is an independent specialized VAG service center.
-
-This distinction must be visually obvious.
+Изменение художественной концепции допускается только после отдельного утверждения.
 
 ---
 
-# Hero Layout
+# 3. Позиционирование бренда
 
-The Hero consists of:
+Premium Avto — независимый специализированный автосервис автомобилей концерна VAG.
 
-- Header
-- Hero Background
-- Overlay
-- Hero Content
-- CTA
-- Brand Strip
-- Trust Indicators
+Сайт не должен создавать впечатление официального дилера.
 
----
+Одновременно пользователь должен ощущать уровень качества, сопоставимый с официальными сервисными центрами Audi, Volkswagen и Porsche.
 
-# Header
+Основные ассоциации:
 
-Contains:
-
-- original Premium Avto logo;
-- navigation;
-- phone number;
-- opening hours.
+- профессионализм;
+- современное оборудование;
+- чистый сервис;
+- честность;
+- техническая компетентность;
+- доверие.
 
 ---
 
-# Hero Background
+# 4. Основная идея Hero
 
-Official image:
+Hero должен создавать ощущение современного технологичного сервисного центра.
 
-FonView v1.0
+Первый экран не продаёт отдельную услугу.
 
-Rules:
+Он продаёт доверие к компании.
 
-- no text embedded in the image;
-- no generated logos;
-- only the original Premium Avto logo is used in the interface;
-- only color correction is permitted.
+Визуальное восприятие должно быть спокойным, уверенным и профессиональным.
 
 ---
 
-# Hero Content
+# 5. Header
 
-Main headline:
+Header является частью Hero.
 
-Independent Specialized VAG Service Center
+Он должен восприниматься лёгким и современным.
 
-Supporting text:
+Header содержит:
 
-Short, clear and confidence-building.
+- оригинальный логотип Premium Avto;
+- основное меню;
+- телефон;
+- режим работы.
 
-Maximum readability.
-
----
-
-# CTA
-
-Primary:
-
-Book a Service
-
-Secondary:
-
-Call Now
+Header не должен отвлекать внимание от основного сообщения Hero.
 
 ---
 
-# Brand Strip
+# 6. Hero Background
 
-Displays official logos:
+Фоновое изображение является главным визуальным элементом первого экрана.
+
+Используется исключительно утверждённое изображение hero-background-v1.png.
+
+Фон показывает:
+
+- современный сервисный центр;
+- автомобиль концерна VAG;
+- диагностическое оборудование;
+- сотрудника Premium Avto;
+- профессиональную рабочую атмосферу.
+
+Изображение должно усиливать доверие к компании.
+
+---
+
+# 7. Hero Content
+
+Текстовая часть располагается поверх фонового изображения.
+
+Основное сообщение должно быть максимально понятным.
+
+Hero должен содержать:
+
+- основной заголовок;
+- краткое пояснение;
+- призыв к действию.
+
+Текст не должен перегружать пользователя.
+
+---
+
+# 8. CTA
+
+Hero содержит две основные кнопки.
+
+Основная кнопка мотивирует записаться на обслуживание.
+
+Вторичная предоставляет возможность быстро связаться с компанией.
+
+Главная задача CTA — максимально сократить путь пользователя до обращения в сервис.
+
+---
+
+# 9. Логотипы брендов
+
+На первом экране отображаются логотипы обслуживаемых марок.
+
+Основные бренды:
 
 - Audi
 - Volkswagen
@@ -128,56 +148,73 @@ Displays official logos:
 - SEAT
 - Porsche
 
----
-
-# Visual Style
-
-Premium.
-
-Minimal.
-
-Technical.
-
-Inspired by official VAG service websites.
+Логотипы подтверждают специализацию компании.
 
 ---
 
-# Identity Preservation
+# 10. Блок преимуществ
 
-The historical Premium Avto logo is part of the company's identity.
+Первый экран содержит краткий перечень ключевых преимуществ.
 
-It must never be redrawn, replaced or reinterpreted.
+Каждое преимущество должно читаться за несколько секунд.
 
-Only the original logo may be used.
-
----
-
-# Design Authority
-
-This document has higher priority than implementation details.
-
-If implementation differs from this specification, implementation should be updated.
+Текст должен быть коротким и понятным.
 
 ---
 
-# Future Evolution
+# 11. Общий визуальный стиль
 
-Future improvements may refine:
+Hero строится по следующим принципам:
 
-- spacing;
-- typography;
-- responsiveness;
-- animation.
+- минимализм;
+- премиальность;
+- технологичность;
+- аккуратность;
+- большое количество свободного пространства;
+- качественная типографика;
+- высокая читаемость;
+- отсутствие визуального шума.
 
-They must not change the approved visual concept.
+Основным ориентиром являются сайты официальных сервисных центров VAG.
 
 ---
 
-# Approval
+# 12. Сохранение фирменного стиля
 
-Approved references:
+Исторический логотип Premium Avto является частью бренда.
 
-- FonView v1.0
-- ConceptView v1.0
+Он не подлежит:
 
-These references define the official Hero design for Premium Avto.
+- перерисовке;
+- стилизации;
+- замене;
+- изменению пропорций;
+- использованию AI-аналогов.
+
+Во всех интерфейсах используется только оригинальный логотип компании.
+
+---
+
+# 13. Правила дальнейшего развития
+
+Все дальнейшие изменения Hero должны соответствовать настоящей спецификации.
+
+Допускается совершенствование:
+
+- адаптивности;
+- анимации;
+- производительности;
+- доступности;
+- реализации HTML/CSS.
+
+Не допускается изменение утверждённой концепции без отдельного архитектурного решения.
+
+---
+
+# Заключение
+
+Hero является центральным элементом визуальной идентичности Premium Avto.
+
+Данный документ определяет не реализацию, а концепцию продукта.
+
+Все последующие дизайнерские и технические решения должны развивать утверждённую концепцию, сохраняя её целостность и узнаваемость.
