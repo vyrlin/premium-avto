@@ -1,0 +1,12 @@
+/*
+ * Premium Avto — Modern CSS Layer
+ *
+ * Purpose:
+ * This file is used for gradual public frontend modernization.
+ *
+ * Rules:
+ * - Prefer CSS changes before changing HTML.
+ * - Do not affect PHP logic.
+ * - Do not affect admin interface.
+ * - Keep changes small and reversible.
+ */
