@@ -1,4 +1,4 @@
-<?
+<?php
 if(isset($_POST['name']) && isset($_POST['contact']) && isset($_POST['txt'])) { 
 	$name = secur($_POST['name'], 'tr'); 
 	$contact = secur($_POST['contact'], 'tr'); 

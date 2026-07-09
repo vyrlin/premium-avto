@@ -1,4 +1,4 @@
-<?
+<?php
 if(isset($_SESSION['ajax'])) {
 	$ajax = preg_replace("/[^a-zA-Z0-9\/_-]*/u", '', $_SESSION['ajax']);
 	if($ajax != '') {

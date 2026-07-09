@@ -147,3 +147,131 @@ Replace short PHP tags in core helper files
 # Status
 
 This document is updated together with the source code after every completed modernization task.
+## TD-002B — Replace short PHP tag in config.php
+
+**Date**
+
+2026-07-09
+
+**Status**
+
+✅ Completed
+
+**Goal**
+
+Replace legacy short PHP opening tag with the standard `<?php`.
+
+**Files**
+
+```text
+_core/_config/config.php
+```
+
+**Risk**
+
+Very Low
+
+**Testing**
+
+- Public website
+- Admin login
+- Admin dashboard
+- Opened admin section
+
+**Result**
+
+✅ Successful
+
+**Git Commit**
+
+```text
+Replace short PHP tag in config.php
+```
+## TD-002C — Replace short PHP tag in AJAX loader
+
+**Date**
+
+2026-07-09
+
+**Status**
+
+✅ Completed
+
+**Goal**
+
+Replace the legacy short PHP opening tag (`<?`) with the standard `<?php` in the AJAX loader.
+
+**Files**
+
+```text
+_ajax/_loader.php
+```
+
+**Risk**
+
+Very Low
+
+**Changes**
+
+- Replaced the short PHP opening tag (`<?`) with the standard `<?php`.
+
+**Testing**
+
+- Public website
+- Administrator login
+- Admin dashboard
+- Opened admin section
+
+**Result**
+
+✅ Successful
+
+**Git Commit**
+
+```text
+Replace short PHP tag in AJAX loader
+```
+## TD-002D — Replace short PHP tag in mailsend.php
+
+**Date**
+
+2026-07-09
+
+**Status**
+
+✅ Completed
+
+**Goal**
+
+Replace the legacy short PHP opening tag (`<?`) with the standard `<?php` in the mail handler.
+
+**Files**
+
+```text
+_ajax/mailsend.php
+```
+
+**Risk**
+
+Very Low
+
+**Changes**
+
+- Replaced the short PHP opening tag (`<?`) with the standard `<?php`.
+
+**Testing**
+
+- Public website
+- Administrator login
+- Admin dashboard
+- Opened admin section
+
+**Result**
+
+✅ Successful
+
+**Git Commit**
+
+```text
+TD-002D: Replace short PHP tag in mailsend.php
+```
