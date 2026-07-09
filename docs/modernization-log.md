@@ -275,3 +275,54 @@ Very Low
 ```text
 TD-002D: Replace short PHP tag in mailsend.php
 ```
+## TD-002 — Replace short PHP tags in non-critical files
+
+**Date**
+
+2026-07-09
+
+**Status**
+
+✅ Completed
+
+**Goal**
+
+Replace legacy short PHP opening tags (`<?`) with standard PHP opening tags (`<?php`) in non-critical project files.
+
+**Files**
+
+```text
+_core/_functions/auth.php
+_core/_functions/funcs.php
+_core/_config/config.php
+_ajax/_loader.php
+_ajax/mailsend.php
+_ajax/admin/test.php
+```
+
+**Risk**
+
+Low
+
+**Changes**
+
+- Replaced short PHP opening tags with standard PHP opening tags.
+- Did not change application logic.
+- Left critical core files for separate tasks.
+
+**Testing**
+
+- Public website
+- Administrator login
+- Admin dashboard
+- Opened admin section
+
+**Result**
+
+✅ Successful
+
+**Git Commit**
+
+```text
+TD-002: Replace short PHP tags in non-critical files
+```
