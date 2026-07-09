@@ -8,6 +8,7 @@
 
 ---
 
+
 # Основная цель проекта
 
 Не переписывать legacy-систему с нуля.
@@ -77,6 +78,18 @@
 ## 10. Improve Continuously
 
 Каждый этап должен делать проект немного лучше предыдущего.
+
+## 11. Product-first principle
+
+Once the platform is stable, priority should shift from internal refactoring to improvements that provide visible value to users and administrators.
+
+Technical cleanup remains important but should support product evolution rather than become a goal by itself.
+---
+## 12. Legacy is the foundation, not the destination
+
+Understanding the legacy code is required only to modernize it safely.
+
+The final objective is a modern website, not a perfectly documented legacy system.
 
 ---
 
