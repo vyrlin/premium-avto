@@ -66,3 +66,55 @@
 
      --transition-fast: .2s ease;
  }
+ /* ==========================================================
+   Global Typography
+   ========================================================== */
+
+ html {
+     font-size: 16px;
+ }
+
+ body {
+     font-family: var(--font-family);
+     font-size: var(--font-size-md);
+     line-height: 1.6;
+     color: var(--color-text);
+     background: var(--color-background);
+
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+
+     text-rendering: optimizeLegibility;
+ }
+
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+     margin-top: 0;
+     margin-bottom: var(--space-md);
+
+     color: var(--color-text);
+
+     font-weight: 600;
+     line-height: 1.25;
+ }
+
+ p {
+     margin-top: 0;
+     margin-bottom: var(--space-md);
+ }
+
+ a {
+     color: var(--color-primary);
+
+     text-decoration: none;
+
+     transition: color var(--transition-fast);
+ }
+
+ a:hover {
+     color: var(--color-primary-hover);
+ }
