@@ -1,197 +1,268 @@
 # Premium Avto — Technical Debt
 
-> **Document:** Technical Debt
->
-> **Version:** 1.0
+> **Version:** 2.0
 >
 > **Status:** Active
 >
-> **Purpose:** Track known legacy issues and define safe modernization priorities.
+> **Project Phase:** Modern Product Development
 
 ---
 
-# 1. Goal
+# Purpose
 
-This document lists known technical debt in the Premium Avto legacy system.
+This document maintains the official register of the remaining technical debt within the Premium Avto project.
 
-The purpose is not to rewrite the project, but to improve it gradually and safely.
+The reverse engineering phase has been completed.
 
----
+Only unresolved technical debt should be listed here.
 
-# 2. Priority Order
+Completed work should be removed from this document and remain visible through Git history.
 
-Technical debt must be handled in this order:
-
-1. Security
-2. PHP compatibility
-3. Stability
-4. Code readability
-5. Frontend improvements
-6. Architecture improvements
+This document is intended to support future planning rather than preserve historical records.
 
 ---
 
-# 3. Known Technical Debt
+# Technical Debt Philosophy
 
-## Security
+Technical debt is managed continuously.
 
-- Legacy password hashing uses MD5.
-- SQL queries are manually assembled.
-- No prepared statements.
-- Input filtering depends heavily on `secur()`.
-- Admin protection should be reviewed carefully.
+The objective is not to eliminate all technical debt immediately.
 
-Risk: High  
-Action: Improve gradually, without breaking login or admin behaviour.
+The objective is to reduce it safely without interrupting product development.
 
----
+Every improvement should:
 
-## PHP Compatibility
-
-- Legacy PHP syntax may cause warnings on modern PHP.
-- `create_function()` may exist in helper code.
-- Short PHP tags may exist.
-- Deprecated behaviour may appear on PHP 8+.
-
-Risk: Medium  
-Action: Fix one compatibility issue per commit.
+- reduce future maintenance effort;
+- improve reliability;
+- preserve compatibility;
+- remain independently testable.
 
 ---
 
-## Database Layer
+# Priority Levels
 
-- Custom DB wrapper is used.
-- SQL logic is mixed with application logic.
-- No migration system.
+Technical debt is addressed in the following order.
 
-Risk: Medium  
-Action: Document before changing.
-
----
-
-## Architecture
-
-- No namespaces.
-- No Composer autoloading.
-- Global state is used.
-- Routing depends on `$_GET['link']` and global `$_PATH`.
-
-Risk: High  
-Action: Do not change routing without separate analysis.
+| Priority | Area |
+|----------|------|
+| High | Security |
+| High | Authentication |
+| High | Database |
+| Medium | Architecture |
+| Medium | Frontend |
+| Low | Performance |
+| Low | Code Cleanup |
 
 ---
 
-## Frontend
+# Security
 
-- Legacy layout.
-- Fixed-width design.
-- Mobile adaptation may be limited.
-- Old HTML/CSS structure.
+## Current Status
 
-Risk: Low to Medium  
-Action: Improve after PHP and security issues are stable.
+🟡 Active
 
----
+### Remaining tasks
 
-# 4. Safe First Candidates
+- Replace legacy MD5 password hashing.
+- Remove authentication bypasses if any remain.
+- Improve cookie security.
+- Strengthen session handling.
+- Review administrator authorization flow.
 
-The safest first modernization tasks are:
+Priority:
 
-1. Replace `create_function()` if found.
-2. Fix PHP warnings that do not affect behaviour.
-3. Improve comments around legacy functions.
-4. Remove unused obvious dead code only after confirmation.
-5. Improve frontend styles without changing content logic.
+High
 
----
+Notes:
 
-# 5. Do Not Touch Without Separate Plan
-
-These components are stable and risky:
-
-- `PAGE`
-- `DB`
-- `USER`
-- `Form`
-- `secur()`
-- `get_block()`
-- `path.php`
-
-Any change here requires:
-
-- separate discussion;
-- documentation update;
-- full testing checklist.
+Authentication changes require complete regression testing.
 
 ---
 
-# 6. Rule
+# Database
 
-Each technical debt item must be fixed with:
+## Current Status
 
-- one clear task;
-- one commit;
-- testing after change;
-- documentation update if behaviour or architecture changes.
+🟡 Active
+
+### Remaining tasks
+
+- Gradually reduce raw SQL construction.
+- Introduce prepared statements where practical.
+- Improve database error handling.
+- Centralize query validation.
+
+Priority:
+
+High
+
+Notes:
+
+Changes should be incremental.
 
 ---
 
-# Status
+# Architecture
 
-This document is the official technical debt register for Phase 1 — Safe Modernization.
-# Compatibility
+## Current Status
 
-## TD-001 — Replace create_function()
+🟡 Active
 
-Status
+### Remaining tasks
 
-✅ Completed
+- Reduce unnecessary global state.
+- Simplify helper responsibilities.
+- Improve internal component boundaries.
+- Remove obsolete helper code after verification.
 
-Verification
+Priority:
 
-- create_function() no longer exists in the project.
-- sort_by() and order_by() now use anonymous functions (Closure).
-- Behaviour preserved.
+Medium
 
-**Priority**
+Notes:
 
-- Low
+Architecture should evolve only when it clearly improves maintainability.
 
-**Risk**
+---
 
-- Low
+# Frontend
 
-**Location**
+## Current Status
+
+🟡 Active
+
+### Remaining tasks
+
+- Modern responsive layout.
+- Mobile-first improvements.
+- Visual consistency.
+- Improved accessibility.
+- Better administrator interface.
+
+Priority:
+
+Medium
+
+Notes:
+
+Frontend modernization represents the primary direction of current product development.
+
+---
+
+# Performance
+
+## Current Status
+
+🟢 Planned
+
+Possible improvements:
+
+- reduce unnecessary database queries;
+- optimize page rendering;
+- improve asset loading;
+- optimize image delivery.
+
+Priority:
+
+Low
+
+Performance work should be based on measurable results rather than assumptions.
+
+---
+
+# Code Cleanup
+
+## Current Status
+
+🟢 Ongoing
+
+Possible improvements:
+
+- remove verified dead code;
+- improve naming consistency;
+- simplify helper functions;
+- improve comments where useful.
+
+Cleanup should never change observable behaviour.
+
+---
+
+# Completed Modernization
+
+The following modernization work has already been completed and is therefore no longer considered technical debt.
+
+Completed:
+
+- ✅ Reverse Engineering
+- ✅ Architecture Documentation
+- ✅ Core Inventory
+- ✅ Administrative Module Inventory
+- ✅ PHP 8 Compatibility
+- ✅ Removal of `create_function()`
+- ✅ Removal of short PHP tags
+- ✅ Initial legacy cleanup
+- ✅ Documentation Version 3.0
+
+Historical details remain available through Git history.
+
+---
+
+# Working Rules
+
+Every technical debt task should follow the same process.
 
 ```text
-_core/_functions/funcs.php
+Analysis
+
+↓
+
+Planning
+
+↓
+
+Implementation
+
+↓
+
+Testing
+
+↓
+
+Commit
+
+↓
+
+Documentation update (if required)
 ```
 
-**Functions**
+Large refactoring should be divided into small independent tasks.
 
-- `sort_by()`
-- `order_by()`
+---
 
-**Problem**
+# Success Criteria
 
-Both functions use PHP's deprecated `create_function()`, which was removed in PHP 8.
+Technical debt is considered well managed when:
 
-**Current status**
+- new debt is minimized;
+- existing debt is reduced continuously;
+- product development remains the primary focus;
+- architectural quality improves gradually;
+- future maintenance becomes easier.
 
-- Only two occurrences exist in the project.
-- No usages of `sort_by()` or `order_by()` have been found during the current inventory.
-- The project currently works because these functions are not executed.
+---
 
-**Planned solution**
+# Final Principle
 
-Replace `create_function()` with anonymous functions (`Closure`).
+Technical debt should never dominate the project.
 
-**Verification**
+The product remains the primary objective.
 
-- Search confirms zero remaining `create_function()` calls.
-- Application behaviour remains unchanged.
-- PHP 8 compatibility is improved.
+Debt reduction is successful only when it helps create a better product.
 
-**Notes**
+---
 
-This should become the first source code modernization task after the core inventory is completed.
+**Document Status**
+
+This document is the official register of the remaining technical debt in the Premium Avto project.
+
+Completed modernization tasks should be removed from this document and preserved through the project's version history.

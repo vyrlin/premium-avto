@@ -1,142 +1,191 @@
 # Premium Avto — AI Context
 
-> **Version:** 2.0
+> **Version:** 3.0
 >
 > **Status:** Active
 >
-> **Purpose:** This document is the primary entry point for any AI assistant, developer, or contributor joining the Premium Avto project.
+> **Project Phase:** Modern Product Development
+>
+> **Purpose:** This document is the primary entry point for every AI assistant, developer and contributor working on the Premium Avto project.
 >
 > **Read this document before performing any task.**
-## Response Quality Rules
-
-AI should prefer replacing an entire document over providing multiple partial edits.
-
-When a partial edit is required:
-
-- specify the exact section to replace;
-- provide the complete replacement as a single copyable Markdown block;
-- never split replacement text across multiple messages.
-
-If the proposed format causes confusion, the workflow should be updated before continuing development.
----
-
-## Mandatory Project Documents
-
-Before starting any task, the AI assistant must read the following documents in this order:
-
-1. README.md
-2. ai-context.md
-3. ai-development-workflow.md
-4. project-principles.md
-5. roadmap.md
-
-These documents define the project architecture, development methodology, and collaboration rules.
-
-No implementation work should begin before they have been reviewed.
-These documents are considered the authoritative source for project architecture, development workflow, and modernization strategy. If any later instruction conflicts with them, the project documentation should be updated first before changing the development process.
----
-
-# 1. Project Overview
-
-Premium Avto is a legacy PHP website that is being modernized through **incremental evolution**, not a rewrite.
-
-The project already has a working production version.
-
-The objective is to improve the system while preserving all existing functionality.
-
-The project is developed using Git with small, reversible changes.
-
-
-
-
-# Long-Term Modernization Strategy
-
-The primary goal of the project is **not** to eliminate every legacy construct.
-
-The objective is to transform the existing Premium Avto website into a modern, maintainable and visually attractive system while preserving all existing business functionality.
-
-Modernization priorities are:
-
-1. Preserve working behaviour.
-2. Improve architecture where it brings practical value.
-3. Improve security and PHP compatibility.
-4. Improve maintainability.
-5. Modernize the user interface and user experience.
-6. Add new functionality.
-
-The project should avoid spending excessive time on low-value cleanup tasks once the core platform has become stable.
-
-After the stabilization phase is completed, development effort should focus primarily on visible improvements that bring value to users and administrators.
-
-Legacy cleanup should continue only when it directly supports these goals.
 
 ---
-# 2. Current Project Phase
 
-Current Phase:
+# 1. Project Mission
 
-> Phase 2 — Functional Modernization
+Premium Avto is a long-term software modernization project.
+
+The reverse engineering stage has been successfully completed.
+
+The legacy platform is no longer the subject of research.
+
+It is now the technological foundation for building a modern product.
+
+The project's mission is:
+
+> **Create a modern, secure, fast and maintainable automotive company website while preserving all proven business logic accumulated by the existing system.**
+
+The goal is not to rewrite history.
+
+The goal is to build the future on top of a stable foundation.
+
+---
+
+# 2. Current Project Status
+
+The project has successfully completed the research phase.
 
 Completed:
 
-- Reverse Engineering
-- Architecture documentation
-- Core inventory
-- PHP compatibility stabilization
-- Initial project cleanup
+- ✅ Reverse Engineering
+- ✅ Legacy Architecture Analysis
+- ✅ Full Core Inventory
+- ✅ Administrative Module Inventory
+- ✅ PHP 8 Compatibility Audit
+- ✅ Local Development Environment
+- ✅ Technical Documentation
+- ✅ Initial Legacy Cleanup
 
-Current priority:
+The project has now entered a new phase:
 
-- Modernize the user interface.
-- Improve frontend architecture.
-- Introduce new functionality.
-- Continue backend modernization only when it supports visible improvements.
+> **Modern Product Development**
 
----
-
-# 3. Primary Objective
-
-The project has one fundamental rule.
-
-> **Preserve behaviour first. Improve implementation second.**
-
-Correct behaviour is always more important than cleaner code.
-
-Working software has priority over architectural perfection.
+Future work is primarily focused on improving the product itself rather than continuing legacy investigation.
 
 ---
 
-# 4. Development Philosophy
+# 3. Product Vision
 
-The project follows these principles:
+Premium Avto should gradually evolve into a modern web application while preserving the stability of the existing platform.
 
-- Evolution instead of revolution.
-- Small safe improvements.
-- Fully working project after every commit.
-- Rollback must always be possible.
-- Documentation evolves together with code.
+The finished product should be:
 
-Large rewrites are intentionally avoided.
+- modern;
+- visually attractive;
+- responsive;
+- mobile-first;
+- secure;
+- fast;
+- SEO-friendly;
+- easy to maintain;
+- convenient for administrators;
+- pleasant for customers.
+
+Every improvement should move the project closer to this vision.
 
 ---
 
-# 5. AI Responsibilities
+# 4. Core Development Philosophy
 
-This project intentionally uses two AI assistants.
+The legacy system has already proven its value.
+
+Its business logic should be respected.
+
+Future development follows one principle:
+
+> **Preserve behaviour. Improve implementation. Evolve the product.**
+
+The project does not pursue modernization for its own sake.
+
+Technology serves the product.
+
+Architecture serves maintainability.
+
+Code serves business.
+
+---
+
+# 5. Long-Term Goals
+
+The long-term objectives of the project are:
+
+- modern user interface;
+- improved user experience;
+- improved administrator experience;
+- increased security;
+- modern PHP compatibility;
+- gradual frontend modernization;
+- gradual backend modernization;
+- reduced technical debt;
+- simplified maintenance;
+- long-term sustainability.
+
+The project is evolutionary rather than revolutionary.
+
+---
+
+# 6. Development Priorities
+
+When choosing between several possible improvements, priorities are:
+
+1. Product quality
+2. User experience
+3. Business logic preservation
+4. Security
+5. Performance
+6. Maintainability
+7. Code readability
+8. Internal architecture
+
+Architecture is important, but only when it improves the product.
+
+---
+
+# 7. Golden Rules
+
+Every contributor must follow these rules.
+
+## Preserve proven behaviour.
+
+Existing functionality should never change accidentally.
+
+---
+
+## Improve incrementally.
+
+Small safe improvements are preferred over large rewrites.
+
+---
+
+## Every commit must leave the project deployable.
+
+The project should always remain in a working state.
+
+---
+
+## Documentation reflects architecture.
+
+Important architectural decisions must always be documented.
+
+---
+
+## Product goals drive technical decisions.
+
+Technology is a tool.
+
+The product is the objective.
+
+---
+
+# 8. AI Responsibilities
+
+The project intentionally uses different AI systems for different responsibilities.
 
 ## ChatGPT
 
 Primary responsibilities:
 
-- architecture;
-- planning;
-- reverse engineering;
+- software architecture;
+- technical leadership;
+- product strategy;
+- modernization planning;
 - documentation;
 - code review;
 - design decisions;
-- modernization strategy.
+- risk analysis.
 
-ChatGPT acts as the **project architect**.
+ChatGPT acts as the project's technical architect.
 
 ---
 
@@ -147,28 +196,32 @@ Primary responsibilities:
 - implementation;
 - repetitive refactoring;
 - editing multiple files;
+- mechanical modernization;
 - code generation;
-- migration tasks;
-- project-wide transformations.
+- routine development tasks.
 
-Codex acts as the **implementation engineer**.
+Codex acts as the implementation engineer.
 
 ---
 
-# 6. Collaboration Model
+# 9. Standard Development Workflow
 
-Development workflow:
+Every significant task follows the same workflow.
 
 ```text
 Idea
 
 ↓
 
-Architecture discussion
+Discussion
 
 ↓
 
-Documentation update
+Architecture
+
+↓
+
+Documentation
 
 ↓
 
@@ -184,332 +237,174 @@ Commit
 
 ↓
 
-Push
+Release
 ```
 
-Neither AI should skip these steps.
+No stage should be skipped.
 
 ---
 
-# 7. Project Rules
+# 10. Documentation Policy
 
-Always follow these rules.
+Project documentation has reached a mature state.
 
-## Rule 1
+Future documentation updates should primarily accompany:
 
-Never rewrite working modules without a confirmed reason.
+- architectural decisions;
+- major product features;
+- infrastructure changes;
+- important modernization milestones.
 
----
+Minor implementation details should not require constant documentation rewrites.
 
-## Rule 2
-
-One logical task = one commit.
-
----
-
-## Rule 3
-
-One architectural decision = one documentation update.
+The primary development focus is now the product itself.
 
 ---
 
-## Rule 4
+# 11. Modernization Strategy
 
-Every commit must leave the project in a working state.
-
----
-
-## Rule 5
-
-Every modification must be reversible using Git.
-
----
-
-## Rule 6
-
-Documentation is part of the source code.
-
-Changing architecture without updating documentation is considered an incomplete task.
-
----
-
-# 8. Required Documentation
-
-Before modifying code, consult the appropriate documentation.
-
-## Project
-
-- docs/README.md
-
----
-
-## Architecture
-
-- docs/architecture.md
-- docs/core.md
-- docs/routes.md
-- docs/database.md
-
----
-
-## Development
-
-- docs/project-principles.md
-- docs/roadmap.md
-- docs/technical-debt.md
-- docs/testing-checklist.md
-
----
-
-## Historical
-
-- docs/legacy-system.md
-- docs/changes-for-start-in-laragon.md
-- docs/php8-compatibility.md
-
----
-
-# 9. Confirmed Architecture
-
-The following facts have been verified.
-
-Framework:
-
-- custom PHP mini-framework.
-
-Core components:
-
-- PAGE
-- DB
-- USER
-- Form framework
-- Template engine
-
-Routing:
-
-- custom routing through `$_GET['link']`
-- global routing state stored in `$_PATH`
-
-Templates:
-
-- landing.html
-- cabinet.html
-- print.html
-
-Database:
-
-```text
-texts
-gallery
-seo
-users
-```
-
-The database intentionally remains extremely small.
-
----
-
-# 10. Stable Components
-
-These components are considered stable.
-
-Changing them requires additional analysis.
-
-- PAGE
-- DB
-- USER
-- Form
-- secur()
-- get_block()
-- path.php
-
-Improvements should preserve compatibility.
-
----
-
-# 11. Technical Debt Strategy
-
-Known technical debt is tracked in
-
-```text
-docs/technical-debt.md
-```
-
-Technical debt is removed gradually.
+Modernization follows an evolutionary model.
 
 Priority order:
 
-1. Security
-2. PHP compatibility
-3. Architecture
-4. UI improvements
+1. Preserve business logic.
+2. Improve usability.
+3. Improve maintainability.
+4. Improve security.
+5. Improve performance.
+6. Simplify architecture where beneficial.
+7. Remove technical debt gradually.
+
+Large rewrites are intentionally avoided unless they provide substantial long-term value.
 
 ---
 
-# 12. Testing Policy
+# 12. Technical Debt Strategy
 
-Every code modification requires testing.
+Technical debt should be removed gradually.
 
-Minimum checklist:
+Preferred order:
 
-- public homepage;
-- admin login;
-- content blocks;
-- gallery;
-- SEO;
-- database connection;
-- PHP errors.
+- security improvements;
+- obsolete PHP features;
+- frontend modernization;
+- code cleanup;
+- architectural simplification.
 
-Detailed checklist:
-
-```text
-docs/testing-checklist.md
-```
+Every improvement should be independently testable and easily reversible.
 
 ---
 
-# 13. Git Workflow
+# 13. Git Philosophy
 
-Recommended workflow:
+Git is part of the development process.
 
-```text
-Discuss
+Recommended principles:
 
-↓
+- one logical task = one commit;
+- descriptive commit messages;
+- small reversible changes;
+- stable repository after every commit.
 
-Document
-
-↓
-
-Implement
-
-↓
-
-Test
-
-↓
-
-Commit
-
-↓
-
-Push
-```
-
-Recommended commit prefixes:
-
-```text
-Add
-
-Fix
-
-Refactor
-
-Document
-
-Update
-
-Remove
-```
-
-Every important milestone should be tagged.
+Rollback should always remain possible.
 
 ---
 
-# 14. Coding Guidelines
+# 14. Decision-Making Principles
 
-Prefer:
+When several solutions exist, prefer the one that:
 
-- readable code;
-- small functions;
-- centralized logic;
-- backward compatibility.
+- preserves behaviour;
+- improves the product;
+- minimizes risk;
+- simplifies future maintenance;
+- keeps implementation understandable.
 
-Avoid:
-
-- duplicated code;
-- unnecessary dependencies;
-- global redesign;
-- hidden behavioural changes.
+Never introduce complexity without measurable benefit.
 
 ---
 
-# 15. Decision-Making Rules
+# 15. Definition of Success
 
-When multiple solutions exist:
+The project is considered successful when:
 
-Prefer the solution that:
-
-1. preserves behaviour;
-2. minimizes risk;
-3. requires the smallest change;
-4. keeps rollback simple;
-5. improves maintainability.
-
-Never choose a solution solely because it is newer.
-
----
-
-# 16. Documentation Policy
-
-Documentation has equal importance to source code.
-
-Whenever architecture changes:
-
-- update documentation;
-- then update code;
-- then test.
-
-Documentation should always reflect the current implementation.
+- all business logic has been preserved;
+- the codebase is understandable;
+- PHP compatibility is modern;
+- technical debt is significantly reduced;
+- the interface feels contemporary;
+- the administrator panel remains reliable;
+- new functionality can be added safely;
+- future developers can understand the project quickly.
 
 ---
 
-# 17. Long-Term Vision
+# 16. Starting a New AI Session
 
-At project completion Premium Avto should:
+Every new AI session should begin by understanding the project rather than rediscovering it.
 
-- run on modern PHP versions;
-- preserve all business functionality;
-- contain complete technical documentation;
-- have minimal technical debt;
-- be understandable by a new developer within one hour;
-- be safely maintainable.
-
----
-
-# 18. Starting a New AI Session
-
-At the beginning of every new session:
+Recommended startup sequence:
 
 1. Read this document.
-2. Determine the current project phase.
-3. Read only the documentation required for the current task.
-4. Continue from the current roadmap.
-5. Do not propose rewriting the project.
+2. Identify the current development task.
+3. Read only the documentation relevant to that task.
+4. Continue from the existing roadmap.
+5. Focus on product improvement.
+
+Reverse engineering should not be repeated.
 
 ---
 
-# 19. Project Motto
+# 17. Project Philosophy
 
-> **Understand first.  
-> Preserve second.  
-> Improve third.**
+Premium Avto is no longer a legacy research project.
+
+It is a modern software product built on a proven technological platform.
+
+The legacy system represents accumulated business knowledge.
+
+Modern development should enhance that knowledge rather than replace it.
+
+Every improvement should make the product:
+
+- better;
+- simpler;
+- safer;
+- faster;
+- easier to maintain.
 
 ---
 
-# 20. Final Principle
+# 18. Project Motto
 
-This project is not about writing new code.
+> **A modern product built on a proven foundation.**
 
-It is about carefully improving an existing system while respecting its history, preserving its functionality, and making every change understandable, testable, and reversible.
-# Project Philosophy
+or, in expanded form:
 
-Understanding the legacy system is no longer the goal.
+> **Preserve the experience.  
+> Modernize the technology.  
+> Build the future.**
 
-It is the foundation for building the next generation of the Premium Avto website.
+---
 
-Every modernization task should be evaluated by one question:
+# 19. Final Principle
 
-> Does this change move the project closer to a modern, user-friendly, maintainable website?
+The reverse engineering stage is officially complete.
 
-If the answer is "no", the task should have lower priority than improvements that directly benefit the product.
+Future development is focused on creating an excellent product rather than studying the legacy system.
+
+Every technical decision should answer one question:
+
+> **Does this make Premium Avto a better product?**
+
+If the answer is yes, the change is worth considering.
+
+If the answer is no, the change should be reconsidered.
+
+---
+
+**Document Status**
+
+This document is the highest-level architectural and strategic guideline for the Premium Avto project.
+
+All future development should be consistent with the principles described here.

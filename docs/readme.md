@@ -1,145 +1,207 @@
 # Premium Avto
 
-# Legacy Technical Documentation
-
-> Version: 1.0
+> **Documentation Version:** 3.0
 >
-> Status: Active
+> **Project Status:** Active Development
 >
-> Last updated: July 2026
+> **Current Phase:** Modern Product Development
 
 ---
 
-# О проекте
+# Project Overview
 
-Premium Avto — проект по безопасной модернизации legacy-сайта без полного переписывания.
+Premium Avto is a long-term software modernization project.
 
-Главная цель проекта:
+The project is based on an existing custom PHP platform that has been successfully analyzed, documented and stabilized.
 
-> **Сохранить работоспособность существующей системы и постепенно улучшать её архитектуру.**
+The reverse engineering stage is complete.
 
-В процессе модернизации каждый этап должен оставаться рабочим и допускающим откат.
+The project has now entered a new phase:
 
----
+> **Building a modern software product on top of a proven technological foundation.**
 
-# Статус проекта
+The objective is not to rewrite the system from scratch.
 
-| Этап | Статус |
-|-------|--------|
-| Исследование legacy-системы | ✅ Завершено |
-| Запуск локальной версии | ✅ Завершено |
-| Reverse Engineering | ✅ Завершено |
-| Техническая документация | ✅ Завершено |
-| Безопасная модернизация | ⏳ Следующий этап |
+The objective is to continuously improve the existing platform while preserving all business logic and accumulated functionality.
 
 ---
 
-# Архитектура проекта
+# Project Goals
 
-Во время исследования подтверждено:
+The long-term goals of the project are:
 
-- собственный PHP mini-framework;
-- собственная маршрутизация;
-- собственный шаблонизатор;
-- собственная библиотека построения форм;
-- единый класс работы с БД;
-- централизованная авторизация;
-- централизованная фильтрация пользовательского ввода.
+- modern user interface;
+- responsive design;
+- mobile-first experience;
+- improved administrator interface;
+- modern PHP compatibility;
+- improved security;
+- improved performance;
+- simplified maintenance;
+- gradual reduction of technical debt;
+- complete architectural transparency.
 
-База данных состоит всего из четырех таблиц:
+Every improvement should contribute to these goals.
+
+---
+
+# Current Project Status
+
+## Completed
+
+- ✅ Reverse Engineering
+- ✅ Legacy System Analysis
+- ✅ Architecture Documentation
+- ✅ Core Inventory
+- ✅ Administrative Module Inventory
+- ✅ PHP 8 Compatibility Modernization
+- ✅ Local Development Environment
+- ✅ Initial Legacy Cleanup
+- ✅ Documentation Version 3.0
+
+## Current Phase
+
+> **Modern Product Development**
+
+The primary focus is now the product itself rather than further investigation of the legacy codebase.
+
+---
+
+# Technology Overview
+
+Current technology stack:
+
+- PHP
+- MySQL / MariaDB
+- HTML
+- CSS
+- JavaScript
+- Custom PHP Framework
+- Git
+- GitHub
+- VS Code
+
+The project intentionally avoids unnecessary external dependencies.
+
+---
+
+# Architecture Overview
+
+The application is built around a lightweight custom PHP framework.
+
+Main components include:
+
+- routing engine;
+- page rendering engine;
+- template engine;
+- authentication system;
+- database abstraction layer;
+- administrative CMS;
+- reusable form framework.
+
+The architecture has been fully documented and verified.
+
+---
+
+# Repository Structure
 
 ```text
-texts
-gallery
-seo
-users
+admin/              Administrative modules
+
+_ajax/              AJAX endpoints
+
+_core/              Core framework
+
+public_html/        Public entry point
+
+signin/             Authentication
+
+docs/               Project documentation
 ```
 
 ---
 
-# Документация
+# Documentation
 
-## Основные документы
+## Core Documentation
 
-| Документ | Назначение |
-|-----------|------------|
-| architecture.md | Общая архитектура системы |
-| core.md | Подробное описание ядра `_core` |
-| routes.md | Маршрутизация и жизненный цикл HTTP-запроса |
-| database.md | Структура и использование базы данных |
-
----
-
-## Документы разработки
-
-| Документ | Назначение |
-|-----------|------------|
-| roadmap.md | План модернизации |
-| technical-debt.md | Список технических проблем |
-| testing-checklist.md | Проверки после каждого изменения |
-| project-principles.md | Основные правила разработки |
+| Document | Purpose |
+|----------|---------|
+| ai-context.md | Project philosophy and development strategy |
+| architecture.md | System architecture |
+| code-inventory.md | Source code inventory |
+| technical-debt.md | Technical debt register |
+| ai-development-workflow.md | AI collaboration workflow |
 
 ---
 
-## Историческая документация
+## Development Documentation
 
-| Документ | Назначение |
-|-----------|------------|
-| legacy-system.md | Описание исходной системы |
-| oldversion.md | Историческая информация |
-| changes-for-start-in-laragon.md | Особенности локального запуска |
-| php8-compatibility.md | Совместимость с PHP 8 |
-
----
-
-# Порядок изучения проекта
-
-Новому разработчику рекомендуется следующий порядок чтения.
-
-1. README.md
-2. architecture.md
-3. core.md
-4. routes.md
-5. database.md
-6. roadmap.md
-7. technical-debt.md
-8. testing-checklist.md
-
-После этого разработчик должен понимать устройство системы без изучения всего исходного кода.
+| Document | Purpose |
+|----------|---------|
+| project-principles.md | Development rules |
+| roadmap.md | Product roadmap |
+| php8-compatibility.md | PHP modernization history |
+| changes-for-start-in-laragon.md | Local development notes |
 
 ---
 
-# Основные принципы проекта
+## Historical Documentation
 
-При разработке необходимо соблюдать следующие правила.
+| Document | Purpose |
+|----------|---------|
+| legacy-system.md | Legacy system reference |
 
-- Не переписывать работающий код без необходимости.
-- Любое изменение должно быть минимальным.
-- Один commit — одна логическая задача.
-- После каждого commit выполняется полный testing-checklist.
-- Документация обновляется одновременно с кодом.
-- Всегда должна существовать возможность отката.
+Historical documents describe the original platform and should not drive future architectural decisions.
 
 ---
 
-# Рабочий процесс
+# Development Philosophy
 
-Каждая новая задача проходит следующие этапы.
+Premium Avto follows an evolutionary development model.
+
+The existing system has already demonstrated its business value.
+
+Future development focuses on improving the product while preserving proven functionality.
+
+The project values:
+
+- stability;
+- maintainability;
+- simplicity;
+- readability;
+- incremental progress.
+
+Large rewrites are intentionally avoided unless they provide significant long-term value.
+
+---
+
+# Standard Workflow
+
+Every significant task follows the same lifecycle.
 
 ```text
-Изучение
+Idea
 
 ↓
 
-Документирование
+Discussion
 
 ↓
 
-Изменение кода
+Architecture
 
 ↓
 
-Тестирование
+Documentation
+
+↓
+
+Implementation
+
+↓
+
+Testing
 
 ↓
 
@@ -147,55 +209,110 @@ Commit
 
 ↓
 
-Push
+Release
 ```
 
 ---
 
-# Git
+# Git Strategy
 
-Рекомендуемый стиль commit.
+The repository should always remain deployable.
 
-```text
-Add ...
+Recommended rules:
 
-Fix ...
+- one logical task = one commit;
+- descriptive commit messages;
+- small reversible changes;
+- frequent commits;
+- stable main development branch.
 
-Refactor ...
-
-Document ...
-
-Remove ...
-
-Update ...
-```
-
-Каждый commit должен оставлять проект в рабочем состоянии.
+Rollback should always be possible.
 
 ---
 
-# Цель модернизации
+# AI Collaboration
 
-Проект не предусматривает полного переписывания legacy-системы.
+The project intentionally separates responsibilities.
 
-Вместо этого используется стратегия постепенного улучшения.
+## ChatGPT
 
-Основные направления:
+Responsible for:
 
-- повышение безопасности;
-- совместимость с современными версиями PHP;
-- улучшение структуры кода;
-- постепенное обновление пользовательского интерфейса;
-- сохранение совместимости существующего функционала.
+- architecture;
+- planning;
+- documentation;
+- technical decisions;
+- product strategy;
+- code review.
+
+## Codex
+
+Responsible for:
+
+- implementation;
+- repetitive refactoring;
+- routine development;
+- mechanical code transformations.
 
 ---
 
-# Заключение
+# Development Priorities
 
-Данная документация является официальным техническим руководством проекта Premium Avto.
+Development priorities are:
 
-Все архитектурные решения и изменения должны отражаться в документации одновременно с внесением изменений в исходный код.
+1. Product quality
+2. User experience
+3. Business logic preservation
+4. Security
+5. Performance
+6. Maintainability
+7. Readability
+8. Architecture
+
+The architecture exists to support the product, not the other way around.
 
 ---
 
-**Статус документа:** Основной навигационный документ проекта.
+# Success Criteria
+
+The project is considered successful when:
+
+- the existing business logic has been preserved;
+- the codebase is understandable;
+- technical debt is minimized;
+- the interface meets modern expectations;
+- administrators can manage content efficiently;
+- users receive a fast and reliable website;
+- future development becomes significantly easier.
+
+---
+
+# Project Motto
+
+> **A modern product built on a proven foundation.**
+
+---
+
+# Final Statement
+
+Premium Avto is no longer a legacy research project.
+
+It is an actively evolving software product.
+
+Every improvement should make the product:
+
+- simpler;
+- faster;
+- safer;
+- more maintainable;
+- more valuable for both users and administrators.
+
+Documentation now serves as a stable foundation for future development rather than the primary focus of the project.
+
+---
+
+**Documentation Version:** 3.0
+
+**Status:** Active
+
+**Next Stage:** Continuous Product Evolution
