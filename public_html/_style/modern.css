@@ -118,3 +118,275 @@
  a:hover {
      color: var(--color-primary-hover);
  }
+ /* ==========================================================
+   Premium Avto — Header & Hero
+   ========================================================== */
+
+ .pa-header {
+     background: var(--color-white);
+     border-bottom: 1px solid var(--color-border);
+ }
+
+ .pa-header__inner {
+     max-width: var(--container-width);
+     margin: 0 auto;
+     padding: 18px 32px;
+
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 32px;
+ }
+
+ .pa-header__logo img {
+     display: block;
+     height: 58px;
+     width: auto;
+ }
+
+ .pa-header__nav {
+     display: flex;
+     align-items: center;
+     gap: 34px;
+ }
+
+ .pa-header__nav a {
+     color: #111827;
+     font-size: 14px;
+     font-weight: 700;
+     text-transform: uppercase;
+     letter-spacing: .03em;
+ }
+
+ .pa-header__nav a:hover {
+     color: var(--color-danger);
+ }
+
+ .pa-header__contact {
+     text-align: right;
+ }
+
+ .pa-header__phone {
+     display: block;
+
+     color: var(--color-danger);
+     font-size: 24px;
+     font-weight: 800;
+     line-height: 1.1;
+ }
+
+ .pa-header__time {
+     display: block;
+     margin-top: 4px;
+
+     color: #111827;
+     font-size: 14px;
+ }
+
+ .pa-hero {
+     position: relative;
+     overflow: hidden;
+
+     min-height: 760px;
+
+     background:
+         linear-gradient(90deg, rgba(8, 12, 18, .96) 0%, rgba(8, 12, 18, .82) 40%, rgba(8, 12, 18, .25) 100%),
+        url("/_style/images/hero-background-v1.png") center center / cover no-repeat;
+
+     color: var(--color-white);
+ }
+
+ .pa-hero__content {
+     position: relative;
+     z-index: 2;
+
+     max-width: var(--container-width);
+     margin: 0 auto;
+     padding: 72px 32px 36px;
+ }
+
+ .pa-hero__eyebrow {
+     margin-bottom: 18px;
+
+     color: var(--color-white);
+     font-size: 18px;
+     font-weight: 500;
+     text-transform: uppercase;
+ }
+
+ .pa-hero__eyebrow::after {
+     content: "";
+
+     display: block;
+
+     width: 74px;
+     height: 2px;
+     margin-top: 14px;
+
+     background: var(--color-danger);
+ }
+
+ .pa-hero__title {
+     max-width: 660px;
+     margin-bottom: 24px;
+
+     color: var(--color-white);
+     font-size: clamp(42px, 5vw, 68px);
+     font-weight: 800;
+     line-height: 1.08;
+     text-transform: uppercase;
+     letter-spacing: -.03em;
+ }
+
+ .pa-hero__title span,
+ .pa-hero__specialization span {
+     color: var(--color-danger);
+ }
+
+ .pa-hero__subtitle {
+     max-width: 560px;
+     margin-bottom: 34px;
+
+     color: rgba(255, 255, 255, .92);
+     font-size: 23px;
+     line-height: 1.45;
+ }
+
+ .pa-hero__actions {
+     display: flex;
+     gap: 22px;
+     flex-wrap: wrap;
+
+     margin-bottom: 56px;
+ }
+
+ .pa-btn {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+
+     min-width: 220px;
+     min-height: 58px;
+     padding: 0 28px;
+
+     font-size: 15px;
+     font-weight: 800;
+     text-transform: uppercase;
+
+     border-radius: 3px;
+ }
+
+ .pa-btn--primary {
+     color: var(--color-white);
+     background: var(--color-danger);
+ }
+
+ .pa-btn--primary:hover {
+     color: var(--color-white);
+     background: #b91c1c;
+ }
+
+ .pa-btn--secondary {
+     color: var(--color-white);
+     border: 1px solid rgba(255, 255, 255, .75);
+     background: rgba(255, 255, 255, .04);
+ }
+
+ .pa-btn--secondary:hover {
+     color: var(--color-white);
+     border-color: var(--color-white);
+     background: rgba(255, 255, 255, .12);
+ }
+
+ .pa-hero__brands {
+     max-width: 640px;
+
+     display: grid;
+     grid-template-columns: repeat(5, 1fr);
+     gap: 18px;
+
+     align-items: end;
+ }
+
+ .pa-hero__brand {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-end;
+
+     min-height: 100px;
+ }
+
+ .pa-hero__brand img {
+     max-height: 58px;
+     max-width: 92px;
+     object-fit: contain;
+ }
+
+ .pa-hero__brand span {
+     margin-top: 10px;
+
+     color: var(--color-white);
+     font-size: 13px;
+     font-weight: 700;
+ }
+
+ .pa-hero__brand--text span {
+     margin-top: 0;
+
+     font-size: 17px;
+     text-transform: uppercase;
+ }
+
+ .pa-hero__specialization {
+     max-width: 640px;
+     margin-top: 20px;
+     margin-bottom: 0;
+
+     text-align: center;
+     color: var(--color-white);
+     font-size: 18px;
+ }
+
+ .pa-hero__benefits {
+     position: relative;
+     z-index: 3;
+
+     margin-top: 0;
+     padding: 42px 32px 56px;
+
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+
+     background: linear-gradient(180deg, rgba(12, 18, 25, .96), rgba(17, 24, 39, .98));
+ }
+
+ .pa-benefit {
+     padding: 0 34px;
+
+     text-align: center;
+
+     border-right: 1px solid rgba(255, 255, 255, .35);
+ }
+
+ .pa-benefit:last-child {
+     border-right: none;
+ }
+
+ .pa-benefit strong {
+     display: block;
+     margin-bottom: 14px;
+
+     color: var(--color-white);
+     font-size: 17px;
+     font-weight: 800;
+     text-transform: uppercase;
+ }
+
+ .pa-benefit span {
+     display: block;
+
+     color: rgba(255, 255, 255, .78);
+     font-size: 16px;
+     line-height: 1.45;
+ }
