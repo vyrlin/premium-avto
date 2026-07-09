@@ -1,4 +1,4 @@
-<?
+<?php
 // ======================== PAGE ===================================
 class PAGE {
 	public static $title='premium-avto.ru';

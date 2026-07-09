@@ -1,4 +1,4 @@
-<? 
+<?php
 if (strrpos($_GET['link'], '?') == 0) { $pos = strlen($_GET['link']); } else { $pos = strrpos($_GET['link'], '?'); }
 $string = substr($_GET['link'], 0, $pos);
 
