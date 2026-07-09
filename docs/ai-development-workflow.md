@@ -107,4 +107,21 @@ Example:
 
 When providing the full contents of a Markdown document, the AI must wrap the entire document in a single outer code block using four backticks (````), so that any inner Markdown code fences (```) remain copyable without breaking the response.
 
+## Modernization Log Rule
+
+Every completed modernization task must be recorded in `docs/modernization-log.md`.
+
+The log entry must include:
+
+- Task ID
+- Date
+- Goal
+- Files changed
+- Risk level
+- Testing performed
+- Result
+- Git commit message
+
+The modernization log complements the Git history by providing a concise, chronological overview of all completed modernization tasks.
+
 ...

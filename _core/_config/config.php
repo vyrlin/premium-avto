@@ -1,4 +1,4 @@
-<?
+<?php
 // ======================== DB ===================================
 const DB_SERVER = 'localhost';
 const DB_NAME = 'detalauto_pa';
