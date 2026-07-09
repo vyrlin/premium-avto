@@ -6,7 +6,7 @@
 	<title>{#_TITLE_#}</title>
 	{#_SEO_#}
 	<link rel="stylesheet" href="/_style/landing.css">
-	<link rel="stylesheet" href="/_style/modern.css">
+	<link rel="stylesheet" href="/_style/modern.css?v=2">
     <script src="/_inc/DataTables/jQuery-3.2.1/jquery-3.2.1.min.js"></script>
     <script src="/_inc/js-funcs.js"></script>
 </HEAD>
@@ -15,43 +15,99 @@
 {#_CONTENT_#}
 <div id="bg">
 
-<div class="block-top">
-	<div class="buttons-block">
-		<a href="tel:+73432000900" class="menu-a"><div class="button_red">
-			<img src="/_style/phone.png" style="height:22px; vertical-align:middle; margin-right:15px;">
-			<span>8 (343) 2000-900</span>
-		</div></a>
-		
-		<a href="#block4" class="menu-a"><div class="button_blue">
-			<img src="/_style/map.png" style="height:22px; margin-right:15px;">
-			<div style="display:inline-block; text-align:left;">г.Екатеринбург<br>ул.Кислородная, 8</div>
-		</div></a>
-		
-		<a href="#block4" class="menu-a"><div class="button_blue">
-			<img src="/_style/clock.png" style="height:22px; margin-right:15px;">
-			<div style="display:inline-block; text-align:right;">Пн-Пт  с 10:00 до 19:00<br>Сб с 11:00 до 16:00</div>
-		</div></a>
-	</div>
-	<div class="logos-block">
-		<img src="/_style/logo.png" class="logo">
-		<div id="advert"><img src="/_style/advert_img.png" id="adv" style="display:inline; vertical-align:middle;"></div>
-		<div id="logos">
-			<img src="/_style/logo_vw.png" class="logos">
-			<img src="/_style/logo_audi.png" class="logos">
-			<!--<img src="/_style/logo_porsche.png" class="logos"> -->
-			<img src="/_style/logo_skoda.png" class="logos">
-			<img src="/_style/logo_seat.png" class="logos">
+<header class="pa-header">
+	<div class="pa-header__inner">
+		<a href="/" class="pa-header__logo" aria-label="Premium Avto">
+			<img src="/_style/logo.png" alt="Техцентр Премиум">
+		</a>
+
+		<nav class="pa-header__nav" aria-label="Основное меню">
+			<a href="#block2">Услуги</a>
+			<a href="#block5">О нас</a>
+			<a href="#block2">Цены</a>
+			<a href="#block3">Галерея</a>
+			<a href="#block4">Контакты</a>
+		</nav>
+
+		<div class="pa-header__contact">
+			<a href="tel:+73432000900" class="pa-header__phone">8 (343) 2000-900</a>
+			<span class="pa-header__time">Ежедневно с 10:00 до 19:00</span>
 		</div>
 	</div>
-	<div class="menus-block">
-		<a href="#block1" class="menu-a"><div class="menu-item">Почему мы?</div></a>
-		<a href="#block2" class="menu-a"><div class="menu-item">Услуги</div></a>
-		<a href="#block3" class="menu-a"><div class="menu-item">Фотогалерея</div></a>
-		<a href="#block4" class="menu-a"><div class="menu-item">Контакты</div></a>
-		<a href="#block5" class="menu-a"><div class="menu-item">О компании</div></a>
-		<a href="#block6" class="menu-a"><div class="menu-item">Наши партнеры</div></a>
+</header>
+
+<section class="pa-hero">
+	<div class="pa-hero__overlay"></div>
+
+	<div class="pa-hero__content">
+		<p class="pa-hero__eyebrow">Независимый</p>
+
+		<h1 class="pa-hero__title">
+			Специализированный автосервис <span>VAG</span>
+		</h1>
+
+		<p class="pa-hero__subtitle">
+			Ремонт и техническое обслуживание Audi, Volkswagen, Škoda, SEAT и Porsche по стандартам производителя.
+		</p>
+
+		<div class="pa-hero__actions">
+			<a href="#block4" class="pa-btn pa-btn--primary">Записаться на сервис</a>
+			<a href="tel:+73432000900" class="pa-btn pa-btn--secondary">Позвонить</a>
+		</div>
+
+		<div class="pa-hero__brands" aria-label="Марки автомобилей">
+			<div class="pa-hero__brand">
+				<img src="/_style/logo_vw.png" alt="Volkswagen">
+				<span>Volkswagen</span>
+			</div>
+
+			<div class="pa-hero__brand">
+				<img src="/_style/logo_audi.png" alt="Audi">
+				<span>Audi</span>
+			</div>
+
+			<div class="pa-hero__brand">
+				<img src="/_style/logo_skoda.png" alt="Škoda">
+				<span>Škoda</span>
+			</div>
+
+			<div class="pa-hero__brand">
+				<img src="/_style/logo_seat.png" alt="SEAT">
+				<span>SEAT</span>
+			</div>
+
+			<div class="pa-hero__brand pa-hero__brand--text">
+				<span>Porsche</span>
+			</div>
+		</div>
+
+		<p class="pa-hero__specialization">
+			Специализация только на автомобилях концерна <span>VAG</span>
+		</p>
 	</div>
-</div>
+
+	<div class="pa-hero__benefits">
+		<div class="pa-benefit">
+			<strong>Только VAG</strong>
+			<span>Специализируемся исключительно на автомобилях VAG</span>
+		</div>
+
+		<div class="pa-benefit">
+			<strong>Опыт более 20 лет</strong>
+			<span>Профессиональный сервис с 2004 года</span>
+		</div>
+
+		<div class="pa-benefit">
+			<strong>Оригинальные запчасти</strong>
+			<span>И проверенные качественные аналоги</span>
+		</div>
+
+		<div class="pa-benefit">
+			<strong>Гарантия на работы</strong>
+			<span>Гарантируем качество выполненных работ</span>
+		</div>
+	</div>
+</section>
 
 <div class="block" style="background-color:#FFF;">
 <a name="block1"><h2>Почему мы?</h2>

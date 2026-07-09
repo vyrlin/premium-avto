@@ -53,6 +53,29 @@ The project has now entered a new phase:
 
 Future work is primarily focused on improving the product itself rather than continuing legacy investigation.
 
+
+Phase 2 has officially started.
+
+The project is no longer focused on legacy modernization.
+
+Current priority is gradual frontend modernization.
+
+Completed:
+
+- Design System foundation created.
+- DS-001 Hero Specification approved.
+- Hero reference images approved and stored in docs/design/assets/.
+- First modern Hero implemented.
+- Approved Hero background integrated into frontend.
+
+Current task:
+
+Continue implementing the new public interface component by component without affecting PHP business logic.
+
+Next planned component:
+
+H-004 — Brand Strip.
+
 ---
 
 # 3. Product Vision
@@ -400,6 +423,8 @@ Every technical decision should answer one question:
 If the answer is yes, the change is worth considering.
 
 If the answer is no, the change should be reconsidered.
+
+
 
 ---
 

@@ -293,6 +293,33 @@ The project is considered successful when:
 
 ---
 
+## Approved Hero References
+
+### hero-background-v1.png
+
+Official Hero background.
+
+Approved on: 2026-07-09
+
+Purpose:
+Reference background image for Hero implementation.
+
+---
+
+### hero-concept-v1.png
+
+Official Hero composition.
+
+Approved on: 2026-07-09
+
+Purpose:
+Reference layout for Hero implementation.
+
+The actual implementation may differ in HTML/CSS, but the visual concept should remain consistent.
+
+---
+
+
 # Final Statement
 
 Premium Avto is no longer a legacy research project.
