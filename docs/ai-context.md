@@ -46,35 +46,51 @@ The objective is to improve the system while preserving all existing functionali
 
 The project is developed using Git with small, reversible changes.
 
----
 
+
+
+# Long-Term Modernization Strategy
+
+The primary goal of the project is **not** to eliminate every legacy construct.
+
+The objective is to transform the existing Premium Avto website into a modern, maintainable and visually attractive system while preserving all existing business functionality.
+
+Modernization priorities are:
+
+1. Preserve working behaviour.
+2. Improve architecture where it brings practical value.
+3. Improve security and PHP compatibility.
+4. Improve maintainability.
+5. Modernize the user interface and user experience.
+6. Add new functionality.
+
+The project should avoid spending excessive time on low-value cleanup tasks once the core platform has become stable.
+
+After the stabilization phase is completed, development effort should focus primarily on visible improvements that bring value to users and administrators.
+
+Legacy cleanup should continue only when it directly supports these goals.
+
+---
 # 2. Current Project Phase
 
 Current Phase:
 
-> **Phase 1 — Safe Modernization**
+> Phase 2 — Functional Modernization
 
 Completed:
 
-✅ Local development environment
+- Reverse Engineering
+- Architecture documentation
+- Core inventory
+- PHP compatibility stabilization
+- Initial project cleanup
 
-✅ Legacy analysis
+Current priority:
 
-✅ Reverse Engineering
-
-✅ Architecture documentation
-
-✅ Database documentation
-
-✅ Routing documentation
-
-✅ Core documentation
-
-✅ Development documentation
-
-Next milestone:
-
-> Begin safe modernization of the legacy codebase.
+- Modernize the user interface.
+- Improve frontend architecture.
+- Introduce new functionality.
+- Continue backend modernization only when it supports visible improvements.
 
 ---
 
@@ -486,3 +502,14 @@ At the beginning of every new session:
 This project is not about writing new code.
 
 It is about carefully improving an existing system while respecting its history, preserving its functionality, and making every change understandable, testable, and reversible.
+# Project Philosophy
+
+Understanding the legacy system is no longer the goal.
+
+It is the foundation for building the next generation of the Premium Avto website.
+
+Every modernization task should be evaluated by one question:
+
+> Does this change move the project closer to a modern, user-friendly, maintainable website?
+
+If the answer is "no", the task should have lower priority than improvements that directly benefit the product.
