@@ -10,3 +10,59 @@
  * - Do not affect admin interface.
  * - Keep changes small and reversible.
  */
+ /* ==========================================================
+   Premium Avto — Design System
+   ========================================================== */
+
+ :root {
+
+     /* Brand colors */
+     --color-primary: #1d4ed8;
+     --color-primary-hover: #1e40af;
+
+     --color-accent: #f59e0b;
+
+     --color-success: #16a34a;
+     --color-danger: #dc2626;
+
+     /* Neutral colors */
+     --color-white: #ffffff;
+     --color-background: #f8fafc;
+
+     --color-text: #1f2937;
+     --color-text-light: #6b7280;
+
+     --color-border: #e5e7eb;
+
+     /* Typography */
+     --font-family:
+         "Segoe UI",
+         Roboto,
+         Arial,
+         sans-serif;
+
+     --font-size-xs: 0.75rem;
+     --font-size-sm: 0.875rem;
+     --font-size-md: 1rem;
+     --font-size-lg: 1.25rem;
+     --font-size-xl: 2rem;
+
+     /* Layout */
+     --container-width: 1200px;
+
+     --space-xs: 4px;
+     --space-sm: 8px;
+     --space-md: 16px;
+     --space-lg: 24px;
+     --space-xl: 48px;
+
+     /* Effects */
+     --radius-sm: 6px;
+     --radius-md: 10px;
+     --radius-lg: 18px;
+
+     --shadow-sm: 0 2px 6px rgba(0, 0, 0, .08);
+     --shadow-md: 0 8px 24px rgba(0, 0, 0, .10);
+
+     --transition-fast: .2s ease;
+ }
