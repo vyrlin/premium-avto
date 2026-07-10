@@ -326,3 +326,58 @@ Low
 ```text
 TD-002: Replace short PHP tags in non-critical files
 ```
+## H-004 — Brand Strip & Hero Responsive Alignment
+
+**Date:** 2026-07-10
+
+### Goal
+
+Complete the first modern Hero implementation by adding the Brand Strip and aligning the Hero composition with the approved design concept.
+
+### Files
+
+- `_core/_parser/templates/landing.html`
+- `public_html/_style/modern.css`
+- `public_html/assets/brands/*.svg`
+
+### Risk
+
+Low
+
+CSS/UI only.
+
+No PHP business logic modified.
+
+### Testing
+
+Desktop:
+
+- 1920×1080
+- 1600×900
+- 1366×768
+
+Mobile:
+
+- 430×932
+- 390×844
+- 375×812
+- 360×800
+
+### Result
+
+Completed.
+
+Implemented:
+
+- Responsive Hero
+- Brand Strip
+- Mobile typography improvements
+- Hero composition alignment
+- Mobile CTA improvements
+- Responsive spacing adjustments
+- Local SVG brand assets
+
+### Commit
+
+Complete H-004 Brand Strip and hero responsive alignment
+---

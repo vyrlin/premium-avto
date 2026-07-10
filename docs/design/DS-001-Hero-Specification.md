@@ -211,6 +211,24 @@ Hero строится по следующим принципам:
 
 ---
 
+# 14. Responsive Hero
+
+The Hero section uses separate layout rules for desktop and mobile devices.
+
+Desktop remains the primary reference implementation.
+
+Mobile implementation follows the same visual concept while adapting typography and spacing for narrow screens.
+
+The following rules are mandatory:
+
+- The main headline must never break a word across two lines.
+- Typography may scale using responsive CSS techniques.
+- Hero content may be center-aligned on mobile devices.
+- Primary and secondary CTA buttons may stack vertically.
+- The Brand Strip remains part of the first-screen composition.
+- Horizontal scrolling is allowed only inside the Brand Strip logos area.
+- The first screen should preserve the overall composition defined by `hero-concept-v1.png` whenever technically possible.
+
 # Заключение
 
 Hero является центральным элементом визуальной идентичности Premium Avto.

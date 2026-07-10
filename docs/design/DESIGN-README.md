@@ -23,3 +23,15 @@ DS-xxx
 These images are the official visual references for the Hero section and should be used as the basis for all future implementation.
 
 They are architectural design artifacts rather than temporary mockups.
+---
+
+# Implementation Notes
+
+The approved design assets are not only artistic references but also implementation references.
+
+In particular:
+
+- `hero-concept-v1.png` defines the overall composition of the first screen.
+- The implementation should remain visually consistent with the approved concept whenever technically possible.
+- Desktop and mobile layouts may differ, but both should preserve the same visual hierarchy and product message.
+- Mobile adaptations may adjust typography, spacing and alignment while preserving the approved design intent.
