@@ -74,6 +74,12 @@
      font-size: 16px;
  }
 
+ *,
+ *::before,
+ *::after {
+     box-sizing: border-box;
+ }
+
  body {
      font-family: var(--font-family);
      font-size: var(--font-size-md);
@@ -117,6 +123,11 @@
 
  a:hover {
      color: var(--color-primary-hover);
+ }
+
+ body#body-main div#bg {
+     width: 100%;
+     max-width: none;
  }
  /* ==========================================================
    Premium Avto — Header & Hero
@@ -187,7 +198,14 @@
      position: relative;
      overflow: hidden;
 
-     min-height: 760px;
+     --pa-header-height: 74px;
+     --pa-benefits-height: 108px;
+     --pa-brand-strip-height: 112px;
+
+     min-height: calc(100vh - var(--pa-header-height) - var(--pa-brand-strip-height));
+
+     display: flex;
+     flex-direction: column;
 
      background:
          linear-gradient(90deg, rgba(8, 12, 18, .96) 0%, rgba(8, 12, 18, .82) 40%, rgba(8, 12, 18, .25) 100%),
@@ -202,7 +220,14 @@
 
      max-width: var(--container-width);
      margin: 0 auto;
-     padding: 72px 32px 36px;
+     width: 100%;
+     min-height: clamp(420px, calc(100vh - var(--pa-header-height) - var(--pa-benefits-height) - var(--pa-brand-strip-height)), 640px);
+     padding: clamp(46px, 6vh, 72px) 32px 34px;
+     flex: 1 1 auto;
+
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
  }
 
  .pa-hero__eyebrow {
@@ -228,27 +253,26 @@
 
  .pa-hero__title {
      max-width: 660px;
-     margin-bottom: 24px;
+     margin-bottom: 22px;
 
      color: var(--color-white);
-     font-size: clamp(42px, 5vw, 68px);
+     font-size: clamp(40px, 4.45vw, 62px);
      font-weight: 800;
      line-height: 1.08;
      text-transform: uppercase;
      letter-spacing: -.03em;
  }
 
- .pa-hero__title span,
- .pa-hero__specialization span {
+ .pa-hero__title span {
      color: var(--color-danger);
  }
 
  .pa-hero__subtitle {
      max-width: 560px;
-     margin-bottom: 34px;
+     margin-bottom: 30px;
 
      color: rgba(255, 255, 255, .92);
-     font-size: 23px;
+     font-size: clamp(18px, 1.7vw, 22px);
      line-height: 1.45;
  }
 
@@ -257,7 +281,7 @@
      gap: 22px;
      flex-wrap: wrap;
 
-     margin-bottom: 56px;
+     margin-bottom: 0;
  }
 
  .pa-btn {
@@ -298,62 +322,12 @@
      background: rgba(255, 255, 255, .12);
  }
 
- .pa-hero__brands {
-     max-width: 640px;
-
-     display: grid;
-     grid-template-columns: repeat(5, 1fr);
-     gap: 18px;
-
-     align-items: end;
- }
-
- .pa-hero__brand {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: flex-end;
-
-     min-height: 100px;
- }
-
- .pa-hero__brand img {
-     max-height: 58px;
-     max-width: 92px;
-     object-fit: contain;
- }
-
- .pa-hero__brand span {
-     margin-top: 10px;
-
-     color: var(--color-white);
-     font-size: 13px;
-     font-weight: 700;
- }
-
- .pa-hero__brand--text span {
-     margin-top: 0;
-
-     font-size: 17px;
-     text-transform: uppercase;
- }
-
- .pa-hero__specialization {
-     max-width: 640px;
-     margin-top: 20px;
-     margin-bottom: 0;
-
-     text-align: center;
-     color: var(--color-white);
-     font-size: 18px;
- }
-
  .pa-hero__benefits {
      position: relative;
      z-index: 3;
 
      margin-top: 0;
-     padding: 42px 32px 56px;
+     padding: 28px 32px 30px;
 
      display: grid;
      grid-template-columns: repeat(4, 1fr);
@@ -362,7 +336,8 @@
  }
 
  .pa-benefit {
-     padding: 0 34px;
+     min-height: 68px;
+     padding: 0 28px;
 
      text-align: center;
 
@@ -375,10 +350,10 @@
 
  .pa-benefit strong {
      display: block;
-     margin-bottom: 14px;
+     margin-bottom: 8px;
 
      color: var(--color-white);
-     font-size: 17px;
+     font-size: 15px;
      font-weight: 800;
      text-transform: uppercase;
  }
@@ -386,9 +361,9 @@
  .pa-benefit span {
      display: block;
 
-     color: rgba(255, 255, 255, .78);
-     font-size: 16px;
-     line-height: 1.45;
+     color: rgba(255, 255, 255, .72);
+     font-size: 14px;
+     line-height: 1.35;
  }
  /* ==========================================================
    H-003 — Header polish
@@ -475,5 +450,472 @@
 
  .pa-header__time {
      font-size: 13px;
+ }
+
+ /* ==========================================================
+   H-004 — Brand Strip
+   ========================================================== */
+
+ .brand-strip {
+     background: var(--color-white);
+     border-top: 3px solid var(--color-danger);
+ }
+
+ .brand-strip__container {
+     max-width: var(--container-width);
+     margin: 0 auto;
+     padding: 24px 32px 28px;
+ }
+
+ .brand-strip__title {
+     max-width: 760px;
+     margin: 0 auto 18px;
+     padding: 0;
+
+     color: #6b7280;
+     font-size: 14px;
+     font-weight: 500;
+     line-height: 1.4;
+     text-align: center;
+     letter-spacing: .015em;
+ }
+
+ .brand-strip__list {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 36px;
+
+     width: 100%;
+     min-height: 42px;
+     margin: 0;
+     padding: 2px 0;
+
+     overflow-x: visible;
+     list-style: none;
+     scroll-snap-type: x proximity;
+     scroll-padding-inline: 24px;
+ }
+
+ .brand-strip__list:focus {
+     outline: none;
+ }
+
+ .brand-strip__list:focus-visible {
+     outline: 2px solid rgba(220, 38, 38, .45);
+     outline-offset: 8px;
+     border-radius: var(--radius-sm);
+ }
+
+ .brand-strip__list:focus-visible img {
+     filter: grayscale(0);
+     opacity: 1;
+ }
+
+ .brand-strip__item {
+     flex: 1 1 0;
+     min-width: 118px;
+
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+     scroll-snap-align: center;
+ }
+
+ .brand-strip__item img {
+     display: block;
+     width: auto;
+     max-width: 132px;
+     max-height: 34px;
+
+     object-fit: contain;
+
+     filter: grayscale(100%);
+     opacity: .76;
+
+     transition:
+         filter 240ms ease,
+         opacity 240ms ease;
+ }
+
+ .brand-strip__item:hover img {
+     filter: grayscale(0);
+     opacity: 1;
+ }
+
+ .brand-strip__item:nth-child(2) img {
+     max-height: 36px;
+ }
+
+ .brand-strip__item:nth-child(5) img {
+     max-width: 156px;
+     max-height: 32px;
+ }
+
+ @media (max-height: 820px) and (min-width: 901px) {
+     .pa-hero__content {
+         min-height: clamp(390px, calc(100vh - var(--pa-header-height) - var(--pa-benefits-height) - var(--pa-brand-strip-height)), 560px);
+         padding-top: 42px;
+         padding-bottom: 30px;
+     }
+
+     .pa-hero__eyebrow {
+         margin-bottom: 14px;
+         font-size: 16px;
+     }
+
+     .pa-hero__eyebrow::after {
+         margin-top: 10px;
+     }
+
+     .pa-hero__title {
+         margin-bottom: 18px;
+         font-size: clamp(36px, 4.1vw, 56px);
+     }
+
+     .pa-hero__subtitle {
+         margin-bottom: 26px;
+         font-size: clamp(17px, 1.5vw, 20px);
+     }
+
+     .pa-hero__benefits {
+         padding-top: 24px;
+         padding-bottom: 26px;
+     }
+
+     .brand-strip__container {
+         padding-top: 20px;
+         padding-bottom: 24px;
+     }
+
+     .brand-strip__title {
+         margin-bottom: 14px;
+     }
+ }
+
+ @media (max-width: 900px) {
+     .pa-hero {
+         min-height: auto;
+         background-position: center center, 58% center;
+     }
+
+     .pa-hero__content {
+         min-height: auto;
+         padding-top: 54px;
+         padding-bottom: 46px;
+     }
+
+     .pa-hero__title {
+         font-size: clamp(36px, 7vw, 54px);
+     }
+
+     .pa-hero__subtitle {
+         font-size: 19px;
+     }
+
+     .pa-hero__benefits {
+         grid-template-columns: repeat(2, 1fr);
+         padding: 28px 24px;
+     }
+
+     .pa-benefit {
+         min-height: 78px;
+         padding: 18px 24px;
+         border-right: 1px solid rgba(255, 255, 255, .22);
+         border-bottom: 1px solid rgba(255, 255, 255, .18);
+     }
+
+     .pa-benefit:nth-child(2n) {
+         border-right: none;
+     }
+
+     .pa-benefit:nth-last-child(-n + 2) {
+         border-bottom: none;
+     }
+
+     .brand-strip__container {
+         padding-top: 22px;
+         padding-bottom: 26px;
+     }
+
+     .brand-strip__list {
+         gap: 24px;
+     }
+
+     .brand-strip__item img {
+         max-width: 118px;
+         max-height: 32px;
+     }
+
+     .brand-strip__item:nth-child(2) img {
+         max-height: 34px;
+     }
+
+     .brand-strip__item:nth-child(5) img {
+         max-width: 142px;
+         max-height: 30px;
+     }
+ }
+
+ @media (max-width: 768px) {
+     html,
+     body {
+         max-width: 100%;
+         overflow-x: clip;
+     }
+
+     .pa-header__inner {
+         min-height: auto;
+         padding: 12px 20px 10px;
+         gap: 12px 16px;
+         flex-wrap: wrap;
+     }
+
+     .pa-header__logo {
+         flex: 0 0 auto;
+     }
+
+     .pa-header__logo img {
+         height: 42px;
+     }
+
+     .pa-header__contact {
+         flex: 1 1 auto;
+         min-width: 0;
+         margin-left: auto;
+         text-align: right;
+     }
+
+     .pa-header__phone {
+         font-size: clamp(17px, 4.4vw, 20px);
+         white-space: nowrap;
+     }
+
+     .pa-header__time {
+         font-size: 11px;
+         line-height: 1.25;
+     }
+
+     .pa-header__nav {
+         order: 3;
+         width: 100%;
+         justify-content: center;
+         gap: 8px 16px;
+         padding: 6px 0 2px;
+         flex-wrap: wrap;
+         overflow: visible;
+     }
+
+     .pa-header__nav a {
+         flex: 0 0 auto;
+         white-space: nowrap;
+         font-size: 11px;
+         letter-spacing: .02em;
+     }
+
+     .pa-hero {
+         min-height: auto;
+         background:
+             linear-gradient(90deg, rgba(8, 12, 18, .98) 0%, rgba(8, 12, 18, .88) 58%, rgba(8, 12, 18, .54) 100%),
+            url("/_style/images/hero-background-v1.png") 62% center / cover no-repeat;
+     }
+
+     .pa-hero__content {
+         width: 100%;
+         max-width: 100%;
+         min-height: auto;
+         margin-right: auto;
+         margin-left: auto;
+         padding: 30px 20px 40px;
+         text-align: center;
+     }
+
+     .pa-hero__eyebrow {
+         margin-bottom: 14px;
+         font-size: 14px;
+     }
+
+     .pa-hero__eyebrow::after {
+         margin-right: auto;
+         margin-left: auto;
+         margin-top: 10px;
+     }
+
+     .pa-hero__title {
+         max-width: 100%;
+         margin-bottom: 18px;
+         font-size: clamp(24px, 6.45vw, 32px);
+         line-height: 1.02;
+         letter-spacing: 0;
+         overflow-wrap: normal;
+         word-break: normal;
+         hyphens: none;
+     }
+
+     .pa-hero__subtitle {
+         width: auto;
+         max-width: 340px;
+         margin-right: auto;
+         margin-left: auto;
+         margin-bottom: 26px;
+         font-size: clamp(16px, 4.1vw, 18px);
+         line-height: 1.5;
+         overflow-wrap: break-word;
+     }
+
+     .pa-hero__actions {
+         flex-direction: column;
+         align-items: center;
+         gap: 14px;
+         width: 100%;
+     }
+
+     .pa-btn {
+         width: 100%;
+         max-width: 340px;
+         min-width: 0;
+         min-height: 54px;
+         padding: 0 18px;
+         text-align: center;
+         white-space: normal;
+     }
+
+     .pa-hero__benefits {
+         grid-template-columns: 1fr;
+         padding: 18px 20px;
+     }
+
+     .pa-benefit,
+     .pa-benefit:nth-child(2n),
+     .pa-benefit:nth-last-child(-n + 2) {
+         min-height: 0;
+         padding: 14px 0;
+         border-right: none;
+         border-bottom: 1px solid rgba(255, 255, 255, .18);
+     }
+
+     .pa-benefit strong {
+         margin-bottom: 6px;
+         font-size: 14px;
+     }
+
+     .pa-benefit span {
+         font-size: 13px;
+         line-height: 1.35;
+     }
+
+     .pa-benefit:last-child {
+         border-bottom: none;
+     }
+
+     .brand-strip__container {
+         padding: 22px 20px 26px;
+     }
+
+     .brand-strip__title {
+         max-width: 100%;
+         margin-bottom: 16px;
+         font-size: 13px;
+         line-height: 1.4;
+     }
+
+     .brand-strip__list {
+         justify-content: flex-start;
+         gap: 20px;
+
+         margin-inline: -20px;
+         padding: 4px 20px 8px;
+
+         overflow-x: auto;
+         overflow-y: hidden;
+         -webkit-overflow-scrolling: touch;
+         scrollbar-width: none;
+         scroll-snap-type: x mandatory;
+     }
+
+     .brand-strip__list::-webkit-scrollbar {
+         display: none;
+     }
+
+     .brand-strip__item {
+         flex: 0 0 112px;
+         min-width: 112px;
+     }
+ }
+
+ @media (max-width: 640px) {
+     .pa-header__inner {
+         padding-top: 10px;
+         padding-bottom: 10px;
+         gap: 10px 14px;
+     }
+
+     .pa-header__logo img {
+         height: 38px;
+     }
+
+     .pa-header__nav {
+         gap: 7px 14px;
+     }
+
+     .pa-header__nav a {
+         font-size: 11px;
+     }
+
+     .pa-header__phone {
+         font-size: 17px;
+     }
+
+     .pa-header__time {
+         font-size: 11px;
+     }
+
+     .pa-hero__content {
+         padding: 28px 16px 36px;
+     }
+
+     .pa-hero__title {
+         font-size: clamp(24px, 6.45vw, 29px);
+     }
+
+     .pa-hero__subtitle {
+         font-size: 16px;
+     }
+
+     .pa-hero__benefits {
+         padding-top: 16px;
+         padding-bottom: 16px;
+     }
+
+     .pa-benefit,
+     .pa-benefit:nth-child(2n),
+     .pa-benefit:nth-last-child(-n + 2) {
+         padding: 13px 0;
+     }
+
+     .brand-strip__container {
+         padding: 22px 20px 26px;
+     }
+
+     .brand-strip__title {
+         margin-bottom: 16px;
+         font-size: 13px;
+     }
+
+     .brand-strip__list {
+         gap: 22px;
+     }
+
+     .brand-strip__item {
+         flex: 0 0 118px;
+         min-width: 118px;
+     }
+ }
+
+ @media (prefers-reduced-motion: reduce) {
+     .brand-strip__item img {
+         transition: none;
+     }
  }
  

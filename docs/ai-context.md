@@ -1,6 +1,6 @@
 # Premium Avto — AI Context
 
-> **Version:** 3.0
+> **Version:** 3.1
 >
 > **Status:** Active
 >
@@ -53,7 +53,6 @@ The project has now entered a new phase:
 
 Future work is primarily focused on improving the product itself rather than continuing legacy investigation.
 
-
 Phase 2 has officially started.
 
 The project is no longer focused on legacy modernization.
@@ -64,9 +63,11 @@ Completed:
 
 - Design System foundation created.
 - DS-001 Hero Specification approved.
-- Hero reference images approved and stored in docs/design/assets/.
+- Hero reference images approved.
 - First modern Hero implemented.
 - Approved Hero background integrated into frontend.
+- AI documentation naming convention standardized.
+- Core AI documentation now uses globally unique filenames.
 
 Current task:
 
@@ -181,6 +182,8 @@ The project should always remain in a working state.
 
 Important architectural decisions must always be documented.
 
+Development workflow changes should be documented in the appropriate workflow documents.
+
 ---
 
 ## Product goals drive technical decisions.
@@ -276,14 +279,16 @@ Future documentation updates should primarily accompany:
 - architectural decisions;
 - major product features;
 - infrastructure changes;
-- important modernization milestones.
+- important modernization milestones;
+- significant development workflow improvements.
+
+Core project documents intended for AI collaboration should use globally unique filenames.
 
 Minor implementation details should not require constant documentation rewrites.
 
 The primary development focus is now the product itself.
 
 ---
-
 # 11. Modernization Strategy
 
 Modernization follows an evolutionary model.
@@ -368,13 +373,30 @@ Every new AI session should begin by understanding the project rather than redis
 
 Recommended startup sequence:
 
-1. Read this document.
+1. Read **AI-CONTEXT.md**.
 2. Identify the current development task.
-3. Read only the documentation relevant to that task.
-4. Continue from the existing roadmap.
-5. Focus on product improvement.
+3. Read only the project documents relevant to that task.
+4. Continue from the current roadmap.
+5. Focus on product improvement rather than legacy investigation.
 
-Reverse engineering should not be repeated.
+## Documentation Convention
+
+Project documents intended for AI assistants use **globally unique filenames**.
+
+AI should always identify project documents by **filename**, not by repository path.
+
+Examples:
+
+- AI-CONTEXT.md
+- PROJECT-README.md
+- PROJECT-PRINCIPLES.md
+- PROJECT-ROADMAP.md
+- DESIGN-README.md
+- DS-001-HERO-SPECIFICATION.md
+
+This convention ensures that documentation can always be identified correctly regardless of its location inside the repository or the way it is uploaded into an AI Project.
+
+Reverse engineering should never be repeated unless explicitly requested.
 
 ---
 
@@ -424,7 +446,22 @@ If the answer is yes, the change is worth considering.
 
 If the answer is no, the change should be reconsidered.
 
+---
 
+# 20. Documentation Principle
+
+Project documentation serves as the shared knowledge base for developers, ChatGPT and Codex.
+
+Core project documents should use globally unique filenames to ensure they can always be identified correctly across independent AI conversations and Project contexts.
+
+Documentation should evolve only when:
+
+- project architecture changes;
+- development strategy changes;
+- workflow changes significantly;
+- new long-term engineering conventions are adopted.
+
+Documentation should remain stable between such milestones.
 
 ---
 

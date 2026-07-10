@@ -124,4 +124,30 @@ The log entry must include:
 
 The modernization log complements the Git history by providing a concise, chronological overview of all completed modernization tasks.
 
+# Documentation Naming Convention
+
+All project documents intended for use by AI assistants must have globally unique filenames.
+
+Directory paths should not be relied upon to distinguish documents because AI project context may only expose filenames.
+
+Examples:
+
+- AI-CONTEXT.md
+- PROJECT-README.md
+- PROJECT-ROADMAP.md
+- PROJECT-PRINCIPLES.md
+- DESIGN-README.md
+- DS-001-HERO-SPECIFICATION.md
+
+New documents should follow the project's filename prefixes:
+
+- AI-
+- PROJECT-
+- DESIGN-
+- DS-
+- ADR-
+- DEV-
+- DEPLOY-
+- TEST-
+
 ...
