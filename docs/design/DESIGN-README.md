@@ -23,6 +23,18 @@ DS-xxx
 These images are the official visual references for the Hero section and should be used as the basis for all future implementation.
 
 They are architectural design artifacts rather than temporary mockups.
+
+## Approved Components
+
+- DS-001 — Hero Specification
+- DS-002 — Trust Block Specification
+
+Implemented:
+
+- Hero
+- Header
+- Brand Strip
+- Trust Block
 ---
 
 # Implementation Notes

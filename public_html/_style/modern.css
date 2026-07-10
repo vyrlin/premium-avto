@@ -231,11 +231,19 @@
  }
 
  .pa-hero__eyebrow {
+     display: inline-flex;
+     flex-direction: column;
+     align-items: flex-start;
+     align-self: flex-start;
+     width: max-content;
+
      margin-bottom: 18px;
 
      color: var(--color-white);
-     font-size: 18px;
-     font-weight: 500;
+     font-size: clamp(15px, .95vw, 18px);
+     font-weight: 800;
+     line-height: 1.2;
+     letter-spacing: .09em;
      text-transform: uppercase;
  }
 
@@ -244,9 +252,9 @@
 
      display: block;
 
-     width: 74px;
+     width: 90%;
      height: 2px;
-     margin-top: 14px;
+     margin-top: 10px;
 
      background: var(--color-danger);
  }
@@ -553,6 +561,266 @@
      max-height: 32px;
  }
 
+ /* ==========================================================
+   H-005 — Trust Block
+   ========================================================== */
+
+ .trust-block {
+     background: #f8fafc;
+     border-top: 1px solid rgba(229, 231, 235, .9);
+ }
+
+ .trust-block__container {
+     max-width: var(--container-width);
+     margin: 0 auto;
+     padding: 48px 32px 56px;
+ }
+
+ .trust-block__header {
+     max-width: 860px;
+     margin: 0 auto 28px;
+
+     text-align: center;
+ }
+
+ .trust-block__label {
+     display: inline-flex;
+     align-items: center;
+     gap: 10px;
+
+     margin: 0 0 10px;
+
+     color: var(--color-danger);
+     font-size: clamp(15px, .95vw, 18px);
+     font-weight: 800;
+     line-height: 1.2;
+     text-transform: uppercase;
+     letter-spacing: .09em;
+ }
+
+ .trust-block__label::before,
+ .trust-block__label::after {
+     content: "";
+
+     display: block;
+
+     width: 28px;
+     height: 1px;
+
+     background: rgba(220, 38, 38, .55);
+ }
+
+ .trust-block__title {
+     max-width: 700px;
+     margin: 0 auto 16px;
+     padding: 0;
+
+     color: #111827;
+     font-size: clamp(27px, 2.7vw, 36px);
+     font-weight: 800;
+     line-height: 1.15;
+     letter-spacing: 0;
+ }
+
+ .trust-block__intro {
+     max-width: 780px;
+     margin: 0 auto;
+
+     color: #4b5563;
+     font-size: 16px;
+     line-height: 1.58;
+ }
+
+ .trust-block__grid {
+     display: grid;
+     grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, 1fr));
+     gap: 16px;
+     align-items: stretch;
+ }
+
+ .trust-card {
+     position: relative;
+     isolation: isolate;
+
+     padding: 22px;
+
+     background: rgba(255, 255, 255, .94);
+     border: 1px solid rgba(229, 231, 235, .92);
+     border-radius: var(--radius-md);
+     box-shadow: 0 16px 42px rgba(15, 23, 42, .06);
+
+     overflow: hidden;
+ }
+
+ .trust-card > * {
+     position: relative;
+     z-index: 1;
+ }
+
+ .trust-card::before {
+     content: "";
+
+     position: absolute;
+     top: 0;
+     left: 0;
+
+     width: 100%;
+     height: 3px;
+
+     background: rgba(220, 38, 38, .72);
+ }
+
+ .trust-card::after {
+     content: "";
+
+     position: absolute;
+     right: -16px;
+     bottom: -14px;
+
+     width: 50%;
+     max-width: 188px;
+     min-width: 118px;
+     aspect-ratio: 4 / 3;
+
+     color: #6b7280;
+     background-position: right bottom;
+     background-repeat: no-repeat;
+     background-size: contain;
+     opacity: .085;
+     pointer-events: none;
+     z-index: 0;
+ }
+
+ .trust-card--specialization::after,
+ .trust-card--warranty::after {
+     width: 48%;
+     max-width: 178px;
+ }
+
+ .trust-card--featured::after {
+     content: none;
+ }
+
+ .trust-card--diagnostics::after {
+     background-image: url("../assets/trust/diagnostics.svg");
+ }
+
+ .trust-card--parts::after {
+     background-image: url("../assets/trust/parts.svg");
+ }
+
+ .trust-card--specialization::after {
+     background-image: url("../assets/trust/specialization.svg");
+ }
+
+ .trust-card--warranty::after {
+     background-image: url("../assets/trust/warranty.svg");
+ }
+
+ .trust-card--featured {
+     grid-row: span 2;
+
+     padding: 28px;
+
+     color: var(--color-white);
+     background:
+         linear-gradient(135deg, rgba(17, 24, 39, .98), rgba(31, 41, 55, .96));
+     border-color: rgba(17, 24, 39, .92);
+     box-shadow: 0 24px 58px rgba(15, 23, 42, .18);
+ }
+
+ .trust-card--featured::before {
+     height: 4px;
+     background: var(--color-danger);
+ }
+
+ .trust-card__eyebrow {
+     margin: 0 0 10px;
+
+     color: var(--color-danger);
+     font-size: 12px;
+     font-weight: 800;
+     line-height: 1.2;
+     text-transform: uppercase;
+     letter-spacing: .08em;
+ }
+
+ .trust-card--featured .trust-card__eyebrow {
+     color: #fca5a5;
+ }
+
+ .trust-card__title {
+     margin: 0 0 10px;
+     padding: 0;
+
+     color: #111827;
+     font-size: 18px;
+     font-weight: 800;
+     line-height: 1.25;
+     letter-spacing: 0;
+ }
+
+ .trust-card--featured .trust-card__title {
+     max-width: 420px;
+
+     color: var(--color-white);
+     font-size: clamp(24px, 2vw, 29px);
+     line-height: 1.16;
+ }
+
+ .trust-card__text {
+     margin: 0;
+
+     color: #4b5563;
+     font-size: 14px;
+     line-height: 1.55;
+ }
+
+ .trust-card--featured .trust-card__text {
+     max-width: 500px;
+
+     color: rgba(255, 255, 255, .82);
+     font-size: 15px;
+     line-height: 1.58;
+ }
+
+ .trust-card__facts {
+     display: grid;
+     grid-template-columns: repeat(3, minmax(0, 1fr));
+     gap: 12px;
+
+     margin: 22px 0 0;
+     padding: 0;
+
+     list-style: none;
+ }
+
+ .trust-card__facts li {
+     padding: 12px 0 0;
+
+     border-top: 1px solid rgba(255, 255, 255, .18);
+ }
+
+ .trust-card__facts strong,
+ .trust-card__facts span {
+     display: block;
+ }
+
+ .trust-card__facts strong {
+     color: var(--color-white);
+     font-size: 20px;
+     font-weight: 800;
+     line-height: 1.15;
+ }
+
+ .trust-card__facts span {
+     margin-top: 4px;
+
+     color: rgba(255, 255, 255, .68);
+     font-size: 12px;
+     line-height: 1.35;
+ }
+
  @media (max-height: 820px) and (min-width: 901px) {
      .pa-hero__content {
          min-height: clamp(390px, calc(100vh - var(--pa-header-height) - var(--pa-benefits-height) - var(--pa-brand-strip-height)), 560px);
@@ -656,6 +924,38 @@
          max-width: 142px;
          max-height: 30px;
      }
+
+     .trust-block__container {
+         padding-top: 42px;
+         padding-bottom: 50px;
+     }
+
+     .trust-block__header {
+         margin-bottom: 26px;
+     }
+
+     .trust-block__title {
+         font-size: clamp(26px, 4.5vw, 34px);
+     }
+
+     .trust-block__intro {
+         font-size: 15px;
+     }
+
+     .trust-block__grid {
+         grid-template-columns: repeat(2, minmax(0, 1fr));
+     }
+
+     .trust-card--featured {
+         grid-column: 1 / -1;
+         grid-row: auto;
+         min-height: auto;
+     }
+
+     .trust-card__facts {
+         grid-template-columns: repeat(3, minmax(0, 1fr));
+         gap: 12px;
+     }
  }
 
  @media (max-width: 768px) {
@@ -732,8 +1032,11 @@
      }
 
      .pa-hero__eyebrow {
+         align-self: center;
+
          margin-bottom: 14px;
          font-size: 14px;
+         letter-spacing: .08em;
      }
 
      .pa-hero__eyebrow::after {
@@ -842,6 +1145,84 @@
          flex: 0 0 112px;
          min-width: 112px;
      }
+
+     .trust-block__container {
+         padding: 38px 20px 46px;
+     }
+
+     .trust-block__label {
+         margin-bottom: 12px;
+         font-size: 14px;
+         letter-spacing: .08em;
+     }
+
+     .trust-block__label::before,
+     .trust-block__label::after {
+         width: 20px;
+     }
+
+     .trust-block__title {
+         max-width: 100%;
+         font-size: clamp(24px, 6.4vw, 30px);
+         line-height: 1.16;
+     }
+
+     .trust-block__intro {
+         max-width: 100%;
+         font-size: 15px;
+         line-height: 1.56;
+     }
+
+     .trust-block__grid {
+         grid-template-columns: 1fr;
+         gap: 16px;
+     }
+
+     .trust-card,
+     .trust-card--featured {
+         min-height: 0;
+         padding: 20px 18px;
+     }
+
+     .trust-card--featured .trust-card__title {
+         font-size: clamp(22px, 5.8vw, 27px);
+     }
+
+     .trust-card__title {
+         font-size: 18px;
+     }
+
+     .trust-card--featured .trust-card__text,
+     .trust-card__text {
+         font-size: 14px;
+         line-height: 1.55;
+     }
+
+     .trust-card__facts {
+         grid-template-columns: 1fr;
+         margin-top: 20px;
+     }
+
+     .trust-card__facts strong {
+         font-size: 20px;
+     }
+
+     .trust-card::after {
+         right: -10px;
+         bottom: -12px;
+
+         width: 43%;
+         max-width: 148px;
+         min-width: 112px;
+
+         opacity: .06;
+     }
+
+     .trust-card--specialization::after,
+     .trust-card--warranty::after {
+         width: 40%;
+         max-width: 138px;
+     }
  }
 
  @media (max-width: 640px) {
@@ -910,6 +1291,23 @@
      .brand-strip__item {
          flex: 0 0 118px;
          min-width: 118px;
+     }
+
+     .trust-block__container {
+         padding: 34px 16px 42px;
+     }
+
+     .trust-block__header {
+         margin-bottom: 24px;
+     }
+
+     .trust-block__title {
+         font-size: clamp(23px, 6.2vw, 28px);
+     }
+
+     .trust-card,
+     .trust-card--featured {
+         padding: 20px 18px;
      }
  }
 

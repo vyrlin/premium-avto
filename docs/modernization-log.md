@@ -381,3 +381,23 @@ Implemented:
 
 Complete H-004 Brand Strip and hero responsive alignment
 ---
+## H-005 — Trust Block
+
+**Date**
+
+2026-07-10
+
+**Status**
+
+✅ Completed
+
+### Goal
+
+Implement the Trust Block according to the approved Design System and Product Positioning, creating a visual transition from the Hero into the main page content while strengthening user trust.
+
+### Files
+
+```text
+_core/_parser/templates/landing.html
+public_html/_style/modern.css
+public_html/assets/trust/

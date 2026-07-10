@@ -91,34 +91,28 @@ Transform the existing platform into a modern web product while preserving all e
 
 ## Completed
 
-### Design System
-
-- ✅ Design System foundation established.
-- ✅ Design documentation structure created.
-- ✅ DS-001 Hero Specification approved.
-- ✅ Hero reference assets approved.
-- ✅ Hero design concept approved.
-
 ### Hero
 
 - ✅ First modern Hero component implemented.
 - ✅ Approved Hero background integrated.
 - ✅ Modern header implemented.
 - ✅ New visual identity established.
-
----
+- ✅ Brand Strip implemented.
+- ✅ Responsive Hero alignment completed.
+- ✅ Trust Block implemented.
+- ✅ Product Positioning integrated.
+- ✅ Hero typography refined.
+- ✅ Trust Block visual language completed.
 
 ## Current Task
 
-### H-004 — Brand Strip
+### H-006 — Services Section
 
-Create a modern presentation of supported VAG brands as an integral part of the Hero section.
-
+Design and implement the modern Services section following the approved Product Positioning and Design System.
 ---
 
 ## Next Planned Components
 
-H-005 — Trust Block
 
 H-006 — Services Section
 
