@@ -104,21 +104,27 @@ Transform the existing platform into a modern web product while preserving all e
 - ✅ Hero typography refined.
 - ✅ Trust Block visual language completed.
 
-## Current Task
-
 ### H-006 — Services Section
 
-Design and implement the modern Services section following the approved Product Positioning and Design System.
+- ✅ Legacy “Why us?” block removed from the public homepage.
+- ✅ Modern responsive Services Section implemented.
+- ✅ Existing service content and prices remain managed through the block2 CMS module.
+- ✅ Database-driven service loading preserved.
+- ✅ Desktop and mobile compositions completed.
+- ✅ Unified service CTA implemented.
+- ✅ No PHP business logic or database structure changes introduced.
+
+## Current Task
+
+### H-007 — Gallery Modernization
+
+Modernize the existing gallery as a visual trust component that demonstrates the workshop, equipment, repair process and professional working environment.
 ---
 
 ## Next Planned Components
 
 
-H-006 — Services Section
-
-H-007 — Advantages Section
-
-H-008 — Gallery Modernization
+H-008 — Advantages Section
 
 H-009 — Contacts Modernization
 

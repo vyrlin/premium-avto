@@ -28,6 +28,7 @@ They are architectural design artifacts rather than temporary mockups.
 
 - DS-001 — Hero Specification
 - DS-002 — Trust Block Specification
+- H-006 — Services Section
 
 Implemented:
 
@@ -35,6 +36,7 @@ Implemented:
 - Header
 - Brand Strip
 - Trust Block
+- Services Section
 ---
 
 # Implementation Notes
@@ -47,3 +49,9 @@ In particular:
 - The implementation should remain visually consistent with the approved concept whenever technically possible.
 - Desktop and mobile layouts may differ, but both should preserve the same visual hierarchy and product message.
 - Mobile adaptations may adjust typography, spacing and alignment while preserving the approved design intent.
+- The Services Section continues the visual language established by the Hero and Trust Block.
+- Service data and prices remain managed by the existing block2 CMS module.
+- Desktop uses a compact two-column service grid.
+- Mobile uses a single-column responsive layout.
+- Existing service images are reused as compact supporting thumbnails.
+- The legacy public “Why us?” block has been removed from the homepage because its communication role is now fulfilled by the Trust Block.

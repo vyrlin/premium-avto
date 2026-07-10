@@ -66,16 +66,23 @@ Completed:
 - Hero reference images approved.
 - First modern Hero implemented.
 - Approved Hero background integrated into frontend.
+- H-004 — Brand Strip & Hero Responsive Alignment completed.
+- H-005 — Trust Block completed.
+- H-006 — Services Section completed.
 - AI documentation naming convention standardized.
 - Core AI documentation now uses globally unique filenames.
 
 Current task:
 
-Continue implementing the new public interface component by component without affecting PHP business logic.
+- H-007 — Gallery Modernization.
 
-Next planned component:
+Current frontend status:
 
-H-004 — Brand Strip.
+- Hero, Brand Strip and Trust Block form the approved first-screen composition.
+- The obsolete legacy “Why us?” block is no longer displayed on the public homepage.
+- The Services Section remains managed through the existing block2 CMS module.
+- Service titles, descriptions and prices continue to be loaded from the database.
+- Phase 2 continues component by component without unnecessary changes to PHP business logic.
 
 ---
 

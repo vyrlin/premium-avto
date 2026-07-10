@@ -401,3 +401,121 @@ Implement the Trust Block according to the approved Design System and Product Po
 _core/_parser/templates/landing.html
 public_html/_style/modern.css
 public_html/assets/trust/
+```
+
+### Risk
+
+Low
+
+CSS/UI focused.
+
+No PHP business logic modified.
+
+### Testing
+
+Desktop:
+
+- 1920×1080
+- 1600×900
+- 1366×768
+
+Mobile:
+
+- 430×932
+- 390×844
+- 375×812
+- 360×800
+
+### Result
+
+Completed.
+
+Implemented:
+
+- Trust Block after Brand Strip
+- Approved Hero and Trust Block composition
+- Responsive Trust Block layout
+- Local decorative SVG trust assets
+- Unified first-screen visual language
+
+### Commit
+
+Complete H-005 Trust Block
+
+---
+
+## H-006 — Services Section
+
+**Date**
+
+2026-07-10
+
+**Status**
+
+✅ Completed
+
+### Goal
+
+Replace the legacy public services presentation with a modern responsive Services Section while preserving the existing CMS-driven content model.
+
+### Files
+
+```text
+_core/_functions/funcs.php
+_core/_parser/templates/landing.html
+public_html/_style/modern.css
+```
+
+### Risk
+
+Low
+
+Frontend modernization with a small presentation-layer adjustment to `get_block(2)`.
+
+No SQL query, database structure, CMS module, service order, service count or business logic was changed.
+
+### Changes
+
+- Removed the legacy public “Why us?” block from the homepage template.
+- Replaced the old red services presentation with a modern `services-section`.
+- Preserved service loading through the existing block2 CMS data source.
+- Updated `get_block(2)` presentation markup for service cards, image alt text and readable line breaks.
+- Reused existing `serv{id}.png` service images as compact thumbnails.
+- Implemented responsive desktop and mobile service card compositions.
+- Added a unified services CTA using existing contact anchors.
+
+### Testing
+
+Desktop:
+
+- 1920×1080
+- 1600×900
+- 1366×768
+
+Mobile:
+
+- 430×932
+- 390×844
+- 375×812
+- 360×800
+
+Technical checks:
+
+- Verified all six services render from block2 data.
+- Verified service images load from existing `/_style/serv{id}.png` paths.
+- Verified no horizontal scrolling on tested viewports.
+- Verified CTA links use existing `#block4` and `tel:+73432000900` targets.
+- Verified `get_block(2)` syntax with PHP 8.1.
+- Verified `git diff --check`.
+
+### Result
+
+Completed.
+
+The homepage now uses a modern responsive Services Section that continues the Hero and Trust Block visual language while preserving CMS-managed service content and pricing.
+
+### Git Commit
+
+```text
+Complete H-006 Services Section
+```

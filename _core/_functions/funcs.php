@@ -81,11 +81,18 @@ function get_block($number) {
 		case(2): 
 			$txts = DB::select("SELECT * FROM texts WHERE block='$number' AND active='1' ORDER BY id LIMIT 6");
 			foreach($txts as $t) {
-				$html .= '<div class="smallblock33_3cols">';
-				$html .= '<img src="/_style/serv'.$t['id'].'.png" class="servs">';
-				$html .= '<h3 style="color:#000;">'.$t['title'].'</h3>';
-				$html .= '<div class="hr"></div>';
-				$html .= $t['text'].'</div>';
+				$alt = htmlspecialchars(strip_tags($t['title']), ENT_QUOTES, 'UTF-8');
+				$text = (strip_tags($t['text']) == $t['text']) ? nl2br($t['text'], false) : $t['text'];
+				$html .= '<article class="service-card">';
+				$html .= '<div class="service-card__media">';
+				$html .= '<img src="/_style/serv'.$t['id'].'.png" class="service-card__image" alt="'.$alt.'">';
+				$html .= '</div>';
+				$html .= '<div class="service-card__body">';
+				$html .= '<h3 class="service-card__title">'.$t['title'].'</h3>';
+				$html .= '<div class="service-card__divider" aria-hidden="true"></div>';
+				$html .= '<div class="service-card__text">'.$text.'</div>';
+				$html .= '</div>';
+				$html .= '</article>';
 			}
 			break;
 		case(3): 
