@@ -752,3 +752,74 @@ Completed successfully.
 ```text
 Complete H-009 Appointment Section
 ```
+
+---
+
+## H-011 — Favicon & App Icons
+
+**Date**
+
+2026-07-13
+
+**Status**
+
+✅ Completed
+
+**Goal**
+
+Add a complete modern favicon and application icon set based exclusively on the original Premium Avto logo.
+
+**Files created**
+
+```text
+public_html/favicon-16x16.png
+public_html/favicon-32x32.png
+public_html/apple-touch-icon.png
+public_html/android-chrome-192x192.png
+public_html/android-chrome-512x512.png
+public_html/site.webmanifest
+```
+
+**Files modified**
+
+```text
+public_html/favicon.ico
+_core/_parser/templates/landing.html
+_core/_parser/templates/cabinet.html
+```
+
+**Risk**
+
+Very Low
+
+**Changes**
+
+- Created favicon and application icons from the supplied original Premium Avto logo.
+- No AI-generated or redrawn logo was used.
+- Preserved the original silver badge, black outline and recognizable Cyrillic letter «П».
+- Added favicon declarations to the public and administrative templates.
+- Added a web application manifest.
+- Existing PHP business logic, CMS modules and database structure were not changed.
+- `print.html` was not changed because it already references `/favicon.ico`.
+
+**Testing**
+
+- Verified all required files exist.
+- Verified exact PNG dimensions.
+- Verified `favicon.ico` contains 16×16, 32×32 and 48×48 images.
+- Verified `site.webmanifest` is valid JSON.
+- Verified homepage, admin page and favicon resources return HTTP 200.
+- Verified favicon declarations exist without duplicates.
+- Verified the original logo file checksum remained unchanged.
+- Verified `git diff --check`.
+- Browser screenshot confirmed that the favicon is displayed.
+
+**Result**
+
+Completed successfully.
+
+**Git Commit**
+
+```text
+Complete H-011 Favicon and App Icons
+```
