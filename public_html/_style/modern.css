@@ -1264,6 +1264,170 @@
      }
  }
 
+ /* ==========================================================
+   H-008 — Customer Benefits
+   ========================================================== */
+
+ .customer-benefits {
+     background: #f7f8fa;
+     border-top: 1px solid rgba(229, 231, 235, .8);
+ }
+
+ .customer-benefits__container {
+     max-width: var(--container-width);
+     margin: 0 auto;
+     padding: 68px 32px 72px;
+ }
+
+ .customer-benefits__header {
+     display: grid;
+     grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr);
+     align-items: end;
+     gap: 42px;
+
+     margin-bottom: 32px;
+ }
+
+ .customer-benefits__heading {
+     min-width: 0;
+ }
+
+ .customer-benefits__eyebrow {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+
+     margin: 0 0 10px;
+
+     color: var(--color-danger);
+     font-size: 13px;
+     font-weight: 800;
+     line-height: 1.2;
+     text-transform: uppercase;
+     letter-spacing: .09em;
+ }
+
+ .customer-benefits__eyebrow::before {
+     content: "";
+
+     display: block;
+     flex: 0 0 30px;
+
+     width: 30px;
+     height: 2px;
+
+     background: var(--color-danger);
+ }
+
+ .customer-benefits__title {
+     max-width: 560px;
+     margin: 0;
+     padding: 0;
+
+     color: #111827;
+     font-size: clamp(30px, 3vw, 42px);
+     font-weight: 800;
+     line-height: 1.15;
+     letter-spacing: 0;
+ }
+
+ .customer-benefits__intro {
+     max-width: 650px;
+     margin: 0;
+     padding: 0 0 2px 28px;
+
+     color: #4b5563;
+     border-left: 1px solid rgba(220, 38, 38, .38);
+     font-size: 15px;
+     line-height: 1.62;
+ }
+
+ .customer-benefits__grid {
+     display: grid;
+     grid-template-columns: repeat(3, minmax(0, 1fr));
+     gap: 16px;
+ }
+
+ .customer-benefits__card {
+     position: relative;
+     display: flex;
+     min-width: 0;
+     min-height: 210px;
+     padding: 26px 26px 24px;
+     flex-direction: column;
+
+     background: rgba(255, 255, 255, .94);
+     border: 1px solid rgba(209, 213, 219, .82);
+     border-radius: var(--radius-lg);
+     box-shadow: 0 12px 32px rgba(15, 23, 42, .045);
+
+     overflow: hidden;
+     transform: translateY(0);
+     transition:
+         transform var(--transition-fast),
+         border-color var(--transition-fast),
+         box-shadow var(--transition-fast);
+ }
+
+ .customer-benefits__card::after {
+     content: "";
+
+     position: absolute;
+     right: 0;
+     bottom: 0;
+
+     width: 42px;
+     height: 3px;
+
+     background: rgba(220, 38, 38, .72);
+     border-radius: 3px 0 0 0;
+ }
+
+ .customer-benefits__icon {
+     display: grid;
+     width: 48px;
+     height: 48px;
+     margin-bottom: 20px;
+     place-items: center;
+
+     background: rgba(220, 38, 38, .065);
+     border: 1px solid rgba(220, 38, 38, .14);
+     border-radius: 14px;
+ }
+
+ .customer-benefits__icon img {
+     display: block;
+     width: 28px;
+     height: 28px;
+ }
+
+ .customer-benefits__card-title {
+     margin: 0 0 10px;
+     padding: 0;
+
+     color: #111827;
+     font-size: 19px;
+     font-weight: 800;
+     line-height: 1.25;
+     letter-spacing: 0;
+ }
+
+ .customer-benefits__text {
+     margin: 0;
+
+     color: #5b6472;
+     font-size: 14px;
+     line-height: 1.58;
+ }
+
+ @media (hover: hover) {
+     .customer-benefits__card:hover {
+         border-color: rgba(220, 38, 38, .26);
+         box-shadow: 0 20px 44px rgba(15, 23, 42, .085);
+         transform: translateY(-3px);
+     }
+ }
+
  @media (max-width: 1100px) {
      .services-section__grid {
          grid-template-columns: 1fr;
@@ -1285,6 +1449,24 @@
      .gallery-showcase__item:nth-child(4n) {
          grid-column: span 12;
          aspect-ratio: 16 / 9;
+     }
+
+     .customer-benefits__header {
+         grid-template-columns: 1fr;
+         align-items: start;
+         gap: 20px;
+     }
+
+     .customer-benefits__title {
+         max-width: 680px;
+     }
+
+     .customer-benefits__intro {
+         max-width: 780px;
+     }
+
+     .customer-benefits__grid {
+         grid-template-columns: repeat(2, minmax(0, 1fr));
      }
  }
 
@@ -1439,6 +1621,15 @@
      }
 
      .gallery-section__title {
+         font-size: clamp(28px, 4.5vw, 36px);
+     }
+
+     .customer-benefits__container {
+         padding-top: 50px;
+         padding-bottom: 56px;
+     }
+
+     .customer-benefits__title {
          font-size: clamp(28px, 4.5vw, 36px);
      }
  }
@@ -1841,6 +2032,50 @@
          aspect-ratio: 16 / 10;
          border-radius: 16px;
      }
+
+     .customer-benefits__container {
+         padding: 42px 20px 48px;
+     }
+
+     .customer-benefits__header {
+         gap: 18px;
+         margin-bottom: 24px;
+     }
+
+     .customer-benefits__eyebrow {
+         margin-bottom: 12px;
+         font-size: 14px;
+         letter-spacing: .08em;
+     }
+
+     .customer-benefits__eyebrow::before {
+         flex-basis: 22px;
+         width: 22px;
+     }
+
+     .customer-benefits__title {
+         max-width: 100%;
+         font-size: clamp(25px, 6.4vw, 31px);
+         line-height: 1.16;
+     }
+
+     .customer-benefits__intro {
+         max-width: 100%;
+         padding: 0;
+
+         border-left: 0;
+         font-size: 14px;
+         line-height: 1.56;
+     }
+
+     .customer-benefits__card {
+         min-height: 0;
+         padding: 22px 20px 21px;
+     }
+
+     .customer-benefits__icon {
+         margin-bottom: 17px;
+     }
  }
 
  @media (max-width: 640px) {
@@ -1974,11 +2209,55 @@
          aspect-ratio: 4 / 3;
          border-radius: 14px;
      }
+
+     .customer-benefits__container {
+         padding: 38px 16px 44px;
+     }
+
+     .customer-benefits__title {
+         font-size: clamp(24px, 6.2vw, 29px);
+     }
+
+     .customer-benefits__grid {
+         grid-template-columns: 1fr;
+         gap: 12px;
+     }
+
+     .customer-benefits__card {
+         display: grid;
+         grid-template-columns: 44px minmax(0, 1fr);
+         column-gap: 16px;
+         padding: 20px 18px;
+     }
+
+     .customer-benefits__icon {
+         grid-row: 1 / span 2;
+         width: 44px;
+         height: 44px;
+         margin: 0;
+         border-radius: 12px;
+     }
+
+     .customer-benefits__icon img {
+         width: 26px;
+         height: 26px;
+     }
+
+     .customer-benefits__card-title {
+         margin-bottom: 8px;
+         font-size: 17px;
+     }
+
+     .customer-benefits__text {
+         font-size: 13px;
+         line-height: 1.52;
+     }
  }
 
  @media (prefers-reduced-motion: reduce) {
      .brand-strip__item img,
-     .gallery-showcase__item {
+     .gallery-showcase__item,
+     .customer-benefits__card {
          transition: none;
      }
  }

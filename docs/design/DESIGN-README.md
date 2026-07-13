@@ -30,6 +30,7 @@ They are architectural design artifacts rather than temporary mockups.
 - DS-002 — Trust Block Specification
 - DS-003 — Gallery Specification
 - H-006 — Services Section
+- DS-004 — Customer Benefits Specification
 
 Implemented:
 
@@ -41,7 +42,7 @@ Implemented:
 
 Current Design Task:
 
-- H-007 — Gallery Modernization
+- H-009 — Contacts Modernization
 ---
 
 # Implementation Notes
