@@ -153,6 +153,18 @@ All work correctly.
 
 ---
 
+# Local Mail Testing with Mailpit
+
+- Mailpit is used to capture outgoing mail safely during local development.
+- The Mailpit UI is available at `http://127.0.0.1:8025`.
+- PHP `mail()` is directed to Mailpit through the local Laragon configuration.
+- Local `php.ini` and Laragon `Procfile` settings are environment-specific and are not stored in this repository.
+- Real SMTP is not used during local development.
+- Mailpit must be configured again after moving the project to another computer.
+- Production mail configuration and real delivery must be verified separately after deployment.
+
+---
+
 # Before production deployment
 
 Restore production database credentials.

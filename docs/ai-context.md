@@ -71,10 +71,11 @@ Completed:
 - H-006 — Services Section
 - H-007 — Gallery Modernization
 - H-008 — Customer Benefits Section
+- H-009 — Appointment Section
 
 Current task:
 
-- H-009 — Contacts Modernization
+- H-010 — Responsive Layout Audit
 
 
 - AI documentation naming convention standardized.
@@ -95,6 +96,17 @@ Current frontend status:
 - Customer Benefits Section completed.
 - Customer Benefits continues the product communication sequence by explaining the practical benefits received by the client.
 - Customer Benefits is implemented as a static presentation component without changing the existing CMS architecture.
+- Appointment Section completes the product story of the homepage.
+- Desktop users are offered a service appointment form.
+- On mobile, the primary CTA is a direct phone call.
+- MAX is prepared as a future communication channel and currently appears as a disabled placeholder.
+- Email is required in the appointment form.
+- The project's contact and mail address is `premiumc@bk.ru`.
+- Existing `block4` continues to provide contact information.
+- The AJAX handler returns controlled JSON responses.
+- Mailpit is used only for safe local mail testing.
+- Real mail delivery must be verified separately on the hosting environment.
+- Phase 2 continues without unnecessary changes to PHP business logic.
 
 ---
 

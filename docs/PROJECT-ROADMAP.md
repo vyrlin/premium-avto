@@ -124,19 +124,37 @@ Transform the existing platform into a modern web product while preserving all e
 - ✅ Magazine-style presentation introduced.
 - ✅ No PHP business logic changed.
 
+### H-008 — Customer Benefits Section
+
+- ✅ Modern responsive Customer Benefits section implemented.
+- ✅ Six practical customer benefits presented without duplicating the Trust Block.
+- ✅ Static presentation component integrated between Gallery Showcase and Appointment Section.
+- ✅ No PHP business logic, CMS module or database structure changed.
+
+### H-009 — Appointment Section
+
+- ✅ Final homepage CTA section implemented.
+- ✅ Desktop scenario uses the service appointment form.
+- ✅ Mobile scenario prioritizes a direct phone call through `tel:`.
+- ✅ MAX is prepared as a disabled placeholder with the status «Скоро».
+- ✅ Required form fields include email.
+- ✅ AJAX submission, validation and controlled JSON responses implemented.
+- ✅ Existing `block4` retained for contact information.
+- ✅ Contact email changed to `premiumc@bk.ru`.
+- ✅ Local mail delivery verified through Mailpit.
+- ✅ PHP core business logic and database structure remained unchanged.
+
 ## Current Task
 
-### H-008 — Advantages Section
+### H-010 — Responsive Layout Audit
 
-Modernize the public advantages section as the next component in the Phase 2 product modernization sequence.
+Conduct a final end-to-end responsive audit of the entire homepage, eliminate inconsistencies between sections and prepare the public homepage for final review before publication.
+
 ---
 
 ## Next Planned Components
 
-
-H-009 — Contacts Modernization
-
-H-010 — Responsive Layout
+Further components will be planned after the H-010 responsive audit.
 
 ---
 

@@ -664,3 +664,91 @@ Completed successfully.
 Git Commit
 
 Complete H-008 Customer Benefits Section
+
+---
+
+## H-009 — Appointment Section
+
+**Date**
+
+2026-07-13
+
+**Status**
+
+✅ Completed
+
+**Goal**
+
+Преобразовать legacy-блок контактов в современную финальную CTA-секцию главной страницы.
+
+**Files**
+
+```text
+_ajax/mailsend.php
+_core/_config/config.php
+_core/_parser/templates/landing.html
+public_html/.htaccess
+public_html/_inc/js-funcs.js
+public_html/_style/modern.css
+docs/AI-CONTEXT.md
+docs/PROJECT-README.md
+docs/PROJECT-ROADMAP.md
+docs/changes-for-start-in-laragon.md
+docs/design/DESIGN-README.md
+docs/design/DS-005-APPOINTMENT-SECTION-SPECIFICATION.md
+docs/modernization-log.md
+```
+
+**Risk**
+
+Low to Medium
+
+- Основная работа относится к frontend и presentation layer.
+- Изменён почтовый endpoint.
+- Изменена PHP-конфигурация email проекта.
+- Удалены несовместимые директивы `.htaccess`.
+- Ядро CMS и база данных не изменялись.
+
+**Changes**
+
+- Legacy-блок контактов преобразован в новую Appointment Section.
+- Desktop-форма стала главным CTA секции.
+- На мобильных устройствах основной быстрый CTA использует `tel:`.
+- Добавлена нефункциональная заглушка MAX со статусом «Скоро».
+- Email добавлен как обязательное поле формы.
+- Реализована AJAX-отправка без перехода на отдельную страницу.
+- Добавлены клиентская и серверная валидация.
+- PHP endpoint возвращает контролируемые JSON-ответы.
+- Добавлена защита от повторной отправки и `disabled`-состояние кнопки.
+- Статусы отправки выводятся внутри секции через `aria-live`.
+- Исправлен legacy-конфликт стилей кнопки; её размеры больше не схлопываются.
+- Существующий `block4` сохранён как источник контактной информации.
+- Контактный адрес, `mailto:`, получатель заявок, `From` и `Return-Path` изменены на `premiumc@bk.ru`.
+- Из `.htaccess` удалены устаревшие несовместимые директивы `mbstring`.
+- Локальная доставка безопасно проверена через Mailpit.
+
+**Testing**
+
+- PHP syntax checks completed.
+- JavaScript syntax check completed.
+- `git diff --check` passed.
+- GET endpoint returned HTTP 405 with JSON.
+- Invalid POST returned HTTP 422 with JSON.
+- Valid local POST returned HTTP 200 success JSON after Mailpit configuration.
+- Test message appeared in Mailpit.
+- Message `From` and `To` are `premiumc@bk.ru`.
+- Form remains on the homepage during submission.
+- Entered data is preserved after an error.
+- Submit button retains its approved dimensions and does not collapse.
+- Mobile primary CTA uses `tel:`.
+- Existing `block4` contact content continues to render.
+
+**Result**
+
+Completed successfully.
+
+**Git Commit**
+
+```text
+Complete H-009 Appointment Section
+```

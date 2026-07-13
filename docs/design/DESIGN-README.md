@@ -31,6 +31,7 @@ They are architectural design artifacts rather than temporary mockups.
 - DS-003 — Gallery Specification
 - H-006 — Services Section
 - DS-004 — Customer Benefits Specification
+- DS-005 — Appointment Section Specification
 
 Implemented:
 
@@ -39,10 +40,14 @@ Implemented:
 - Brand Strip
 - Trust Block
 - Services Section
+- Gallery Showcase
+- Customer Benefits
+- Appointment Section
 
 Current Design Task:
 
-- H-009 — Contacts Modernization
+- H-010 — Responsive Layout Audit
+
 ---
 
 # Implementation Notes
