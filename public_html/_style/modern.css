@@ -1089,10 +1089,179 @@
      background: rgba(255, 255, 255, .08);
  }
 
- .services-section a:focus-visible,
- .service-card:focus-within {
+.services-section a:focus-visible,
+.service-card:focus-within {
      outline: 3px solid rgba(220, 38, 38, .35);
      outline-offset: 3px;
+ }
+
+ /* ==========================================================
+   H-007 — Gallery Showcase
+   ========================================================== */
+
+ .gallery-section {
+     background: #ffffff;
+     border-top: 1px solid rgba(229, 231, 235, .72);
+ }
+
+ .gallery-section__container {
+     max-width: var(--container-width);
+     margin: 0 auto;
+     padding: 56px 32px 62px;
+ }
+
+ .gallery-section__header {
+     max-width: 850px;
+     margin: 0 auto 28px;
+
+     text-align: center;
+ }
+
+ .gallery-section__eyebrow {
+     display: inline-flex;
+     align-items: center;
+     gap: 10px;
+
+     margin: 0 0 8px;
+
+     color: var(--color-danger);
+     font-size: 13px;
+     font-weight: 800;
+     line-height: 1.2;
+     text-transform: uppercase;
+     letter-spacing: .09em;
+ }
+
+ .gallery-section__eyebrow::before,
+ .gallery-section__eyebrow::after {
+     content: "";
+
+     display: block;
+
+     width: 28px;
+     height: 1px;
+
+     background: rgba(220, 38, 38, .55);
+ }
+
+ .gallery-section__title {
+     max-width: 720px;
+     margin: 0 auto 12px;
+     padding: 0;
+
+     color: #111827;
+     font-size: clamp(30px, 3vw, 42px);
+     font-weight: 800;
+     line-height: 1.15;
+     letter-spacing: 0;
+ }
+
+ .gallery-section__description {
+     max-width: 790px;
+     margin: 0 auto;
+
+     color: #4b5563;
+     font-size: 15px;
+     line-height: 1.58;
+ }
+
+ .gallery-showcase {
+     display: grid;
+     grid-template-columns: repeat(12, minmax(0, 1fr));
+     grid-auto-flow: dense;
+     gap: 14px;
+ }
+
+ .gallery-showcase__item {
+     position: relative;
+     display: block;
+     min-width: 0;
+     aspect-ratio: 4 / 3;
+
+     background: #f3f4f6;
+     border: 1px solid rgba(229, 231, 235, .95);
+     border-radius: var(--radius-lg);
+     box-shadow: 0 18px 46px rgba(15, 23, 42, .075);
+
+     overflow: hidden;
+     transform: translateY(0);
+     transition:
+         transform var(--transition-fast),
+         box-shadow var(--transition-fast),
+         filter var(--transition-fast);
+ }
+
+ .gallery-showcase__item:nth-child(1) {
+     grid-column: span 7;
+     aspect-ratio: 16 / 9;
+ }
+
+ .gallery-showcase__item:nth-child(2) {
+     grid-column: span 5;
+     aspect-ratio: 16 / 9;
+ }
+
+ .gallery-showcase__item:nth-child(3),
+ .gallery-showcase__item:nth-child(4),
+ .gallery-showcase__item:nth-child(5),
+ .gallery-showcase__item:nth-child(n + 8) {
+     grid-column: span 4;
+ }
+
+ .gallery-showcase__item:nth-child(6),
+ .gallery-showcase__item:nth-child(7) {
+     grid-column: span 6;
+     aspect-ratio: 16 / 9;
+ }
+
+ .gallery-showcase__item:only-child {
+     grid-column: 2 / span 10;
+     aspect-ratio: 16 / 9;
+ }
+
+ .gallery-showcase__item:first-child:nth-last-child(2),
+ .gallery-showcase__item:first-child:nth-last-child(2) ~ .gallery-showcase__item,
+ .gallery-showcase__item:first-child:nth-last-child(4),
+ .gallery-showcase__item:first-child:nth-last-child(4) ~ .gallery-showcase__item {
+     grid-column: span 6;
+     aspect-ratio: 16 / 9;
+ }
+
+ .gallery-showcase__item:first-child:nth-last-child(3) {
+     grid-column: span 12;
+     aspect-ratio: 16 / 9;
+ }
+
+ .gallery-showcase__item:first-child:nth-last-child(3) ~ .gallery-showcase__item {
+     grid-column: span 6;
+     aspect-ratio: 16 / 9;
+ }
+
+ .gallery-showcase__item:nth-child(6):last-child {
+     grid-column: span 12;
+     aspect-ratio: 16 / 9;
+ }
+
+ .gallery-showcase__image {
+     display: block;
+
+     width: 100%;
+     height: 100%;
+
+     object-fit: cover;
+ }
+
+ .gallery-showcase__item:focus-visible {
+     outline: 3px solid rgba(220, 38, 38, .35);
+     outline-offset: 4px;
+ }
+
+ @media (hover: hover) {
+     .gallery-showcase__item:hover {
+         box-shadow: 0 24px 58px rgba(15, 23, 42, .12);
+         filter: contrast(1.015) brightness(1.01);
+         transform: translateY(-3px);
+     }
  }
 
  @media (max-width: 1100px) {
@@ -1103,6 +1272,19 @@
      .services-section__cta {
          align-items: flex-start;
          flex-direction: column;
+     }
+
+     .gallery-showcase__item,
+     .gallery-showcase__item:nth-child(n) {
+         grid-column: span 6;
+         grid-row: auto;
+         aspect-ratio: 4 / 3;
+     }
+
+     .gallery-showcase__item:nth-child(1),
+     .gallery-showcase__item:nth-child(4n) {
+         grid-column: span 12;
+         aspect-ratio: 16 / 9;
      }
  }
 
@@ -1248,6 +1430,15 @@
      }
 
      .services-section__title {
+         font-size: clamp(28px, 4.5vw, 36px);
+     }
+
+     .gallery-section__container {
+         padding-top: 46px;
+         padding-bottom: 52px;
+     }
+
+     .gallery-section__title {
          font-size: clamp(28px, 4.5vw, 36px);
      }
  }
@@ -1607,6 +1798,49 @@
          min-height: 48px;
          justify-content: center;
      }
+
+     .gallery-section__container {
+         padding: 38px 20px 44px;
+     }
+
+     .gallery-section__header {
+         margin-bottom: 22px;
+     }
+
+     .gallery-section__eyebrow {
+         margin-bottom: 12px;
+         font-size: 14px;
+         letter-spacing: .08em;
+     }
+
+     .gallery-section__eyebrow::before,
+     .gallery-section__eyebrow::after {
+         width: 20px;
+     }
+
+     .gallery-section__title {
+         max-width: 100%;
+         font-size: clamp(25px, 6.4vw, 31px);
+         line-height: 1.16;
+     }
+
+     .gallery-section__description {
+         max-width: 100%;
+         font-size: 14px;
+         line-height: 1.52;
+     }
+
+     .gallery-showcase {
+         grid-template-columns: 1fr;
+         gap: 12px;
+     }
+
+     .gallery-showcase__item,
+     .gallery-showcase__item:nth-child(n) {
+         grid-column: auto;
+         aspect-ratio: 16 / 10;
+         border-radius: 16px;
+     }
  }
 
  @media (max-width: 640px) {
@@ -1722,10 +1956,29 @@
          font-size: 12px;
          line-height: 1.48;
      }
+
+     .gallery-section__container {
+         padding: 34px 16px 40px;
+     }
+
+     .gallery-section__header {
+         margin-bottom: 20px;
+     }
+
+     .gallery-section__title {
+         font-size: clamp(24px, 6.2vw, 29px);
+     }
+
+     .gallery-showcase__item,
+     .gallery-showcase__item:nth-child(n) {
+         aspect-ratio: 4 / 3;
+         border-radius: 14px;
+     }
  }
 
  @media (prefers-reduced-motion: reduce) {
-     .brand-strip__item img {
+     .brand-strip__item img,
+     .gallery-showcase__item {
          transition: none;
      }
  }

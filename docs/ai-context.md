@@ -69,12 +69,13 @@ Completed:
 - H-004 — Brand Strip & Hero Responsive Alignment completed.
 - H-005 — Trust Block completed.
 - H-006 — Services Section completed.
+- H-007 — Gallery Modernization completed.
 - AI documentation naming convention standardized.
 - Core AI documentation now uses globally unique filenames.
 
 Current task:
 
-- H-007 — Gallery Modernization.
+- H-008 — Advantages Section.
 
 Current frontend status:
 
@@ -82,6 +83,10 @@ Current frontend status:
 - The obsolete legacy “Why us?” block is no longer displayed on the public homepage.
 - The Services Section remains managed through the existing block2 CMS module.
 - Service titles, descriptions and prices continue to be loaded from the database.
+- Gallery Modernization completed.
+- Gallery now serves as a visual trust component.
+- Existing block3 CMS module and gallery database remain unchanged.
+- Gallery presentation has been modernized without changing PHP business logic.
 - Phase 2 continues component by component without unnecessary changes to PHP business logic.
 
 ---

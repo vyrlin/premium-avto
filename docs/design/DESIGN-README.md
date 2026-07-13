@@ -28,6 +28,7 @@ They are architectural design artifacts rather than temporary mockups.
 
 - DS-001 — Hero Specification
 - DS-002 — Trust Block Specification
+- DS-003 — Gallery Specification
 - H-006 — Services Section
 
 Implemented:
@@ -37,6 +38,10 @@ Implemented:
 - Brand Strip
 - Trust Block
 - Services Section
+
+Current Design Task:
+
+- H-007 — Gallery Modernization
 ---
 
 # Implementation Notes

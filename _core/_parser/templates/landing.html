@@ -217,19 +217,25 @@
 	</div>
 </section>
 
-<div class="block" style="background-color:#fff;">
-<a name="block3"><h2>Фотогалерея</h2>
-<div id="photogallery">
-  <button id="photogallery_left" onClick="pgScroll(-200);"></button>
-  <!--<a href="#" onClick="pgScroll(-200);"><img src="/_style/icons/prev.png"></a>-->
-  <ul id="phg">
-    {#_BLOCK_3_#}
-  </ul>
-  <button id="photogallery_right" onClick="pgScroll(200);"></button>
-  <!--<a href="#" onClick="pgScroll(200);"><img src="/_style/icons/next.png"></a>-->
-</div>
-</div>
-<script> pgScroll(200); </script>
+<section class="gallery-section" id="block3" aria-labelledby="gallery-section-title">
+	<div class="gallery-section__container">
+		<header class="gallery-section__header">
+			<p class="gallery-section__eyebrow">Premium Avto</p>
+
+			<h2 class="gallery-section__title" id="gallery-section-title">
+				Наш сервис в деталях
+			</h2>
+
+			<p class="gallery-section__description">
+				Современное оборудование, профессиональный инструмент, реальные автомобили клиентов и ежедневная работа специалистов Premium Avto — именно так выглядит сервис, которому доверяют владельцы автомобилей VAG.
+			</p>
+		</header>
+
+		<div class="gallery-showcase" aria-label="Фотографии сервисного центра Premium Avto">
+			{#_BLOCK_3_#}
+		</div>
+	</div>
+</section>
 
 <div class="block" style="background-color:#ed1c24; color:#FFF;">
 <a name="block4"><h2 style="color:#FFF;">Контакты</h2>

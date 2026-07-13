@@ -98,7 +98,12 @@ function get_block($number) {
 		case(3): 
 			$txts = DB::select("SELECT * FROM gallery WHERE active='1' ORDER BY id");
 			foreach($txts as $t) {
-				$html .= '<li><a href="#" onClick="'."showModals('".$t['id']."')".';"><img src="/pics/'.$t['photo'].'_small.png" class="photogallery-small"></a></li>';
+				$alt = trim(strip_tags($t['text']));
+				if(!$alt) $alt = 'Сервисный центр Premium Avto';
+				$alt = htmlspecialchars($alt, ENT_QUOTES, 'UTF-8');
+				$html .= '<a href="#" class="gallery-showcase__item" onClick="'."showModals('".$t['id']."')".'; return false;">';
+				$html .= '<img src="/pics/'.$t['photo'].'.'.$t['ext'].'" class="gallery-showcase__image" alt="'.$alt.'" loading="lazy" decoding="async">';
+				$html .= '</a>';
 			}
 			break;
 		case(4): 
