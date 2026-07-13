@@ -982,3 +982,59 @@ The modernized Premium Avto website is now running successfully in the productio
 Phase 3 will continue with incremental security improvements while preserving the stable production release.
 
 ---
+
+## H-012 — Mobile MAX Button Layout Fix
+
+**Date**
+
+2026-07-13
+
+**Status**
+
+✅ Completed
+
+**Goal**
+
+Fix the collapsed mobile layout of the MAX placeholder button in the Appointment Section.
+
+**Files**
+
+```text
+_core/_parser/templates/landing.html
+public_html/_style/modern.css
+docs/modernization-log.md
+```
+
+**Risk**
+
+Low
+
+**Changes**
+
+- Corrected the mobile width and layout of the MAX placeholder button.
+- Preserved the «Скоро» status.
+- Preserved the disabled placeholder behavior.
+- Preserved desktop layout and Appointment form behavior.
+- Removed the mobile layout collapse without changing PHP business logic.
+
+**Testing**
+
+- 430×932
+- 390×844
+- 375×812
+- 360×800
+- Desktop regression check
+- No horizontal scrolling
+- `git diff --check`
+
+**Result**
+
+The MAX placeholder now renders correctly as a readable horizontal mobile action without affecting the Appointment form or desktop layout.
+
+**Git Commit**
+
+```text
+Fix mobile MAX button layout
+```
+
+---

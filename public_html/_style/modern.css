@@ -1874,6 +1874,9 @@
 
      .appointment-section__quick-action {
          display: flex;
+         box-sizing: border-box;
+         width: 100%;
+         height: auto;
          min-width: 0;
          min-height: 54px;
          padding: 8px 14px;
