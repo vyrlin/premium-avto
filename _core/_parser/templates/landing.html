@@ -6,9 +6,9 @@
 	<title>{#_TITLE_#}</title>
 	{#_SEO_#}
 	<link rel="stylesheet" href="/_style/landing.css">
-	<link rel="stylesheet" href="/_style/modern.css?v=2">
+	<link rel="stylesheet" href="/_style/modern.css?v=3">
     <script src="/_inc/DataTables/jQuery-3.2.1/jquery-3.2.1.min.js"></script>
-    <script src="/_inc/js-funcs.js"></script>
+    <script src="/_inc/js-funcs.js?v=2" defer></script>
 </HEAD>
 <body id="body-main">
 
@@ -305,26 +305,101 @@
 	</div>
 </section>
 
-<div class="block" style="background-color:#ed1c24; color:#FFF;">
-<a name="block4"><h2 style="color:#FFF;">Контакты</h2>
-<div class="div2to1cols">
-	<div class="text2cols" style="text-align:center;">
-		<script type="text/javascript" src="http://api-maps.yandex.ru/1.1/index.xml?key=ALT_0U8BAAAApN56FQIAWtecwDITg662K4MlKHL8G_dBx0YAAAAAAAAAAABLrHBMRErmtQjXRjwJjtZFXVxk8Q=="></script>
-		<!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту (начало) -->
-		<div id="ymaps-map-id_133916280421320163106" style="width: 450px; height: 350px;"></div>
-		<div style="text-align: right; width: 450px;"><a target="_blank" href="http://api.yandex.ru/maps/tools/constructor/?lang=ru-RU" style="color: #1A3DC1; font: 13px Arial,Helvetica,sans-serif;">Создано с помощью инструментов Яндекс.Карт</a></div>
-		<script type="text/javascript"><!--
-		function fid_133916280421320163106(ymaps) {var map = new ymaps.Map("ymaps-map-id_133916280421320163106", {center: [60.61677093930049, 56.86589086911472], zoom: 16, type: "yandex#map"});map.controls.add("zoomControl").add("mapTools").add(new ymaps.control.TypeSelector(["yandex#map", "yandex#satellite", "yandex#hybrid", "yandex#publicMap"]));map.geoObjects.add(new ymaps.Placemark([60.61668510861202, 56.86478612782703], {balloonContent: ""}, {preset: "twirl#lightblueDotIcon"}));};
-		// --></script>
-		<script type="text/javascript" src="http://api-maps.yandex.ru/2.0/?coordorder=longlat&amp;load=package.full&amp;wizard=constructor&amp;lang=ru-RU&amp;onload=fid_133916280421320163106"></script>
-		<!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту (конец) -->
+<section class="appointment-section" id="block4" aria-labelledby="appointment-section-title">
+	<div class="appointment-section__container">
+		<header class="appointment-section__header">
+			<p class="appointment-section__eyebrow">Запись в Premium Avto</p>
+			<h2 class="appointment-section__title" id="appointment-section-title">Запишитесь на диагностику или обслуживание</h2>
+			<p class="appointment-section__intro">Опишите проблему — мы предложим оптимальное решение и свяжемся с вами удобным способом.</p>
+		</header>
+
+		<div class="appointment-section__quick-actions" aria-label="Быстрые способы связи">
+			<a class="appointment-section__quick-action appointment-section__quick-action--call" href="tel:+73432000900">Позвонить</a>
+			<button class="appointment-section__quick-action appointment-section__quick-action--max" type="button" disabled>
+				Написать в MAX
+				<span>Скоро</span>
+			</button>
+		</div>
+
+		<div class="appointment-section__content">
+			<div class="appointment-form-card">
+				<div class="appointment-form-card__header">
+					<p class="appointment-form-card__step">Заявка на обслуживание</p>
+					<h3 class="appointment-form-card__title">Расскажите об автомобиле</h3>
+				</div>
+
+				<form class="appointment-form" id="appointment-form" action="/_ajax/mailsend.php" method="post" onsubmit="return false;">
+					<div class="appointment-section__field">
+						<label for="appointment-name">Имя</label>
+						<input id="appointment-name" name="name" type="text" autocomplete="name" placeholder="Ваше имя" required>
+					</div>
+
+					<div class="appointment-section__field">
+						<label for="appointment-phone">Телефон</label>
+						<input id="appointment-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required>
+					</div>
+
+					<div class="appointment-section__field">
+						<label for="appointment-email">E-mail</label>
+						<input id="appointment-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="name@example.ru" required>
+					</div>
+
+					<div class="appointment-section__field">
+						<label for="appointment-car">Марка и модель автомобиля</label>
+						<input id="appointment-car" name="car" type="text" autocomplete="off" placeholder="Например, Audi A6" required>
+					</div>
+
+					<div class="appointment-section__field appointment-section__field--wide">
+						<label for="appointment-message">Описание проблемы</label>
+						<textarea id="appointment-message" name="message" rows="5" placeholder="Опишите неисправность или необходимую услугу" required></textarea>
+					</div>
+
+					<div class="appointment-form__footer appointment-section__field--wide">
+						<button class="appointment-form__submit" type="submit">Отправить заявку</button>
+						<p class="appointment-form__status" id="appointment-form-status" role="status" aria-live="polite"></p>
+					</div>
+				</form>
+			</div>
+
+			<aside class="appointment-contact" aria-labelledby="appointment-contact-title">
+				<p class="appointment-contact__label">Связаться напрямую</p>
+				<h3 class="appointment-contact__title" id="appointment-contact-title">Контакты сервиса</h3>
+
+				<div class="appointment-contact__primary">
+					<span>Телефон для записи</span>
+					<a href="tel:+73432000900">8 (343) 2000-900</a>
+				</div>
+
+				<div class="appointment-contact__primary">
+					<span>E-mail</span>
+					<a href="mailto:premiumc@bk.ru">premiumc@bk.ru</a>
+				</div>
+
+				<div class="appointment-contact__cms">
+					{#_BLOCK_4_#}
+				</div>
+			</aside>
+		</div>
+
+		<div class="appointment-map" aria-labelledby="appointment-map-title">
+			<div class="appointment-map__header">
+				<p class="appointment-map__label">Расположение сервиса</p>
+				<h3 class="appointment-map__title" id="appointment-map-title">Как нас найти</h3>
+			</div>
+
+			<div class="appointment-map__frame">
+				<script type="text/javascript" src="http://api-maps.yandex.ru/1.1/index.xml?key=ALT_0U8BAAAApN56FQIAWtecwDITg662K4MlKHL8G_dBx0YAAAAAAAAAAABLrHBMRErmtQjXRjwJjtZFXVxk8Q=="></script>
+				<div id="ymaps-map-id_133916280421320163106"></div>
+				<script type="text/javascript"><!--
+				function fid_133916280421320163106(ymaps) {var map = new ymaps.Map("ymaps-map-id_133916280421320163106", {center: [60.61677093930049, 56.86589086911472], zoom: 16, type: "yandex#map"});map.controls.add("zoomControl").add("mapTools").add(new ymaps.control.TypeSelector(["yandex#map", "yandex#satellite", "yandex#hybrid", "yandex#publicMap"]));map.geoObjects.add(new ymaps.Placemark([60.61668510861202, 56.86478612782703], {balloonContent: ""}, {preset: "twirl#lightblueDotIcon"}));};
+				// --></script>
+				<script type="text/javascript" src="http://api-maps.yandex.ru/2.0/?coordorder=longlat&amp;load=package.full&amp;wizard=constructor&amp;lang=ru-RU&amp;onload=fid_133916280421320163106"></script>
+			</div>
+
+			<a class="appointment-map__provider" target="_blank" rel="noopener noreferrer" href="http://api.yandex.ru/maps/tools/constructor/?lang=ru-RU">Открыть инструменты Яндекс.Карт</a>
+		</div>
 	</div>
-	<div class="text2cols">
-	{#_BLOCK_4_#}
-	<p><a href="#" class="button bgblue" onClick="showModal(); return false;">Напишите нам</a></p>
-	</div>
-</div>
-</div>
+</section>
 
 <div class="block" style="background-color:#FFF;">
 <a name="block5"><h2>О компании</h2>

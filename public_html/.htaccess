@@ -19,10 +19,7 @@ Header always edit Set-Cookie (.*) "$1; HTTPOnly"
 php_value mbstring.func_overload 0
 php_value default_charset UTF-8
 php_value mbstring.language Russian
-php_value mbstring.internal_encoding UTF-8
 php_flag mbstring.encoding_translation on
-php_value mbstring.http_input "UTF-8,KOI8-R,CP1251"
-php_value mbstring.http_output UTF-8
 php_value mbstring.detect_order "UTF-8,KOI8-R,CP1251"
 
 RewriteCond %{REQUEST_FILENAME} data\/.*\.(php|php4|php5|pl|pm|cgi|js|html|htm|exe) [NC]

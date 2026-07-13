@@ -67,28 +67,101 @@ function closeModals(id) {
 }
 
 // MAIL
-function mailSend() {
-	var name = document.getElementById('mail_name').value; 
-	var contact = document.getElementById('mail_contact').value; 
-	var txt = document.getElementById('mail_text').value; 
-	if ((name != '') && (contact != '') && (txt != '')) {
-		var data = new Map([['name', name], ['contact', contact], ['txt', txt]]);
-		var postData = new FormData();
-		data.forEach(function(value, key) {
-			postData.append(key, value);
+function setAppointmentStatus(status, message, type) {
+	status.textContent = message;
+	status.className = 'appointment-form__status';
+	if (type) status.className += ' appointment-form__status--' + type;
+}
+
+function submitAppointmentForm(form) {
+	var status = document.getElementById('appointment-form-status');
+	var submit = form.querySelector('button[type="submit"]');
+	var errorMessage = 'Не удалось отправить заявку. Пожалуйста, позвоните нам по телефону.';
+
+	if (form.dataset.submitting === 'true') return false;
+
+	setAppointmentStatus(status, '', '');
+
+	if (!form.checkValidity()) {
+		form.reportValidity();
+		setAppointmentStatus(status, 'Пожалуйста, заполните все обязательные поля.', 'error');
+		return false;
+	}
+
+	form.dataset.submitting = 'true';
+	submit.disabled = true;
+	submit.setAttribute('aria-busy', 'true');
+	setAppointmentStatus(status, 'Отправляем заявку…', 'pending');
+
+	var controller = new AbortController();
+	var timeout = window.setTimeout(function() { controller.abort(); }, 15000);
+
+	fetch(form.action, {
+		method: 'POST',
+		body: new FormData(form),
+		headers: {'X-Requested-With': 'XMLHttpRequest'},
+		signal: controller.signal
+	})
+		.then(function(response) {
+			return response.text().then(function(text) {
+				var data;
+
+				if (!text.trim()) throw new Error(errorMessage);
+
+				try {
+					data = JSON.parse(text);
+				} catch (error) {
+					throw new Error(errorMessage);
+				}
+
+				if (!response.ok || data.success !== true) {
+					throw new Error(data.message || errorMessage);
+				}
+
+				return data;
+			});
+		})
+		.then(function(data) {
+			form.reset();
+			setAppointmentStatus(status, data.message, 'success');
+		})
+		.catch(function(error) {
+			setAppointmentStatus(status, error.message || errorMessage, 'error');
+		})
+		.finally(function() {
+			window.clearTimeout(timeout);
+			delete form.dataset.submitting;
+			submit.disabled = false;
+			submit.removeAttribute('aria-busy');
 		});
-		var request = new XMLHttpRequest();
-		request.open('POST', "/_ajax/mailsend.php"); 
-		request.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) { 
-				//var res = JSON.parse(this.responseText);
-				closeModal();
-				//alert(res);
-				alert('Спасибо, ваше сообщение отправлено.');
-			}
-		};
-		request.send(postData);
-	} else { alert('Не заполнено обязательное поле!'); }
+
+	return false;
+}
+
+function mailSend(event) {
+	if (event) event.preventDefault();
+
+	var form = document.getElementById('appointment-form');
+	if (form) submitAppointmentForm(form);
+
+	return false;
+}
+
+function initAppointmentForm() {
+	var form = document.getElementById('appointment-form');
+	if (!form || form.dataset.submitHandler === 'ready') return;
+
+	form.dataset.submitHandler = 'ready';
+	form.addEventListener('submit', function(event) {
+		event.preventDefault();
+		submitAppointmentForm(form);
+	});
+}
+
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', initAppointmentForm);
+} else {
+	initAppointmentForm();
 }
 // PHOTOGALLERY
 function pgScroll(val) {

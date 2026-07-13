@@ -19,18 +19,18 @@ $_SITE['step'] = 25;
 $_TMP['dtTable_count'] = 0;
 $_TMP_FORM_INPUTS = array();
 // ======================== MAIL ===================================
-$headers  = "MIME-Version: 1.0\n";
-$headers .= "Return-Path: <robot@".DOMAIN_NAME.">\n";
-$headers .= "X-Mailer: SquirrelMail/1.4.13\n";
+const ADMIN_EMAIL = 'premiumc@bk.ru';
+$headers  = "MIME-Version: 1.0\r\n";
+$headers .= "Return-Path: <".ADMIN_EMAIL.">\r\n";
+$headers .= "X-Mailer: SquirrelMail/1.4.13\r\n";
 $sign = preg_replace("/([^0-9])/", "", microtime());
 $sign = substr(md5($sign), 0, 16);
-$headers .= "Message-ID: <".$sign."@sweb.ru>\n";
-$headers .= "X-MSMail-Priority: Normal\n";
-$headers .= "X-Priority: 3\n";
-$headers .= "Content-Type: text/html; charset=UTF-8\n";
-$headers .= "From: ".DOMAIN_NAME." <robot@".DOMAIN_NAME.">\r\n";
+$headers .= "Message-ID: <".$sign."@sweb.ru>\r\n";
+$headers .= "X-MSMail-Priority: Normal\r\n";
+$headers .= "X-Priority: 3\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+$headers .= "From: ".ADMIN_EMAIL."\r\n";
 $_EMAIL_HEADERS = $headers;
-const ADMIN_EMAIL = 'virlin@mail.ru';
 // ======================== MESSAGES ===================================
 $_YES = array(); $_ATT = array(); $_ERR = array();
 
