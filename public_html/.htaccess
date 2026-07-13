@@ -3,6 +3,12 @@ ErrorDocument 404 /404.html
 Options +Indexes +FollowSymlinks
 RewriteEngine On
 
+SetEnvIf X-Forwarded-Proto https SERVER_PORT=443
+SetEnvIf X-Forwarded-Proto https HTTPS=on
+
+RewriteCond %{HTTP:HTTPS} !=on [NC]
+RewriteRule ^(.*)$ https://premium-avto.ru/$1 [R=301,L]
+
 AddDefaultCharset UTF-8
 AddHandler application/x-httpd-php .html .htm
 AddType application/x-httpd-php .html .htm
