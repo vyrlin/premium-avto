@@ -72,6 +72,7 @@ Completed:
 - H-007 — Gallery Modernization
 - H-008 — Customer Benefits Section
 - H-009 — Appointment Section
+- H-011 — Favicon & App Icons (Phase 3 product-polish task)
 
 Current task:
 

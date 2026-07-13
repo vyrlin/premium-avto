@@ -160,6 +160,10 @@ Further components will be planned after the H-010 responsive audit.
 
 # Phase 3 — Security & Reliability
 
+Completed product-polish work during Phase 3:
+
+- ✅ H-011 — Favicon & App Icons.
+
 Planned work:
 
 - dependency updates;
